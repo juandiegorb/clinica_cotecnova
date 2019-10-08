@@ -37,5 +37,4 @@ if(isset($_POST['enviar']) && !empty($_GET['id']) && !empty($_POST['nombreComple
 }else{
     header("Location: ../index.php");
     //sino se cumple la primer condicion, se re envia nuevamente al formulario
-    
 }

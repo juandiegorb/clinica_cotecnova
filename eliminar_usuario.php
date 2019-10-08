@@ -26,6 +26,23 @@
   <?php
   include("header_index.php");
   ?>
+  <?php
+    $id = $_GET['id'];
+    //llamado al archivo MySQL
+    require_once 'Modelo/MySQL.php';
+    //nueva "consulta"
+    $mysql = new MySQL;
+    //funcion conectar
+    $mysql->conectar();
+    //consulta de toda la informacion
+    $seleccionInformacion = $mysql->efectuarConsulta("select clinica_cotecnova.usuarios.numero_documento, clinica_cotecnova.usuarios.nombre_completo from usuarios where id_usuario = ".$id."");     
+    while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
+        $numeroDocumento = $resultado['numero_documento'];
+        $nombre_completo = $resultado['nombre_completo'];
+    }
+    //funcion desconectar
+    $mysql->desconectar();    
+    ?>
   </div>  
   <!--service-->
   <section id="service" class="section-padding">
@@ -41,22 +58,28 @@
           <div class="card">
             <!-- Tab panes -->
             <div class="card-body">
-              <form class="form-horizontal form-material">
-              <div class="form-group">
-                  <label class="col-sm-12">Ingrese el numero de documento de la persona a borrar</label>
+                <form class="form-horizontal form-material" method="post" action="Controlador/eliminarUsuario.php?id=<?php echo $id;?>">
+                    <div class="form-group">
+                  <label class="col-sm-12">¿Esta seguro de eliminar el usuario?</label>
+                  <div class="col-md-12">
+                        <!-- Se traen los datos y se imprimen en las opciones del select -->
+                        <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line">
+                        
+                    </div>
                   </div>         
                  <div class="form-group">
-                  <label class="col-sm-12">Numero</label>            
+                  <label class="col-sm-12">Numero de documento del usuario</label>            
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese el numero del documento" class="form-control form-control-line">
-                  </div>
+                        <!-- Se traen los datos y se imprimen en las opciones del select -->
+                        <input type="text" value="<?php echo $numeroDocumento?>" class="form-control form-control-line">
+                    </div>
                 </div>    
                 <div class="form-group">
                   <div class="col-sm-2 col-md-2">
-                    <button class="btn btn-success">Eliminar</button>
+                    <button class="btn btn-success" >Eliminar</button>
                   </div>
                   <div class="col-sm-10 col-md-4">
-                    <a href="index.html" class="btn btn-danger">Cancelar</a>
+                      <a href="ver_usuario.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>
