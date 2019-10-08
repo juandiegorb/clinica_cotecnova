@@ -33,7 +33,7 @@ if(isset($_POST['enviar']) && !empty($_POST['tipoDocumento']) && !empty($_POST['
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($insertarUsuarioi){
-           header("Location: ../index.php");
+           header("Location: ../ver_usuario.php");
         } else {
             //mensaje de error
             echo "Error";
