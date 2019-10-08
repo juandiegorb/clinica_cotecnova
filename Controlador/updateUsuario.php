@@ -25,22 +25,17 @@ if(isset($_POST['enviar']) && !empty($_POST['tipoDocumento']) && !empty($_POST['
     
     $repetido = $mysql->efectuarConsulta("select numero_documento from clinica_cotecnova.usuarios where numero_documento = ".$numeroDocumento.""); 
     
-    if(mysqli_num_rows($repetido) > 0){
-        echo "El numero de cedula ya existe";
-    }else{
+   
         //variable que ejecutara la funcion consulta, pero en este caso, no usamos select sino insert para meter los datos a la respectiva table
         $insertarUsuarioi = $mysql->efectuarConsulta("insert into clinica_cotecnova.usuarios(tipo_Usuario_id, numero_documento, nombre_completo, apellidos, contrasena, tipo_documento_id, estado_civil_id, ciudad_id, departamento_id) VALUES(".$tipoUsuario.",'".$numeroDocumento."','".$nombreCompleto."','".$apellidos."','".$contrasena."',".$tipoDocumento.",".$estadoCivil.",".$CiudadNacimiento.",".$departamentoNacimiento.")"); 
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($insertarUsuarioi){
-           header("Location: ../index.php");
+           header("Location: ../ver_usuario.php");
         } else {
             //mensaje de error
             echo "Error";
         }
-        
-    }    
-    
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
     //header("Location: ../index.php");

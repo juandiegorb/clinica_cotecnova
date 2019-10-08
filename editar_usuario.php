@@ -37,23 +37,40 @@
     $mysql->conectar();
     //consulta de toda la informacion
     $seleccionInformacion = $mysql->efectuarConsulta("SELECT 
-    clinica_cotecnova.tipos_documentos.nombre as tipo_documento, 
-    clinica_cotecnova.usuarios.numero_documento, 
-    clinica_cotecnova.usuarios.nombre_completo, 
-    clinica_cotecnova.usuarios.apellidos, 
-    clinica_cotecnova.estados_civiles.nombre as estado, 
-    clinica_cotecnova.departamentos.nombre as departamentos, 
-    clinica_cotecnova.ciudades.nombre as ciudades, 
-    clinica_cotecnova.usuarios.contrasena  
-    FROM usuarios 
-    INNER JOIN tipos_documentos on clinica_cotecnova.usuarios.tipo_documento_id = clinica_cotecnova.tipos_documentos.id_tipo_documento 
-    INNER JOIN estados_civiles on clinica_cotecnova.usuarios.estado_civil_id = clinica_cotecnova.estados_civiles.id_estado_civil 
-    INNER JOIN departamentos on clinica_cotecnova.usuarios.departamento_id = clinica_cotecnova.departamentos.id_departamento 
-    INNER JOIN ciudades on clinica_cotecnova.usuarios.ciudad_id = clinica_cotecnova.ciudades.id_ciudad  
-    WHERE id_usuario = ".$id."");     
+	clinica_cotecnova.tipos_documentos.id_tipo_documento,
+        clinica_cotecnova.tipos_documentos.nombre as tipo_documento, 
+        clinica_cotecnova.usuarios.numero_documento, 
+        clinica_cotecnova.usuarios.nombre_completo, 
+        clinica_cotecnova.usuarios.apellidos, 
+        clinica_cotecnova.estados_civiles.id_estado_civil,
+        clinica_cotecnova.estados_civiles.nombre as estado, 
+        clinica_cotecnova.departamentos.id_departamento, 
+        clinica_cotecnova.departamentos.nombre as departamentos, 
+        clinica_cotecnova.ciudades.id_ciudad, 
+        clinica_cotecnova.ciudades.nombre as ciudades, 
+        clinica_cotecnova.usuarios.contrasena  
+        FROM usuarios 
+        INNER JOIN tipos_documentos on clinica_cotecnova.usuarios.tipo_documento_id = clinica_cotecnova.tipos_documentos.id_tipo_documento 
+        INNER JOIN estados_civiles on clinica_cotecnova.usuarios.estado_civil_id = clinica_cotecnova.estados_civiles.id_estado_civil 
+        INNER JOIN departamentos on clinica_cotecnova.usuarios.departamento_id = clinica_cotecnova.departamentos.id_departamento 
+        INNER JOIN ciudades on clinica_cotecnova.usuarios.ciudad_id = clinica_cotecnova.ciudades.id_ciudad  
+        WHERE id_usuario = ".$id."");     
     while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
+        $id_tipo_documento = $resultado['id_tipo_documento'];
         $tipo_documento = $resultado['tipo_documento'];
-    }   
+        $numeroDocumento = $resultado['numero_documento'];
+        $nombre_completo = $resultado['nombre_completo'];
+        $apellidos = $resultado['apellidos'];
+        $id_estado = $resultado['id_estado_civil'];
+        $estado = $resultado['estado'];
+        $id_departamentos = $resultado['id_departamento'];
+        $departamentos = $resultado['departamentos'];
+        $id_ciudades = $resultado['id_ciudad'];
+        $ciudades = $resultado['ciudades'];
+        $contrasena = $resultado['contrasena'];        
+    } 
+    $seleccionEstado = $mysql->efectuarConsulta("select clinica_cotecnova.estados_civiles.id_estado_civil, clinica_cotecnova.estados_civiles.nombre from estados_civiles"); 
+    $seleccionDepartamento = $mysql->efectuarConsulta("select clinica_cotecnova.departamentos.id_departamento, clinica_cotecnova.departamentos.nombre from departamentos"); 
     //funcion desconectar
     $mysql->desconectar();    
     ?>
@@ -77,39 +94,37 @@
                   <label class="col-sm-12">Seleccione el tipo de documento</label>
                   <div class="col-sm-12">
                     <select disabled class="form-control form-control-line">
-                      <option disabled selected="true">Seleccione una opcion</option>
-                      <option>C&eacute;dula</option>
-                      <option>Pasaporte</option>
-                      <option>Tarjeta de identidad</option>
+                        <option disabled selected="true" value="<?php echo $id_tipo_documento?>"><?php echo $tipo_documento?></option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Numero</label>            
                   <div class="col-md-12">
-                    <input type="text" disabled="" placeholder="Ingrese el numero del documento" class="form-control form-control-line">
+                      <input type="text" disabled="" value="<?php $numeroDocumento?>" placeholder="<?php echo $numeroDocumento?>" class="form-control form-control-line">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-12">Nombre Completo</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus nombres" class="form-control form-control-line">
+                    <input type="text" placeholder="<?php echo $nombre_completo?>" class="form-control form-control-line">
                   </div>
                 </div>
                 <div class="form-group">                  
                   <label class="col-md-12">Apellidos</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus apellidos" class="form-control form-control-line">
+                    <input type="text" placeholder="<?php echo $apellidos?>" class="form-control form-control-line">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Estado civil</label>
                   <div class="col-sm-12">
                       <select class="form-control form-control-line" name="estadoCivil">
-                      <option disabled selected="true">Seleccione una opcion</option>
-                         <?php 
+                          <option value="<?php $id_estado?>" selected="true"><?php echo $estado?></option>
+                          <option disabled>Seleccione un estado si va a editar</option>
+                        <?php 
                          //se recorre el resultado de la consutla de estado civil
-                       while ($resultado= mysqli_fetch_assoc($seleccionEstado)){
+                        while ($resultado= mysqli_fetch_assoc($seleccionEstado)){
                            //se imprime los resultados
                            ?> 
                         <option value="<?php echo $resultado['id_estado_civil']?>"><?php echo $resultado['nombre']?></option>  
@@ -120,22 +135,24 @@
                 <div class="form-group">
                   <label class="col-sm-12">Departamento de nacimiento</label>
                   <div class="col-sm-12">
-                    <select class="form-control form-control-line">
-                      <option disabled selected="true">Seleccione una opcion</option>
-                      <option>opcion 1</option>
-                      <option>opcion 2</option>
-                      <option>opcion 3</option>
+                      <select id="departamento" class="form-control form-control-line">
+                      <option value="<?php $id_departamentos?>" selected="true"><?php echo $departamentos?></option>
+                      <option disabled >Seleccione un departamento si va a editar</option>
+                      <?php 
+                         //se recorre el resultado de la consutla de estado civil
+                        while ($resultado= mysqli_fetch_assoc($seleccionDepartamento)){
+                           //se imprime los resultados
+                           ?> 
+                        <option value="<?php echo $resultado['id_departamento']?>"><?php echo $resultado['nombre']?></option>  
+                        <?php }?>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Ciudad de nacimiento</label>
                   <div class="col-sm-12">
-                    <select class="form-control form-control-line">
-                      <option disabled selected="true">Seleccione una opcion</option>
-                      <option>opcion 1</option>
-                      <option>opcion 2</option>
-                      <option>opcion 3</option>
+                    <select id="ciudad" class="form-control form-control-line">
+                      <option value="<?php $id_ciudades?>" selected="true"><?php echo $ciudades?></option>
                     </select>
                   </div>
                 </div>                
@@ -150,7 +167,7 @@
                     <button class="btn btn-success">Modificar</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
-                    <a href="index.html" class="btn btn-danger">Cancelar</a>
+                    <a href="index.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>
@@ -174,6 +191,8 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
+  <script src="js/listasDependientes.js"></script>
+  
 
 </body>
 
