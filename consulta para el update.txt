@@ -1,0 +1,15 @@
+SELECT 
+clinica_cotecnova.tipos_documentos.nombre as tipo_documento, 
+clinica_cotecnova.usuarios.numero_documento, 
+clinica_cotecnova.usuarios.nombre_completo, 
+clinica_cotecnova.usuarios.apellidos, 
+clinica_cotecnova.estados_civiles.nombre as estado, 
+clinica_cotecnova.departamentos.nombre as departamentos, 
+clinica_cotecnova.ciudades.nombre as ciudades, 
+clinica_cotecnova.usuarios.contrasena  
+FROM usuarios 
+INNER JOIN tipos_documentos on clinica_cotecnova.usuarios.tipo_documento_id = clinica_cotecnova.tipos_documentos.id_tipo_documento 
+INNER JOIN estados_civiles on clinica_cotecnova.usuarios.estado_civil_id = clinica_cotecnova.estados_civiles.id_estado_civil 
+INNER JOIN departamentos on clinica_cotecnova.usuarios.departamento_id = clinica_cotecnova.departamentos.id_departamento 
+INNER JOIN ciudades on clinica_cotecnova.usuarios.ciudad_id = clinica_cotecnova.ciudades.id_ciudad  
+WHERE id_usuario = 1
