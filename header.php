@@ -49,8 +49,6 @@
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cita</a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="crear_cita.php">Crear cita</a>
-                                  <a class="dropdown-item btn" href="editar_cita.php">Modificar cita</a>
-                                  <a class="dropdown-item btn" href="eliminar_cita.php">Eliminar cita</a>
                                   <a class="dropdown-item btn" href="ver_cita.php">Ver citas</a>
                                 </div>
                             </li>
@@ -58,8 +56,6 @@
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Medico</a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="crear_medicos.php">Crear medico</a>
-                                  <a class="dropdown-item btn" href="editar_medicos.php">Modificar medico</a>
-                                  <a class="dropdown-item btn" href="eliminar_medicos.php">Eliminar medico</a>
                                   <a class="dropdown-item btn" href="ver_medico.php">Ver medicos</a>
                                 </div>
                             </li>
@@ -67,8 +63,6 @@
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario</a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="crear_usuario.php">Crear usuario</a>
-                                  <a class="dropdown-item btn" href="editar_usuario.php">Modificar usuario</a>
-                                  <a class="dropdown-item btn" href="eliminar_usuario.php">Eliminar usuario</a>
                                   <a class="dropdown-item btn" href="ver_usuario.php">Ver usuarios</a>
                                 </div>
                             </li>
