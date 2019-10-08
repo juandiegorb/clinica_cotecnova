@@ -40,6 +40,7 @@
 	clinica_cotecnova.tipos_documentos.id_tipo_documento,
         clinica_cotecnova.tipos_documentos.nombre as tipo_documento, 
         clinica_cotecnova.usuarios.numero_documento, 
+        clinica_cotecnova.usuarios.id_usuario, 
         clinica_cotecnova.usuarios.nombre_completo, 
         clinica_cotecnova.usuarios.apellidos, 
         clinica_cotecnova.estados_civiles.id_estado_civil,
@@ -56,6 +57,7 @@
         INNER JOIN ciudades on clinica_cotecnova.usuarios.ciudad_id = clinica_cotecnova.ciudades.id_ciudad  
         WHERE id_usuario = ".$id."");     
     while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
+        $id_usuario = $resultado['id_usuario'];
         $id_tipo_documento = $resultado['id_tipo_documento'];
         $tipo_documento = $resultado['tipo_documento'];
         $numeroDocumento = $resultado['numero_documento'];
@@ -89,38 +91,38 @@
           <div class="card">
             <!-- Tab panes -->
             <div class="card-body">
-              <form class="form-horizontal form-material">
+                <form class="form-horizontal form-material" method="Post" action="Controlador/updateUsuario.php?id=<?php echo $id_usuario; ?>">                
                 <div class="form-group">
                   <label class="col-sm-12">Seleccione el tipo de documento</label>
                   <div class="col-sm-12">
-                    <select disabled class="form-control form-control-line">
-                        <option disabled selected="true" value="<?php echo $id_tipo_documento?>"><?php echo $tipo_documento?></option>
+                      <select disabled class="form-control form-control-line" name="tipoDocumento">
+                        <option value="<?php echo $id_tipo_documento?>"><?php echo $tipo_documento?></option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Numero</label>            
                   <div class="col-md-12">
-                      <input type="text" disabled="" value="<?php $numeroDocumento?>" placeholder="<?php echo $numeroDocumento?>" class="form-control form-control-line">
+                      <input type="text" disabled="" value="<?php echo $numeroDocumento?>" class="form-control form-control-line" name="numeroDocumento">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-12">Nombre Completo</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="<?php echo $nombre_completo?>" class="form-control form-control-line">
+                      <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line" name="nombreCompleto">
                   </div>
                 </div>
                 <div class="form-group">                  
                   <label class="col-md-12">Apellidos</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="<?php echo $apellidos?>" class="form-control form-control-line">
+                      <input type="text" value="<?php echo $apellidos?>" class="form-control form-control-line" name="apellidos">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Estado civil</label>
                   <div class="col-sm-12">
                       <select class="form-control form-control-line" name="estadoCivil">
-                          <option value="<?php $id_estado?>" selected="true"><?php echo $estado?></option>
+                          <option value="<?php echo $id_estado?>" selected="true"><?php echo $estado?></option>
                           <option disabled>Seleccione un estado si va a editar</option>
                         <?php 
                          //se recorre el resultado de la consutla de estado civil
@@ -135,8 +137,8 @@
                 <div class="form-group">
                   <label class="col-sm-12">Departamento de nacimiento</label>
                   <div class="col-sm-12">
-                      <select id="departamento" class="form-control form-control-line">
-                      <option value="<?php $id_departamentos?>" selected="true"><?php echo $departamentos?></option>
+                      <select id="departamento" class="form-control form-control-line" name="departamentoNacimiento">
+                      <option value="<?php echo $id_departamentos?>" selected="true"><?php echo $departamentos?></option>
                       <option disabled >Seleccione un departamento si va a editar</option>
                       <?php 
                          //se recorre el resultado de la consutla de estado civil
@@ -151,20 +153,14 @@
                 <div class="form-group">
                   <label class="col-sm-12">Ciudad de nacimiento</label>
                   <div class="col-sm-12">
-                    <select id="ciudad" class="form-control form-control-line">
-                      <option value="<?php $id_ciudades?>" selected="true"><?php echo $ciudades?></option>
+                      <select id="ciudad" class="form-control form-control-line" name="ciudadNacimiento">
+                      <option value="<?php echo $id_ciudades?>" selected="true"><?php echo $ciudades?></option>
                     </select>
                   </div>
-                </div>                
-                <div class="form-group">
-                  <label class="col-md-12">Contraseña</label>
-                  <div class="col-md-12">
-                    <input type="password" placeholder="Ingrese una clave" class="form-control form-control-line">
-                  </div>
-                </div>
+                </div> 
                 <div class="form-group">
                   <div class="col-sm-3 col-md-2">
-                    <button class="btn btn-success">Modificar</button>
+                      <button class="btn btn-success" name="enviar">Modificar</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
                     <a href="index.php" class="btn btn-danger">Cancelar</a>
@@ -192,8 +188,5 @@
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
   <script src="js/listasDependientes.js"></script>
-  
-
 </body>
-
 </html>
