@@ -75,7 +75,7 @@
                   </div>
                 </div>  
                 <div class="form-group">
-                  <label class="col-sm-12">Seleccione el tipo de documento</label>
+                  <label class="col-sm-12">Tipo de documento</label>
                   <div class="col-sm-12">
                       <select class="form-control form-control-line" name="tipoDocumento" required="">
                       <option disabled selected="true">Seleccione una opcion</option>

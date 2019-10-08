@@ -93,7 +93,7 @@
             <div class="card-body">
                 <form class="form-horizontal form-material" method="Post" action="Controlador/updateUsuario.php?id=<?php echo $id_usuario; ?>">                
                 <div class="form-group">
-                  <label class="col-sm-12">Seleccione el tipo de documento</label>
+                  <label class="col-sm-12">Tipo de documento</label>
                   <div class="col-sm-12">
                       <select disabled class="form-control form-control-line" name="tipoDocumento">
                         <option value="<?php echo $id_tipo_documento?>"><?php echo $tipo_documento?></option>
