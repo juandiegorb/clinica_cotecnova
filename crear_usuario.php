@@ -126,7 +126,7 @@
                 <div class="form-group">
                   <label class="col-sm-12">Departamento de nacimiento</label>
                   <div class="col-sm-12">
-                      <select class="form-control form-control-line" name="departamentoNacimiento">
+                      <select class="form-control form-control-line" id="departamento" name="departamentoNacimiento">
                       <option disabled selected="true">Seleccione una opcion</option>
                       <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                          <?php 
@@ -142,15 +142,9 @@
                 <div class="form-group">
                   <label class="col-sm-12">Ciudad de nacimiento</label>
                   <div class="col-sm-12">
-                      <select class="form-control form-control-line" name="ciudadNacimiento">
-                      <option disabled selected="true">Seleccione una opcion</option>
-                      <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
-                       <?php 
-                       while ($resultado= mysqli_fetch_assoc($seleccionCiudad)){   
-                           ?> 
-                      <!-- Se traen los datos y se imprimen en las opciones del select -->
-                        <option value="<?php echo $resultado['id_ciudad']?>"><?php echo $resultado['nombre']?></option>  
-                        <?php }?>
+                      <select class="form-control form-control-line" id="ciudad" name="ciudadNacimiento" disabled>
+                      <option disabled selected="true">Seleccione una ciudad</option>
+                      
                     </select>
                   </div>
                 </div>
@@ -188,6 +182,7 @@
   <!--/ footer-->
   
   <!-- Llamado de los respectivos scripts -->
+  <script src="js/listasDependientes.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
