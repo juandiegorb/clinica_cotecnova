@@ -35,7 +35,7 @@
     //funcion conectar
     $mysql->conectar();    
      //respectivas variables donde se llama la función consultar, se incluye la respectiva consulta
-    $consulta = $mysql->efectuarConsulta("SELECT clinica_cotecnova.medicos.numero_documento, clinica_cotecnova.medicos.nombre_completo, clinica_cotecnova.medicos.apellidos ,  clinica_cotecnova.tipos_medicos.nombre from medicos join tipos_medicos  on clinica_cotecnova.medicos.tipos_medicos_id = clinica_cotecnova.tipos_medicos.id_tipo_medico");     
+    $consulta = $mysql->efectuarConsulta("SELECT clinica_cotecnova.medicos.id_medico, clinica_cotecnova.medicos.numero_documento, clinica_cotecnova.medicos.nombre_completo, clinica_cotecnova.medicos.apellidos ,  clinica_cotecnova.tipos_medicos.nombre from medicos join tipos_medicos  on clinica_cotecnova.medicos.tipos_medicos_id = clinica_cotecnova.tipos_medicos.id_tipo_medico where estado = 1");
     //funcion desconectar
     $mysql->desconectar();    
     ?>
@@ -58,15 +58,17 @@
               <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col"># Documento</th>
+                      <th scope="col">Numero Documento</th>
                       <th scope="col">Nombres</th>
                       <th scope="col">Apellidos</th>
                       <th scope="col">Tipo de medico</th>
+                      <th scope="col">Editar o Eliminar</th>
                     </tr>
                   </thead>
                   <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                   <?php 
-                    while ($resultado= mysqli_fetch_assoc($consulta)){                         
+                    while ($resultado= mysqli_fetch_assoc($consulta)){  
+                    $idMedico = $resultado['id_medico'];                       
                   ?>
                   <tbody>
                     <tr>
@@ -75,6 +77,11 @@
                       <th scope="row"><?php echo $resultado['nombre_completo'] ?></th>
                       <td><?php echo $resultado['apellidos'] ?></td>                      
                       <td><?php echo $resultado['nombre'] ?></td>
+                      <td>
+                            <a href="editar_medicos.php?id=<?php echo $idMedico; ?>" class="btn btn-success col-lg-5" name="enviar">Editar</a>   
+                            <!-- Boton que redirecciona al index -->
+                            <a href="eliminar_medicos.php?id=<?php echo $idMedico; ?>" class="btn btn-danger col-lg-offset-1 col-lg-6 " name="eliminar">Eliminar</a>
+                      </td>
                     </tr>
                   </tbody>
                   <?php

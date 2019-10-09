@@ -57,6 +57,7 @@
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="crear_medicos.php">Crear medico</a>
                                   <a class="dropdown-item btn" href="ver_medico.php">Ver medicos</a>
+                                  <a class="dropdown-item btn" href="ver_medico_inactivo.php">Ver medicos inactivos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
