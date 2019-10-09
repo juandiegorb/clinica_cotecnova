@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2019 a las 15:13:16
+-- Tiempo de generación: 09-10-2019 a las 18:58:11
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.6.12
 
@@ -1282,9 +1282,9 @@ CREATE TABLE IF NOT EXISTS `medicos` (
 --
 
 INSERT INTO `medicos` (`id_medico`, `numero_documento`, `nombre_completo`, `apellidos`, `contrasena`, `tipo_documento_id`, `estado_civil_id`, `tipos_medicos_id`, `tipo_Usuario_id`, `estado`) VALUES
-(1, '1006286195', 'Juan Diego', 'Ríos', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 5, 1, 0),
-(6, '123455', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1, 0),
-(7, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1, 0);
+(1, '1006286195', 'Juan Diego', 'Ríos', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 5, 1, 1),
+(6, '123455', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1, 1),
+(7, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1365,19 +1365,20 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `ciudad_id` int(11) NOT NULL,
   `tipo_Usuario_id` int(11) NOT NULL,
   `estado` int(11) NOT NULL COMMENT 'estado para ver si esta eliminado el usuario. 1. activo 2.inactivo'
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `numero_documento`, `nombre_completo`, `apellidos`, `contrasena`, `tipo_documento_id`, `estado_civil_id`, `departamento_id`, `ciudad_id`, `tipo_Usuario_id`, `estado`) VALUES
-(1, '1006318241', 'Natalia', 'Agudelo Valdes', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 24, 1021, 2, 0),
-(5, '123', '123', '123', 'a87ff679a2f3e71d9181a67b7542122c', 1, 1, 16, 4, 2, 0),
-(6, '1112793168', 'Juan Diego ', 'Rios BAllesteros', '13f3cf8c531952d72e5847c4183e6910', 1, 1, 24, 443, 2, 0),
-(14, '111', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 19, 16, 2, 0),
-(15, '123456789', 'Prueba', 'prueba', '202cb962ac59075b964b07152d234b70', 1, 2, 18, 16, 2, 0),
-(16, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 12, 17, 2, 0);
+(1, '1006318241', 'Natalia', 'Agudelo Valdes', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 15, 682, 2, 1),
+(5, '123', '123', '123', 'a87ff679a2f3e71d9181a67b7542122c', 1, 4, 24, 1012, 2, 0),
+(6, '1112793168', 'Juan Diego ', 'Rios BAllesteros', '13f3cf8c531952d72e5847c4183e6910', 1, 1, 24, 443, 2, 1),
+(14, '111', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 19, 16, 2, 1),
+(15, '123456789', 'Prueba', 'prueba', '202cb962ac59075b964b07152d234b70', 1, 2, 18, 16, 2, 1),
+(16, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 12, 17, 2, 1),
+(17, '15485487841848', 'prueba estado', 'asdfasdf', '202cb962ac59075b964b07152d234b70', 2, 2, 3, 164, 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -1508,7 +1509,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria de la tabla usuario',AUTO_INCREMENT=17;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria de la tabla usuario',AUTO_INCREMENT=18;
 --
 -- Restricciones para tablas volcadas
 --
