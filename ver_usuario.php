@@ -46,13 +46,13 @@
   <section id="service" class="section-padding">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-3">
           <h2 class="ser-title">Bienvenido</h2>
           <hr class="botm-line">
           <p>Bienvenid@ al ver usuarios</p>
           <p>Todos los datos mostrados son los suministrados por el medico ser&aacute;n de uso aplicativo, se guardar&aacute; la privacidad del usuario.</p>
         </div>
-        <div class="col-md-8 col-sm-8">
+        <div class="col-md-9 col-sm-9">
           <div class="card">
             <!-- Tab panes -->
             <div class="card-body">
@@ -81,9 +81,9 @@
                         <td><?php echo $resultado['apellidos'] ?></td>                      
                         <td><?php echo $resultado['nombre'] ?></td>
                         <td>
-                            <a href="editar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-success" name="enviar">Editar</a>   
+                            <a href="editar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-success col-lg-5" name="enviar">Editar</a>   
                             <!-- Boton que redirecciona al index -->
-                            <a href="eliminar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-danger" name="eliminar">Eliminar</a>
+                            <a href="eliminar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-danger col-lg-offset-1 col-lg-6 " name="eliminar">Eliminar</a>
                             </div>
                         </td>
                       </tr>
