@@ -84,7 +84,6 @@
                             <a href="editar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-success col-lg-5" name="enviar">Editar</a>   
                             <!-- Boton que redirecciona al index -->
                             <a href="eliminar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-danger col-lg-offset-1 col-lg-6 " name="eliminar">Eliminar</a>
-                            </div>
                         </td>
                       </tr>
                     </tbody>

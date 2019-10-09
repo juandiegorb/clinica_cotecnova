@@ -27,6 +27,50 @@
   <?php
   include("header_index.php");
   ?>
+  <?php
+    $id = $_GET['id'];
+    //llamado al archivo MySQL
+    require_once 'Modelo/MySQL.php';
+    //nueva "consulta"
+    $mysql = new MySQL;
+    //funcion conectar
+    $mysql->conectar();
+    //consulta de toda la informacion
+    $seleccionInformacion = $mysql->efectuarConsulta("SELECT 
+    clinica_cotecnova.tipos_documentos.id_tipo_documento,
+    clinica_cotecnova.tipos_documentos.nombre as tipo_documento, 
+    clinica_cotecnova.medicos.numero_documento, 
+    clinica_cotecnova.medicos.id_medico, 
+    clinica_cotecnova.medicos.nombre_completo, 
+    clinica_cotecnova.medicos.apellidos, 
+    clinica_cotecnova.estados_civiles.id_estado_civil,
+    clinica_cotecnova.estados_civiles.nombre as estado, 
+    clinica_cotecnova.medicos.tipos_medicos_id,
+    clinica_cotecnova.tipos_medicos.nombre as nombreMedico,
+    clinica_cotecnova.medicos.contrasena  
+    FROM medicos 
+    INNER JOIN tipos_documentos on clinica_cotecnova.medicos.tipo_documento_id = clinica_cotecnova.tipos_documentos.id_tipo_documento 
+    INNER JOIN estados_civiles on clinica_cotecnova.medicos.estado_civil_id = clinica_cotecnova.estados_civiles.id_estado_civil 
+    INNER JOIN tipos_medicos on clinica_cotecnova.medicos.tipos_medicos_id = clinica_cotecnova.tipos_medicos.id_tipo_medico
+    WHERE id_medico = 1");  
+    while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
+        $id_medico = $resultado['id_medico'];
+        $id_tipo_documento = $resultado['id_tipo_documento'];
+        $tipo_documento = $resultado['tipo_documento'];
+        $numeroDocumento = $resultado['numero_documento'];
+        $nombre_completo = $resultado['nombre_completo'];
+        $apellidos = $resultado['apellidos'];
+        $id_estado = $resultado['id_estado_civil'];
+        $estado = $resultado['estado'];
+        $tipoMedico = $resultado['tipos_medicos_id'];
+        $nombreMedico = $resultado['nombreMedico'];
+        $contrasena = $resultado['contrasena'];        
+    } 
+    $seleccionEstado = $mysql->efectuarConsulta("select clinica_cotecnova.estados_civiles.id_estado_civil, clinica_cotecnova.estados_civiles.nombre from estados_civiles");
+    $seleccionTipo = $mysql->efectuarConsulta("select clinica_cotecnova.tipos_medicos.id_tipo_medico, clinica_cotecnova.tipos_medicos.nombre from tipos_medicos");
+    //funcion desconectar
+    $mysql->desconectar();    
+    ?>
   </div>  
   <!--service-->
   <section id="service" class="section-padding">
@@ -42,64 +86,68 @@
           <div class="card">
             <!-- Tab panes -->
             <div class="card-body">
-              <form class="form-horizontal form-material">
+              <form class="form-horizontal form-material" method="Post" action="Controlador/updateMedico.php?id=<?php echo $id_medico; ?>">
                 <div class="form-group">
-                  <label class="col-sm-12">Seleccione el tipo de documento</label>
+                  <label class="col-sm-12">Tipo de documento</label>
                   <div class="col-sm-12">
-                    <select disabled class="form-control form-control-line">
-                      <option disabled selected="true">Seleccione una opcion</option>
-                      <option>C&eacute;dula</option>
-                      <option>Pasaporte</option>
-                      <option>Tarjeta de identidad</option>
+                      <select disabled class="form-control form-control-line" name="tipoDocumento">
+                        <option value="<?php echo $id_tipo_documento?>"><?php echo $tipo_documento?></option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Numero</label>            
                   <div class="col-md-12">
-                    <input type="text" disabled="" placeholder="Ingrese el numero del documento" class="form-control form-control-line">
+                      <input type="text" disabled="" value="<?php echo $numeroDocumento?>" class="form-control form-control-line" name="numeroDocumento">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-12">Nombre Completo</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus nombres" class="form-control form-control-line">
+                      <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line" name="nombreCompleto">
                   </div>
                 </div>
                 <div class="form-group">                  
                   <label class="col-md-12">Apellidos</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus apellidos" class="form-control form-control-line">
+                      <input type="text" value="<?php echo $apellidos?>" class="form-control form-control-line" name="apellidos">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-12">Estado civil</label>     
+                  <label class="col-sm-12">Estado civil</label>
                   <div class="col-sm-12">
-                    <input type="radio" name="a">Solter@
-                    <input type="radio" name="a">Casad@
-                    <input type="radio" name="a">Viud@ 
+                      <select class="form-control form-control-line" name="estadoCivil">
+                          <option value="<?php echo $id_estado?>" selected="true"><?php echo $estado?></option>
+                          <option disabled>Seleccione un estado si va a editar</option>
+                        <?php 
+                         //se recorre el resultado de la consutla de estado civil
+                        while ($resultado= mysqli_fetch_assoc($seleccionEstado)){
+                           //se imprime los resultados
+                           ?> 
+                        <option value="<?php echo $resultado['id_estado_civil']?>"><?php echo $resultado['nombre']?></option>  
+                        <?php }?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Tipo de medico</label>
                   <div class="col-sm-12">
-                    <select class="form-control form-control-line">
-                      <option disabled selected="true">Seleccione una opcion</option>
-                      <option>Medico general</option>
-                      <option>Psicologia</option>
-                      <option>Cirujia</option>
+                      <select class="form-control form-control-line" name="tipoMedico">
+                          <option value="<?php echo $tipoMedico?>" selected="true"><?php echo $nombreMedico?></option>
+                          <option disabled>Seleccione una opcion</option>
+                        <?php 
+                         //se recorre el resultado de la consutla de estado civil
+                        while ($resultado= mysqli_fetch_assoc($seleccionTipo)){
+                           //se imprime los resultados
+                           ?> 
+                        <option value="<?php echo $resultado['id_tipo_medico']?>"><?php echo $resultado['nombre']?></option>  
+                        <?php }?>
                     </select>
                   </div>
-                </div>               
-                <div class="form-group">
-                  <label class="col-md-12">Contraseña</label>
-                  <div class="col-md-12">
-                    <input type="password" placeholder="Ingrese una clave" class="form-control form-control-line">
-                  </div>
-                </div>
+                </div>              
                 <div class="form-group">
                   <div class="col-sm-3 col-md-2">
-                    <button class="btn btn-success">Modificar</button>
+                    <button class="btn btn-success" name="enviar">Modificar</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
                     <a href="index.html" class="btn btn-danger">Cancelar</a>
