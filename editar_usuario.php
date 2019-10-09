@@ -48,8 +48,7 @@
         clinica_cotecnova.departamentos.id_departamento, 
         clinica_cotecnova.departamentos.nombre as departamentos, 
         clinica_cotecnova.ciudades.id_ciudad, 
-        clinica_cotecnova.ciudades.nombre as ciudades, 
-        clinica_cotecnova.usuarios.contrasena  
+        clinica_cotecnova.ciudades.nombre as ciudades
         FROM usuarios 
         INNER JOIN tipos_documentos on clinica_cotecnova.usuarios.tipo_documento_id = clinica_cotecnova.tipos_documentos.id_tipo_documento 
         INNER JOIN estados_civiles on clinica_cotecnova.usuarios.estado_civil_id = clinica_cotecnova.estados_civiles.id_estado_civil 
@@ -68,8 +67,7 @@
         $id_departamentos = $resultado['id_departamento'];
         $departamentos = $resultado['departamentos'];
         $id_ciudades = $resultado['id_ciudad'];
-        $ciudades = $resultado['ciudades'];
-        $contrasena = $resultado['contrasena'];        
+        $ciudades = $resultado['ciudades'];     
     } 
     $seleccionEstado = $mysql->efectuarConsulta("select clinica_cotecnova.estados_civiles.id_estado_civil, clinica_cotecnova.estados_civiles.nombre from estados_civiles"); 
     $seleccionDepartamento = $mysql->efectuarConsulta("select clinica_cotecnova.departamentos.id_departamento, clinica_cotecnova.departamentos.nombre from departamentos"); 
