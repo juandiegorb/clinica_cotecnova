@@ -65,7 +65,7 @@
                         <th scope="col">Nombre completo</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Ciudad</th>
-                        <th scope="col">Editar o Eliminar</th>
+                        <th scope="col">Activar</th>
                       </tr>
                     </thead>
                      <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
@@ -81,7 +81,7 @@
                         <td><?php echo $resultado['apellidos'] ?></td>                      
                         <td><?php echo $resultado['nombre'] ?></td>
                         <td>
-                            <a href="Controlador/activarUsuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-success" name="enviar">Activar</a> 
+                            <a href="Controlador/activarUsuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-primary" name="enviar">Activar</a> 
                         </td>
                       </tr>
                     </tbody>

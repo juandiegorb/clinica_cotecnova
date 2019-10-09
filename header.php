@@ -64,6 +64,7 @@
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="crear_usuario.php">Crear usuario</a>
                                   <a class="dropdown-item btn" href="ver_usuario.php">Ver usuarios</a>
+                                  <a class="dropdown-item btn" href="ver_usuario_inactivo.php">Ver usuarios inactivos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
