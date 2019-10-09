@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
+-- version 4.4.14
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2019 a las 03:00:33
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 09-10-2019 a las 15:13:16
+-- Versión del servidor: 5.6.26
+-- Versión de PHP: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,13 +26,13 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `citas`
 --
 
-CREATE TABLE `citas` (
+CREATE TABLE IF NOT EXISTS `citas` (
   `id_cita` int(11) NOT NULL COMMENT 'clave primaria de la tabla cita',
   `fecha_hora` datetime NOT NULL COMMENT 'fecha de la cita (año-mes-dia)',
   `motivo_consulta` varchar(500) NOT NULL COMMENT 'motivo por el cual se pide la cita',
   `usuario_id` int(11) NOT NULL,
   `medico_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -51,11 +49,11 @@ INSERT INTO `citas` (`id_cita`, `fecha_hora`, `motivo_consulta`, `usuario_id`, `
 -- Estructura de tabla para la tabla `ciudades`
 --
 
-CREATE TABLE `ciudades` (
+CREATE TABLE IF NOT EXISTS `ciudades` (
   `id_ciudad` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `departamento_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1127 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ciudades`
@@ -1195,10 +1193,10 @@ INSERT INTO `ciudades` (`id_ciudad`, `nombre`, `departamento_id`) VALUES
 -- Estructura de tabla para la tabla `departamentos`
 --
 
-CREATE TABLE `departamentos` (
+CREATE TABLE IF NOT EXISTS `departamentos` (
   `id_departamento` int(11) NOT NULL,
   `nombre` varchar(45) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `departamentos`
@@ -1245,10 +1243,10 @@ INSERT INTO `departamentos` (`id_departamento`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `estados_civiles`
 --
 
-CREATE TABLE `estados_civiles` (
+CREATE TABLE IF NOT EXISTS `estados_civiles` (
   `id_estado_civil` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `estados_civiles`
@@ -1266,7 +1264,7 @@ INSERT INTO `estados_civiles` (`id_estado_civil`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `medicos`
 --
 
-CREATE TABLE `medicos` (
+CREATE TABLE IF NOT EXISTS `medicos` (
   `id_medico` int(11) NOT NULL COMMENT 'Clave primaria de la tabla medico',
   `numero_documento` varchar(30) NOT NULL COMMENT 'Numero de identificacion del documento de la persona',
   `nombre_completo` varchar(100) NOT NULL COMMENT 'nombre completo de la persona',
@@ -1275,17 +1273,18 @@ CREATE TABLE `medicos` (
   `tipo_documento_id` int(11) NOT NULL,
   `estado_civil_id` int(11) NOT NULL,
   `tipos_medicos_id` int(11) NOT NULL,
-  `tipo_Usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `tipo_Usuario_id` int(11) NOT NULL,
+  `estado` int(11) NOT NULL COMMENT 'estado para ver si esta eliminado el usuario. 1. activo 2.inactivo'
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `medicos`
 --
 
-INSERT INTO `medicos` (`id_medico`, `numero_documento`, `nombre_completo`, `apellidos`, `contrasena`, `tipo_documento_id`, `estado_civil_id`, `tipos_medicos_id`, `tipo_Usuario_id`) VALUES
-(1, '1006286195', 'Juan Diego', 'Ríos', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 5, 1),
-(6, '123455', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1),
-(7, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1);
+INSERT INTO `medicos` (`id_medico`, `numero_documento`, `nombre_completo`, `apellidos`, `contrasena`, `tipo_documento_id`, `estado_civil_id`, `tipos_medicos_id`, `tipo_Usuario_id`, `estado`) VALUES
+(1, '1006286195', 'Juan Diego', 'Ríos', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 5, 1, 0),
+(6, '123455', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1, 0),
+(7, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1293,10 +1292,10 @@ INSERT INTO `medicos` (`id_medico`, `numero_documento`, `nombre_completo`, `apel
 -- Estructura de tabla para la tabla `tipos_documentos`
 --
 
-CREATE TABLE `tipos_documentos` (
+CREATE TABLE IF NOT EXISTS `tipos_documentos` (
   `id_tipo_documento` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tipos_documentos`
@@ -1313,10 +1312,10 @@ INSERT INTO `tipos_documentos` (`id_tipo_documento`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `tipos_medicos`
 --
 
-CREATE TABLE `tipos_medicos` (
+CREATE TABLE IF NOT EXISTS `tipos_medicos` (
   `id_tipo_medico` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tipos_medicos`
@@ -1335,10 +1334,10 @@ INSERT INTO `tipos_medicos` (`id_tipo_medico`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `tipo_usuario`
 --
 
-CREATE TABLE `tipo_usuario` (
+CREATE TABLE IF NOT EXISTS `tipo_usuario` (
   `id_tipo_usuario` int(11) NOT NULL COMMENT 'Id del tipo de usuario',
   `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre del tipo'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_usuario`
@@ -1354,7 +1353,7 @@ INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuario` int(11) NOT NULL COMMENT 'Clave primaria de la tabla usuario',
   `numero_documento` varchar(30) NOT NULL COMMENT 'Numero de identificacion del documento de la persona',
   `nombre_completo` varchar(100) NOT NULL COMMENT 'nombre completo de la persona',
@@ -1364,20 +1363,21 @@ CREATE TABLE `usuarios` (
   `estado_civil_id` int(11) NOT NULL,
   `departamento_id` int(11) NOT NULL,
   `ciudad_id` int(11) NOT NULL,
-  `tipo_Usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `tipo_Usuario_id` int(11) NOT NULL,
+  `estado` int(11) NOT NULL COMMENT 'estado para ver si esta eliminado el usuario. 1. activo 2.inactivo'
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `numero_documento`, `nombre_completo`, `apellidos`, `contrasena`, `tipo_documento_id`, `estado_civil_id`, `departamento_id`, `ciudad_id`, `tipo_Usuario_id`) VALUES
-(1, '1006318241', 'Natalia', 'Agudelo Valdes', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 24, 1021, 2),
-(5, '123', '123', '123', 'a87ff679a2f3e71d9181a67b7542122c', 1, 1, 16, 4, 2),
-(6, '1112793168', 'Juan Diego ', 'Rios BAllesteros', '13f3cf8c531952d72e5847c4183e6910', 1, 1, 24, 443, 2),
-(14, '111', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 19, 16, 2),
-(15, '123456789', 'Prueba', 'prueba', '202cb962ac59075b964b07152d234b70', 1, 2, 18, 16, 2),
-(16, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 12, 17, 2);
+INSERT INTO `usuarios` (`id_usuario`, `numero_documento`, `nombre_completo`, `apellidos`, `contrasena`, `tipo_documento_id`, `estado_civil_id`, `departamento_id`, `ciudad_id`, `tipo_Usuario_id`, `estado`) VALUES
+(1, '1006318241', 'Natalia', 'Agudelo Valdes', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 24, 1021, 2, 0),
+(5, '123', '123', '123', 'a87ff679a2f3e71d9181a67b7542122c', 1, 1, 16, 4, 2, 0),
+(6, '1112793168', 'Juan Diego ', 'Rios BAllesteros', '13f3cf8c531952d72e5847c4183e6910', 1, 1, 24, 443, 2, 0),
+(14, '111', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 19, 16, 2, 0),
+(15, '123456789', 'Prueba', 'prueba', '202cb962ac59075b964b07152d234b70', 1, 2, 18, 16, 2, 0),
+(16, '1', 'Administrador', 'Administrador', 'bf86c75b92752bfb1439b3a5233500ce', 1, 1, 12, 17, 2, 0);
 
 --
 -- Índices para tablas volcadas
@@ -1468,56 +1468,47 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'clave primaria de la tabla cita', AUTO_INCREMENT=4;
-
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'clave primaria de la tabla cita',AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
-  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1127;
-
+  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1127;
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT de la tabla `estados_civiles`
 --
 ALTER TABLE `estados_civiles`
-  MODIFY `id_estado_civil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id_estado_civil` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `medicos`
 --
 ALTER TABLE `medicos`
-  MODIFY `id_medico` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria de la tabla medico', AUTO_INCREMENT=8;
-
+  MODIFY `id_medico` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria de la tabla medico',AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tipos_documentos`
 --
 ALTER TABLE `tipos_documentos`
-  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tipos_medicos`
 --
 ALTER TABLE `tipos_medicos`
-  MODIFY `id_tipo_medico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id_tipo_medico` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del tipo de usuario', AUTO_INCREMENT=3;
-
+  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del tipo de usuario',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria de la tabla usuario', AUTO_INCREMENT=17;
-
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria de la tabla usuario',AUTO_INCREMENT=17;
 --
 -- Restricciones para tablas volcadas
 --
@@ -1553,7 +1544,6 @@ ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_Usuarios_Estados_civiles1` FOREIGN KEY (`estado_civil_id`) REFERENCES `estados_civiles` (`id_estado_civil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Usuarios_Tipo_Usuario1` FOREIGN KEY (`tipo_Usuario_id`) REFERENCES `tipo_usuario` (`id_tipo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Usuarios_Tipos_documentos1` FOREIGN KEY (`tipo_documento_id`) REFERENCES `tipos_documentos` (`id_tipo_documento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
