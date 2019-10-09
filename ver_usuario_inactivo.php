@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cl&iacute;nica Cotecnova - ver usuarios</title>
+  <title>Cl&iacute;nica Cotecnova - ver usuarios inactivos</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
@@ -37,7 +37,7 @@
     //funcion conectar
     $mysql->conectar();    
      //respectivas variables donde se llama la función consultar, se incluye la respectiva consulta
-    $consulta = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.id_usuario ,clinica_cotecnova.usuarios.numero_documento, clinica_cotecnova.usuarios.nombre_completo, clinica_cotecnova.usuarios.apellidos ,  clinica_cotecnova.ciudades.nombre from usuarios join ciudades  on clinica_cotecnova.usuarios.ciudad_id = clinica_cotecnova.ciudades.id_ciudad where estado = 1");     
+    $consulta = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.id_usuario ,clinica_cotecnova.usuarios.numero_documento, clinica_cotecnova.usuarios.nombre_completo, clinica_cotecnova.usuarios.apellidos ,  clinica_cotecnova.ciudades.nombre from usuarios join ciudades  on clinica_cotecnova.usuarios.ciudad_id = clinica_cotecnova.ciudades.id_ciudad where estado = 0");     
     //funcion desconectar
     $mysql->desconectar();    
     ?>
@@ -81,10 +81,7 @@
                         <td><?php echo $resultado['apellidos'] ?></td>                      
                         <td><?php echo $resultado['nombre'] ?></td>
                         <td>
-                            <a href="editar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-success" name="enviar">Editar</a>   
-                            <!-- Boton que redirecciona al index -->
-                            <a href="eliminar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-danger" name="eliminar">Eliminar</a>
-                            </div>
+                            <a href="Controlador/activarUsuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-success" name="enviar">Activar</a> 
                         </td>
                       </tr>
                     </tbody>

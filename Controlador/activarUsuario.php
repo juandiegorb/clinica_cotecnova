@@ -13,7 +13,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     $mysql->conectar();
     
     //variable que ejecutara la funcion consulta, pero en este caso, sera un eliminar usuario actualizando su estado 1. Activo 2.Inactivo
-    $ActualizarEstado = $mysql->efectuarConsulta("update usuarios set estado = 0 where id_usuario =".$idUsuario.""); 
+    $ActualizarEstado = $mysql->efectuarConsulta("update usuarios set estado = 1 where id_usuario =".$idUsuario.""); 
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($ActualizarEstado){
