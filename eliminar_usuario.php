@@ -63,7 +63,7 @@
                   <label class="col-sm-12">¿Esta seguro de eliminar el usuario?</label>
                   <div class="col-md-12">
                         <!-- Se traen los datos y se imprimen en las opciones del select -->
-                        <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line">
+                        <input type="text" disabled="" value="<?php echo $nombre_completo?>" class="form-control form-control-line">
                         
                     </div>
                   </div>         
@@ -71,7 +71,7 @@
                   <label class="col-sm-12">Numero de documento del usuario</label>            
                   <div class="col-md-12">
                         <!-- Se traen los datos y se imprimen en las opciones del select -->
-                        <input type="text" value="<?php echo $numeroDocumento?>" class="form-control form-control-line">
+                        <input type="text" disabled=" "value="<?php echo $numeroDocumento?>" class="form-control form-control-line">
                     </div>
                 </div>    
                 <div class="form-group">

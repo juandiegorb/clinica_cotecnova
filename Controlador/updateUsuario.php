@@ -25,16 +25,16 @@ if(isset($_POST['enviar']) && !empty($_GET['id']) && !empty($_POST['nombreComple
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($actualizar){
-           header("Location: ../ver_usuario.php");
+           echo "<script type=\text/javascript\">alert('El documento se ha actualizado correctamente'); window.location='../ver_usuario.php';</script>";
         } else {
             //mensaje de error
-            echo "Error";
+            echo "<script type=\text/javascript\">alert('No se ha actualizado el documento'); window.location='../ver_usuario.php';</script>";
         }
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
     //header("Location: ../index.php");
     
 }else{
-    header("Location: ../index.php");
+    echo "<script typpe=\text/javascript\">alert('No se han enviado todos los datos para editar'); window.location='../ver_usuario.php';</script>";
     //sino se cumple la primer condicion, se re envia nuevamente al formulario
 }

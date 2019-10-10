@@ -101,19 +101,19 @@
                 <div class="form-group">
                   <label class="col-sm-12">Numero</label>            
                   <div class="col-md-12">
-                      <input type="text" disabled="" value="<?php echo $numeroDocumento?>" class="form-control form-control-line" name="numeroDocumento">
+                      <input type="text" disabled="" value="<?php echo $numeroDocumento?>" class="form-control form-control-line" name="numeroDocumento" onkeypress="return solonumeros(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-12">Nombre Completo</label>
                   <div class="col-md-12">
-                      <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line" name="nombreCompleto">
+                      <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line" name="nombreCompleto" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">                  
                   <label class="col-md-12">Apellidos</label>
                   <div class="col-md-12">
-                      <input type="text" value="<?php echo $apellidos?>" class="form-control form-control-line" name="apellidos">
+                      <input type="text" value="<?php echo $apellidos?>" class="form-control form-control-line" name="apellidos" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">
@@ -161,7 +161,7 @@
                       <button class="btn btn-success" name="enviar">Modificar</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
-                    <a href="index.php" class="btn btn-danger">Cancelar</a>
+                      <a href="ver_usuario.php.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>
@@ -179,7 +179,7 @@
   ?>
   </div>
   <!--/ footer-->
-
+  <script src="js/validacionCampos.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

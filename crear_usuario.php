@@ -13,6 +13,8 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/style2.css">
+  
+  
   <!-- =======================================================
     Theme Name: Medilab
     Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
@@ -93,25 +95,25 @@
                 <div class="form-group">
                   <label class="col-sm-12">Numero</label>            
                   <div class="col-md-12">
-                      <input type="text" placeholder="Ingrese el numero del documento" name="numeroDocumento" class="form-control form-control-line">
+                      <input type="text" placeholder="Ingrese el numero del documento" name="numeroDocumento" class="form-control form-control-line" required="" onkeypress="return solonumeros(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-12">Nombre Completo</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus nombres" name="nombreCompleto" class="form-control form-control-line">
+                      <input type="text" placeholder="Ingrese sus nombres" name="nombreCompleto" class="form-control form-control-line" required="" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">                  
                   <label class="col-md-12">Apellidos</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus apellidos" name="apellidos" class="form-control form-control-line">
+                      <input type="text" placeholder="Ingrese sus apellidos" name="apellidos" class="form-control form-control-line" required="" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12">Estado civil</label>
                   <div class="col-sm-12">
-                      <select class="form-control form-control-line" name="estadoCivil">
+                      <select class="form-control form-control-line" name="estadoCivil" required="">
                       <option disabled selected="true">Seleccione una opcion</option>
                          <?php 
                          //se recorre el resultado de la consutla de estado civil
@@ -126,7 +128,7 @@
                 <div class="form-group">
                   <label class="col-sm-12">Departamento de nacimiento</label>
                   <div class="col-sm-12">
-                      <select class="form-control form-control-line" id="departamento" name="departamentoNacimiento">
+                      <select class="form-control form-control-line" id="departamento" name="departamentoNacimiento" required="">
                       <option disabled selected="true">Seleccione una opcion</option>
                       <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                          <?php 
@@ -142,7 +144,7 @@
                 <div class="form-group">
                   <label class="col-sm-12">Ciudad de nacimiento</label>
                   <div class="col-sm-12">
-                      <select class="form-control form-control-line" id="ciudad" name="ciudadNacimiento" disabled>
+                      <select class="form-control form-control-line" id="ciudad" name="ciudadNacimiento" disabled required="">
                       <option disabled selected="true">Seleccione una ciudad</option>
                       
                     </select>
@@ -152,7 +154,7 @@
                 <div class="form-group">
                   <label class="col-md-12">Contraseña</label>
                   <div class="col-md-12">
-                      <input type="password" placeholder="Ingrese una clave" class="form-control form-control-line" name="contrasena">
+                      <input type="password" placeholder="Ingrese una clave" class="form-control form-control-line" name="contrasena" required="">
                   </div>
                 </div>
                 <div class="form-group">
@@ -162,7 +164,7 @@
                   </div>
                   <div class="col-sm-9 col-md-4">
                       <!-- Boton que redirecciona al index -->
-                    <a href="index_iniciado_medico" class="btn btn-danger">Cancelar</a>
+                    <a href="crear_usuario.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>
@@ -182,12 +184,15 @@
   <!--/ footer-->
   
   <!-- Llamado de los respectivos scripts -->
+  <script src="js/validacionCampos.js"></script>
   <script src="js/listasDependientes.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
+  
+  
 </body>
 
 </html>
