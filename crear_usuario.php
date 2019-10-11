@@ -174,6 +174,7 @@
       </div>
     </div>
   </section>
+  
   <!--/ service-->
    <!--footer-->
   <div id="footer">
@@ -183,6 +184,7 @@
   </div>
   <!--/ footer-->
   
+  
   <!-- Llamado de los respectivos scripts -->
   <script src="js/validacionCampos.js"></script>
   <script src="js/listasDependientes.js"></script>
@@ -191,8 +193,5 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
-  
-  
 </body>
-
 </html>

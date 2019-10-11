@@ -26,7 +26,7 @@
                     //si estado es = 1 el usuario esta activo
                     if($estado = 1){
                         //realizo la consulta para ver si existe un usuario en la bd
-                        $usuarios= $mysql->efectuarConsulta("select clinica_cotecnova.medicos.nombre_completo, clinica_cotecnova.medicos.tipo_Usuario_id  from medicos where  numero_documento = ".$usuario." and contrasena = '".$contra."' and estado = 1"); 
+                        $usuarios= $mysql->efectuarConsulta("select clinica_cotecnova.medicos.id_medico, clinica_cotecnova.medicos.nombre_completo, clinica_cotecnova.medicos.tipo_Usuario_id  from medicos where  numero_documento = ".$usuario." and contrasena = '".$contra."' and estado = 1"); 
                         //Cuento si existen filas en la consulta
                         if (!empty($usuarios)){ 
                             if(mysqli_num_rows($usuarios) > 0){
@@ -35,10 +35,12 @@
                                 //recorro el resultado de la consulta y la almaceno en una variable
                                 while ($resultado= mysqli_fetch_assoc($usuarios)){
                                     //almaceno los resultados en variables
+                                    $id_medico = $resultado["id_medico"];
                                     $nombre = $resultado["nombre_completo"];
                                     $tipo_usuario = $resultado['tipo_Usuario_id'];
                                 }
                                 // alamceno las variables en sesiones
+                                $_SESSION['idMedico'] = $id_medico;
                                 $_SESSION['nombre'] = $nombre;
                                 $_SESSION['tipousuario'] = $tipo_usuario;
                                  //redirecciono al index
@@ -71,7 +73,7 @@
                     //si estado es = 1 el usuario esta activo
                     if($estado = 1){
                         //realizo la consulta para ver si existe un usuario en la bd
-                        $usuarios= $mysql->efectuarConsulta("select clinica_cotecnova.usuarios.nombre_completo, clinica_cotecnova.usuarios.tipo_Usuario_id from usuarios where  numero_documento = ".$usuario." and contrasena = '".$contra."' and estado = 1 "); 
+                        $usuarios= $mysql->efectuarConsulta("select clinica_cotecnova.usuarios.id_usuario, clinica_cotecnova.usuarios.nombre_completo, clinica_cotecnova.usuarios.tipo_Usuario_id from usuarios where  numero_documento = ".$usuario." and contrasena = '".$contra."' and estado = 1 "); 
                         //Cuento si existen filas en la consulta
                         if (!empty($usuarios)){ 
                             if(mysqli_num_rows($usuarios) > 0){
@@ -80,10 +82,12 @@
                                 //recorro el resultado de la consulta y la almaceno en una variable
                                 while ($resultado= mysqli_fetch_assoc($usuarios)){
                                     //almaceno los resultados en variables
+                                    $id_usuario = $resultado["id_usuario"];
                                     $nombre = $resultado["nombre_completo"];
                                     $tipo_usuario = $resultado['tipo_Usuario_id'];
                                 }
                                 // alamceno las variables en sesiones
+                                $_SESSION['idUsuario'] = $id_usuario;
                                 $_SESSION['nombre'] = $nombre;
                                 $_SESSION['tipousuario'] = $tipo_usuario;
                                  //redirecciono al index
