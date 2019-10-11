@@ -161,7 +161,7 @@
                       <button class="btn btn-success" name="enviar">Modificar</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
-                      <a href="ver_usuario.php.php" class="btn btn-danger">Cancelar</a>
+                      <a href="ver_usuario.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>

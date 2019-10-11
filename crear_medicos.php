@@ -63,7 +63,7 @@
                 <div class="form-group">
                   <label class="col-sm-12">Tipo usuario</label>
                   <div class="col-sm-12">
-                      <select class="form-control form-control-line" name="tipoUsuario">
+                      <select class="form-control form-control-line" name="tipoMedico">
                           <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                          <?php 
                        while ($resultado= mysqli_fetch_assoc($seleccionTipoUsuario)){   
@@ -93,19 +93,19 @@
                 <div class="form-group">
                   <label class="col-sm-12">Numero</label>            
                   <div class="col-md-12">
-                      <input type="text" placeholder="Ingrese el numero del documento" name="numeroDocumento" class="form-control form-control-line">
+                      <input type="text" placeholder="Ingrese el numero del documento" name="numeroDocumento" class="form-control form-control-line" required="" onkeypress="return solonumeros(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-12">Nombre Completo</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus nombres" name="nombreCompleto" class="form-control form-control-line">
+                    <input type="text" placeholder="Ingrese sus nombres" name="nombreCompleto" class="form-control form-control-line" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">                  
                   <label class="col-md-12">Apellidos</label>
                   <div class="col-md-12">
-                    <input type="text" placeholder="Ingrese sus apellidos" name="apellidos" class="form-control form-control-line">
+                    <input type="text" placeholder="Ingrese sus apellidos" name="apellidos" class="form-control form-control-line" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">
@@ -172,6 +172,7 @@
   <!--/ footer-->
 
   <!-- Llamado de scripts -->
+  <script src="js/validacionCampos.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

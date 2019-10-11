@@ -164,7 +164,7 @@
                   </div>
                   <div class="col-sm-9 col-md-4">
                       <!-- Boton que redirecciona al index -->
-                    <a href="crear_usuario.php" class="btn btn-danger">Cancelar</a>
+                    <a href="index.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>

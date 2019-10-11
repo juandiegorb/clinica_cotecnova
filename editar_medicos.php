@@ -46,13 +46,14 @@
     clinica_cotecnova.estados_civiles.id_estado_civil,
     clinica_cotecnova.estados_civiles.nombre as estado, 
     clinica_cotecnova.medicos.tipos_medicos_id,
+    clinica_cotecnova.tipos_medicos.id_tipo_medico,
     clinica_cotecnova.tipos_medicos.nombre as nombreMedico,
     clinica_cotecnova.medicos.contrasena  
     FROM medicos 
     INNER JOIN tipos_documentos on clinica_cotecnova.medicos.tipo_documento_id = clinica_cotecnova.tipos_documentos.id_tipo_documento 
     INNER JOIN estados_civiles on clinica_cotecnova.medicos.estado_civil_id = clinica_cotecnova.estados_civiles.id_estado_civil 
     INNER JOIN tipos_medicos on clinica_cotecnova.medicos.tipos_medicos_id = clinica_cotecnova.tipos_medicos.id_tipo_medico
-    WHERE id_medico = 1");  
+    WHERE id_medico = ".$id."");  
     while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
         $id_medico = $resultado['id_medico'];
         $id_tipo_documento = $resultado['id_tipo_documento'];
@@ -98,19 +99,19 @@
                 <div class="form-group">
                   <label class="col-sm-12">Numero</label>            
                   <div class="col-md-12">
-                      <input type="text" disabled="" value="<?php echo $numeroDocumento?>" class="form-control form-control-line" name="numeroDocumento">
+                      <input type="text" disabled="" value="<?php echo $numeroDocumento?>" class="form-control form-control-line" name="numeroDocumento" required="" onkeypress="return solonumeros(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-12">Nombre Completo</label>
                   <div class="col-md-12">
-                      <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line" name="nombreCompleto">
+                      <input type="text" value="<?php echo $nombre_completo?>" class="form-control form-control-line" name="nombreCompleto" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">                  
                   <label class="col-md-12">Apellidos</label>
                   <div class="col-md-12">
-                      <input type="text" value="<?php echo $apellidos?>" class="form-control form-control-line" name="apellidos">
+                      <input type="text" value="<?php echo $apellidos?>" class="form-control form-control-line" name="apellidos" onkeypress="return sololetras(event)">
                   </div>
                 </div>
                 <div class="form-group">
@@ -150,7 +151,7 @@
                     <button class="btn btn-success" name="enviar">Modificar</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
-                    <a href="index.html" class="btn btn-danger">Cancelar</a>
+                    <a href="ver_medico.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>
@@ -168,7 +169,7 @@
   ?>
   </div>
   <!--/ footer-->
-
+  <script src="js/validacionCampos.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
