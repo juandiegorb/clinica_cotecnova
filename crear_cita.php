@@ -96,7 +96,7 @@
                 <div class="form-group">
                   <label class="col-md-12">Fecha</label>
                   <div class="col-md-4">
-                    <input type="date" name="fechaCita" class="form-control form-control-line">
+                    <input type="date" name="fechaCita" class="form-control form-control-line" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?> >
                   </div>
                 </div>
 
