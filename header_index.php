@@ -103,7 +103,7 @@
                       <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li class=""><a href="index.php">Inicio</a></li>
-                            <li class=""><a href="ver_citaU.php">Citas</a></li>
+                            <li class=""><a href="ver_cita.php">Citas</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['nombre']?></a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">

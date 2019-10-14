@@ -1,14 +1,6 @@
-<?php 
-    require_once 'Modelo/MySQL.php';
-    $mysql = new MySQL;
-    $mysql->conectar();    
-    $consulta = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico");     
-    $mysql->desconectar();
-    
-?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,56 +29,162 @@
   include("header_index.php");
   ?>
   </div>  
-    
-  <!--service-->
-  <section id="service" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-sm-4">
-          <h2 class="ser-title">Bienvenido</h2>
-          <hr class="botm-line">
-          <p>Bienvenid@ al ver citas</p>
-          <p>Todos los datos mostrados son los suministrados por el medico ser&aacute;n de uso aplicativo, se guardar&aacute; la privacidad del usuario.</p>
-        </div>
-        <div class="col-md-8 col-sm-8">
-          <div class="card">
-            <!-- Tab panes -->
-            <div class="card-body">
-              <form class="form-horizontal form-material">
-              <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      
-                      <th scope="col">Nombre del paciente</th>
-                      <th scope="col">Nombre del medico</th>
-                      <th scope="col">Motivo de consulta</th>
-                      <th scope="col">Fecha y hora de la cita</th>
-                    </tr>
-                  </thead>
-                  <?php 
-                    while ($resultado= mysqli_fetch_assoc($consulta)){                         
-                  ?>
-                  <tbody>
-                    <tr>
-                      
-                      <th scope="row"><?php echo $resultado['paciente'] ?></th>
-                      <td><?php echo $resultado['medico'] ?></td>
-                      <td><?php echo $resultado['motivo_consulta'] ?></td>
-                      <td><?php echo $resultado['fecha_hora'] ?></td>
-                    </tr>
-                  </tbody>
-                  <?php
-                    }
-                  ?>
-                </table>
-              </form>
-            </div>
+  <?php
+  if(isset($_SESSION['tipousuario'])){
+    require_once 'Modelo/MySQL.php';
+    $mysql = new MySQL;
+    $mysql->conectar();
+    if(isset($_SESSION['idMedico'])){
+        $idMedico = $_SESSION['idMedico'];
+        $citasMedico = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.medico_id = ".$idMedico."");     
+    }else if($_SESSION['idUsuario']){
+        $idUsuario = $_SESSION['idUsuario'];
+        $citasUsuario = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.usuario_id = ".$idUsuario."");     
+    }
+    $mysql->desconectar();
+        if($_SESSION['tipousuario'] == 1){
+            ?>
+               <!--service-->
+                <section id="service" class="section-padding">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4">
+                        <h2 class="ser-title">Bienvenido</h2>
+                        <hr class="botm-line">
+                        <p>Bienvenid@ al ver citas</p>
+                        <p>Todos los datos mostrados son los suministrados por el medico ser&aacute;n de uso aplicativo, se guardar&aacute; la privacidad del usuario.</p>
+                      </div>
+                      <div class="col-md-8 col-sm-8">
+                        <div class="card">
+                          <!-- Tab panes -->
+                          <div class="card-body">
+                            <form class="form-horizontal form-material">
+                            <table class="table table-hover">
+                                <thead>
+                                  <tr>
+
+                                    <th scope="col">Nombre del paciente</th>
+                                    <th scope="col">Nombre del medico</th>
+                                    <th scope="col">Motivo de consulta</th>
+                                    <th scope="col">Fecha y hora de la cita</th>
+                                  </tr>
+                                </thead>
+                                <?php 
+                                if(!empty($citasMedico)){ 
+                                  while ($resultado= mysqli_fetch_assoc($citasMedico)){                         
+                                ?>
+                                <tbody>
+                                  <tr>
+
+                                    <th scope="row"><?php echo $resultado['paciente'] ?></th>
+                                    <td><?php echo $resultado['medico'] ?></td>
+                                    <td><?php echo $resultado['motivo_consulta'] ?></td>
+                                    <td><?php echo $resultado['fecha_hora'] ?></td>
+                                  </tr>
+                                </tbody>
+                                <?php
+                                  }
+                                }
+                                ?>
+                              </table>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!--/ service-->
+            <?php
+        }else if($_SESSION['tipousuario'] == 2){
+            ?>
+             <!--service-->
+                <section id="service" class="section-padding">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4">
+                        <h2 class="ser-title">Bienvenido</h2>
+                        <hr class="botm-line">
+                        <p>Bienvenid@ a tu modulo de citas</p>
+                        <p>Todos los datos mostrados son los suministrados por el medico ser&aacute;n de uso aplicativo, se guardar&aacute; la privacidad del usuario.</p>
+                      </div>
+                      <div class="col-md-8 col-sm-8">
+                        <div class="card">
+                          <!-- Tab panes -->
+                          <div class="card-body">
+                            <form class="form-horizontal form-material">
+                            <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Id de la cita</th>
+                                    <th scope="col">Nombre del paciente</th>
+                                    <th scope="col">Nombre del medico</th>
+                                    <th scope="col">Motivo de consulta</th>
+                                    <th scope="col">Fecha y hora de la cita</th>
+                                  </tr>
+                                </thead>
+                                <?php
+                                if(!empty($citasUsuario)){ 
+                                  while ($resultado= mysqli_fetch_assoc($citasUsuario)){                         
+                                ?> 
+                                <tbody>
+                                  <tr>
+                                    <th scope="row"><?php echo $resultado['id_cita'] ?></th>
+                                    <td><?php echo $resultado['paciente'] ?></td>
+                                    <td><?php echo $resultado['medico'] ?></td>
+                                    <td><?php echo $resultado['motivo_consulta'] ?></td>
+                                    <td><?php echo $resultado['fecha_hora'] ?></td>
+                                  </tr>
+                                </tbody>
+                                <?php
+                                  }
+                                }
+                                ?>
+                              </table>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!--/ service-->
+            <?php
+        }           
+    }else{
+        ?>
+        <!--banner-->
+        <section id="banner2" class="banner">
+          <div class="bg-color2">
+            <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container">
+                <div class="col-md-12">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.php"><img src="img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
+                  </div>
+                  <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                      <li class=""><a href="index.php">Inicio</a></li>
+                      <li class=""><a href="servicios.php">Servicios</a></li>
+                      <li class=""><a href="about.php">Acerca de nosotros</a></li>
+                      <li class=""><a href="login.php">Iniciar sesi&oacute;n</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </nav>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--/ service-->
+        </section>
+        <!--/ banner-->
+    <?php
+    }
+    ?>  
+  
    <!--footer-->
   <div id="footer">
   <?php

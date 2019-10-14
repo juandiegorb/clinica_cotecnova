@@ -21,11 +21,8 @@ function sololetras(e) {
 	key=e.keyCode || e.which;
  
 	teclado=String.fromCharCode(key).toLowerCase();
- 
-	letras="qwertyuiopasdfghjklñzxcvbnm ";
- 
+	letras="qwertyuiopasdfghjklñzxcvbnmáéíóú ";
 	especiales="8-37-38-46-164";
- 
 	teclado_especial=false;
  
 	for(var i in especiales){
@@ -34,10 +31,8 @@ function sololetras(e) {
 			break;
 		}
 	}
- 
 	if(letras.indexOf(teclado)==-1 && !teclado_especial){
 		return false;
 	}
- 
 }
 
