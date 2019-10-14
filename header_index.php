@@ -50,7 +50,7 @@
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cita</a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="crear_cita.php">Crear cita</a>
-                                  <a class="dropdown-item btn" href="ver_cita.php">Ver citas</a>
+                                  <a class="dropdown-item btn" href="Controlador/comprobarCitas.php">Ver citas</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
