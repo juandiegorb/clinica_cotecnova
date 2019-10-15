@@ -36,11 +36,14 @@
     $mysql->conectar();
     if(isset($_SESSION['idMedico'])){
         $idMedico = $_SESSION['idMedico'];
-        $citasMedico = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.medico_id = ".$idMedico."");     
+        $citasMedico = $mysql->efectuarConsulta("SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) as diferencia_dias, clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.medico_id = ".$idMedico." and clinica_cotecnova.citas.fecha_hora > DATE_FORMAT(NOW(),'%Y-%m-%d')");     
     }else if($_SESSION['idUsuario']){
         $idUsuario = $_SESSION['idUsuario'];
-        $citasUsuario = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.usuario_id = ".$idUsuario."");     
+        $citasUsuario = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.usuario_id = ".$idUsuario." and clinica_cotecnova.citas.fecha_hora > DATE_FORMAT(NOW(),'%Y-%m-%d')");     
     }
+    
+    //$diferencia_dias = $mysql->efectuarConsulta("SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) as diferencia_dias from citas");
+    
     $mysql->desconectar();
         if($_SESSION['tipousuario'] == 1){
             ?>
@@ -70,20 +73,40 @@
                                   </tr>
                                 </thead>
                                 <?php 
-                                if(!empty($citasMedico)){ 
-                                  while ($resultado= mysqli_fetch_assoc($citasMedico)){                         
+                               
+                                if(!empty($citasMedico))
+                                { 
+                                    while ($resultado= mysqli_fetch_assoc($citasMedico))
+                                    { 
+                                        if($resultado['diferencia_dias'] == 1)
+                                        {
                                 ?>
+                                
                                 <tbody>
-                                  <tr>
-
-                                    <th scope="row"><?php echo $resultado['paciente'] ?></th>
-                                    <td><?php echo $resultado['medico'] ?></td>
-                                    <td><?php echo $resultado['motivo_consulta'] ?></td>
-                                    <td><?php echo $resultado['fecha_hora'] ?></td>
-                                  </tr>
-                                </tbody>
+                                    <tr style="color: red;">
+                                        <th scope="row" ><?php echo $resultado['paciente'] ?></th>
+                                        <td><?php echo $resultado['medico'] ?></td>
+                                        <td><?php echo $resultado['motivo_consulta'] ?></td>
+                                        <td><?php echo $resultado['fecha_hora'] ?></td>
+                                    </tr>
+                                </tbody> 
+                                    
                                 <?php
-                                  }
+                                        }else{
+                                ?>
+                                      
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" ><?php echo $resultado['paciente'] ?></th>
+                                        <td><?php echo $resultado['medico'] ?></td>
+                                        <td><?php echo $resultado['motivo_consulta'] ?></td>
+                                        <td><?php echo $resultado['fecha_hora'] ?></td>
+                                    </tr>
+                                </tbody> 
+                                
+                                <?php
+                                      }
+                                    }
                                 }
                                 ?>
                               </table>
