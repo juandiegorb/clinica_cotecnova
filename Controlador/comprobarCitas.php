@@ -13,6 +13,9 @@
     //DATE_FORMAT se utiliza para que la funcion retorne en formato aaaa-mm-dd hh:mm:ss 
     $borrarCita = $mysql->efectuarConsulta("DELETE FROM clinica_cotecnova.citas WHERE fecha_hora < DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%S')");
 
+    //redireccion
     header("Location: ../ver_cita.php");
 
-    $mysql->desconectar();
+    //se desconecta de la base de datos
+    $mysql->desconectar();}
+    ?>

@@ -17,6 +17,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($ActualizarEstado){
+            //redireccion
            header("Location: ../ver_medico.php");
         } else {
             //mensaje de error

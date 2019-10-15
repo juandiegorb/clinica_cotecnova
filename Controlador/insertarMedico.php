@@ -7,7 +7,7 @@
   <title>Cl&iacute;nica Cotecnova</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+  <!-- Llamado de css -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
@@ -39,21 +39,28 @@ if(isset($_POST['enviar']) && !empty($_POST['tipoDocumento']) && !empty($_POST['
     //llamado a funcion conectar
     $mysql->conectar();
     
+    //consulta donde se hace el llamado del numero de documento
     $repetido = $mysql->efectuarConsulta("select numero_documento from clinica_cotecnova.medicos where numero_documento = ".$numeroDocumento."");
     
+    //condicion que comprueba si hay algun dato en la consulta
     if(mysqli_num_rows($repetido) > 0){
-        echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> Numero de documento ya existe.</div>";
+      //impresion de mensajes personalizados
+        echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_medicos.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> Numero de documento ya existe.</div>";
+        //redireccion
         header( "refresh:3;url=../crear_medicos.php" ); 
     }else{
         //variable que ejecutara la funcion consulta, pero en este caso, no usamos select sino insert para meter los datos a la respectiva table
         $insertarMedicoi= $mysql->efectuarConsulta("insert into clinica_cotecnova.medicos(tipo_Usuario_id, numero_documento, nombre_completo, apellidos, contrasena, tipo_documento_id, estado_civil_id, tipos_medicos_id) VALUES(".$tipoUsuario.",'".$numeroDocumento."','".$nombreCompleto."','".$apellidos."','".$contrasena."',".$tipoDocumento.",".$estadoCivil.",".$tipoMedico.", 1 )");  
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($insertarUsuarioi){
-           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido registrado correctamente.</div>";
+          //impresion de mensajes personalizados
+           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido registrado correctamente.</div>";
+           //redireccion
            header( "refresh:3;url=../ver_medico.php" );    
         } else {
-            //mensaje de error
-           echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido registrar al medico.</div>";
+            //mensaje de error personalizado
+           echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_medicos.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido registrar al medico.</div>";
+           //redireccion
            header( "refresh:3;url=../crear_medicos.php" );          
         }
     }        
@@ -62,7 +69,9 @@ if(isset($_POST['enviar']) && !empty($_POST['tipoDocumento']) && !empty($_POST['
     //header("Location: ../index.php");
 }else{
     //sino se cumple la primer condicion, se re envia nuevamente al formulario
-    echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado todos los datos necesarios.</div>";
+  //mensaje personalizado
+    echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_medicos.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado todos los datos necesarios.</div>";
+    //redireccion
     header( "refresh:3;url=../crear_medicos.php" ); 
 }
 ?>

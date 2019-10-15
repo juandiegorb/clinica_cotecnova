@@ -7,7 +7,7 @@
   <title>Cl&iacute;nica Cotecnova</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+  <!-- Llamado de css -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
@@ -34,11 +34,14 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($ActualizarEstado){
+          //impresion de mensaje personalizado
            echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong> El paciente ha sido habilitado correctamente.</div>";
+           //redireccion
            header( "refresh:3;url=ver_usuario.php" );            
         } else {
-            //mensaje de error
+            //mensaje de error personalizado
             echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario_inactivo.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se ha podido habilitar al paciente.</div>";
+            //redireccion
             header( "refresh:3;url=ver_usuario_inactivo.php" );
         }
     //Desconecto la conexion de la bD
@@ -46,7 +49,9 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     //header("Location: ../index.php");
     
 }else{
+  //mensaje de impresion personalizado
     echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario_inactivo.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado el ID del paciente.</div>";
+    //redireccion
     header( "refresh:3;url=ver_usuario_inactivo.php" );    
 }
 ?>

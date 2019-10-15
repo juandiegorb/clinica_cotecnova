@@ -26,6 +26,7 @@
         $id_medico = $mysql->efectuarConsulta("select id_medico from clinica_cotecnova.medicos where numero_documento = ".$documentoMedico.""); 
         $id_usuario = $mysql->efectuarConsulta("select id_usuario from clinica_cotecnova.usuarios where numero_documento = ".$documentoPaciente."");
         
+        //ciclos while que sirven para traer los respectivos id
         while($resultado = mysqli_fetch_assoc($id_medico))
         {
             $idMedico = $resultado['id_medico']; 

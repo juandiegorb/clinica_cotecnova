@@ -9,3 +9,4 @@
     
     //Dirigirse a la pagina principal
     header("Location: ../index.php"); 
+    ?>

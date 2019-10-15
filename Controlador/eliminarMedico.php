@@ -6,7 +6,7 @@
   <title>Cl&iacute;nica Cotecnova</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+  <!-- Llamado de css -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
@@ -33,18 +33,23 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($ActualizarEstado){
-           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido inhabilitado correctamente.</div>";
+          //impresion de mensajes personalizados
+           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido inhabilitado correctamente.</div>";
+           //personalizacion
            header( "refresh:3;url=../ver_medico.php" ); 
         } else {
-            //mensaje de error
-            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido inhabilitar al medico.</div>";
+            //mensaje de error personalizado
+            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido inhabilitar al medico.</div>";
+            //redireccion
             header( "refresh:3;url=../ver_medico_inactivo.php" ); 
         }
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
     
 }else{
-    echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado el ID del medico.</div>";
+  //mensaje personalizado
+    echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado el ID del medico.</div>";
+    //redireccion
     header( "refresh:3;url=../ver_medico.php" ); 
 }
 ?>
