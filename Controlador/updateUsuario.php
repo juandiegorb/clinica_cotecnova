@@ -43,11 +43,11 @@ if(isset($_POST['enviar']) && !empty($_GET['id']) && !empty($_POST['nombreComple
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($actualizar){
            echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El paciente ha sido actualizado correctamente.</div>";
-           header( "refresh:3;url=ver_usuario.php" ); 
+           header( "refresh:3;url=../ver_usuario.php" ); 
         } else {
             //mensaje de error
             echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido actualizar al paciente.</div>";
-            header( "refresh:3;url=ver_usuario.php" );         
+            header( "refresh:3;url=../ver_usuario.php" );         
         }
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
@@ -55,7 +55,7 @@ if(isset($_POST['enviar']) && !empty($_GET['id']) && !empty($_POST['nombreComple
     
 }else{
     echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado todos los datos necesarios.</div>";
-    header( "refresh:3;url=ver_usuario.php" );     
+    header( "refresh:3;url=../ver_usuario.php" );     
 }
 ?>
   </div>

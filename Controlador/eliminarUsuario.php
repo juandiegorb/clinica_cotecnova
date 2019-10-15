@@ -35,19 +35,18 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($ActualizarEstado){
            echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El paciente ha sido inhabilitado correctamente.</div>";
-           header( "refresh:3;url=ver_usuario.php" ); 
+           header( "refresh:3;url=../ver_usuario.php" ); 
         } else {
             //mensaje de error
             echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido inhabilitar al paciente.</div>";
-            header( "refresh:3;url=ver_usuario_inactivo.php" ); 
+            header( "refresh:3;url=../ver_usuario_inactivo.php" ); 
         }
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
-    //header("Location: ../index.php");
     
 }else{
     echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado el ID del paciente.</div>";
-    header( "refresh:3;url=ver_usuario.php" ); 
+    header( "refresh:3;url=../ver_usuario.php" ); 
 }
 ?>
   </div>
