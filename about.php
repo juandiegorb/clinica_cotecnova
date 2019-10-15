@@ -7,7 +7,7 @@
   <title>Cl&iacute;nica Cotecnova - Acerca de nosotros</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+  <!-- Llamado de css-->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -21,6 +21,7 @@
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <!-- Llamado a la plantilla de header -->
   <?php
   ?>
   <div id="container">
@@ -31,16 +32,20 @@
   <!--/ banner-->
   <!--about-->
   <section id="about" class="section-padding">
+    <!-- Creacion de divs -->
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-4 col-xs-12">
           <div class="section-title">
+            <!-- Titulos, etiquetas -->
             <h2 class="head-title lg-line">Cl&iacute;nica Cotecnova<br>El Ultimo Sueño</h2>
             <hr class="botm-line">
             <p class="sec-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
+            <!-- redireccion -->
             <a href="servicios.php" style="color: #0cb8b6; padding-top:10px;">Know more..</a>
           </div>
         </div>
+        <!-- creacion de divs, titulos y parrafos -->
         <div class="col-md-9 col-sm-8 col-xs-12">
           <div style="visibility: visible;" class="col-sm-9 more-features-box">
             <div class="more-features-box-text">
@@ -64,6 +69,7 @@
   </section>
   <!--/ about-->
   <!--doctor team-->
+  <!-- creacion de seccion, divs, titulos y parrafos -->
   <section id="doctor-team" class="section-padding">
     <div class="container">
       <div class="row">
@@ -77,11 +83,6 @@
             <div class="caption">
               <h3>Jessica Wally</h3>
               <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
             </div>
           </div>
         </div>
@@ -91,11 +92,6 @@
             <div class="caption">
               <h3>Iai Donas</h3>
               <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
             </div>
           </div>
         </div>
@@ -105,11 +101,6 @@
             <div class="caption">
               <h3>Amanda Denyl</h3>
               <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
             </div>
           </div>
         </div>
@@ -119,11 +110,6 @@
             <div class="caption">
               <h3>Jason Davis</h3>
               <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
             </div>
           </div>
         </div>
@@ -132,6 +118,7 @@
   </section>
   <!--/ doctor team-->
   <!--footer-->
+  <!-- Llamado a la plantilla de footer -->
   <div id="footer">
   <?php
   include("footer.php");
@@ -139,6 +126,7 @@
   </div>
   <!--/ footer-->
 
+  <!-- Llamado de respectivos scripts -->
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

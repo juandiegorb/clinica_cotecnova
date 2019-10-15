@@ -7,7 +7,7 @@
   <title>Cl&iacute;nica Cotecnova - Crear citas</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+  <!-- Llamado de css -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -22,6 +22,7 @@
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <!-- Llamado a la plantilla de header -->
   <div id="container">
   <?php
   include("header_index.php");
@@ -42,6 +43,7 @@
     ?>
   </div>  
   <!--service-->
+  <!-- creacion de seccion, divs, titulos y parrafos -->
   <section id="service" class="section-padding">
     <div class="container">
       <div class="row">
@@ -65,11 +67,12 @@
                           <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                           <option value="Ingresar documento">Ingresar documento</option>
                          <?php 
+                         //cliclo while que nos servira para traer los datos que haya seleccionado en la cedula
                        while ($resultado = mysqli_fetch_assoc($seleccionCedulaP)){   
                            ?> 
                           <!-- Se traen los datos y se imprimen en las opciones del select -->
                         
-                          
+                          <!-- impresion de los datos traidos en el select con sus respectivas variables -->
                           <option value="<?php echo $resultado['numero_documento']?>"><?php echo $resultado['numero_documento']." - ".$resultado['nombre_completo']." ".$resultado['apellidos'];?></option>  
                         <?php }?>
                     </select>
@@ -83,19 +86,23 @@
                           <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                           <option value="Ingresar documento">Ingresar documento</option>   
                         <?php 
+                        //cliclo while que nos servira para traer los datos que haya seleccionado en la cedula
                             while ($resultado = mysqli_fetch_assoc($seleccionCedulaM)){   
                         ?> 
                           <!-- Se traen los datos y se imprimen en las opciones del select -->
-                           
+                        
+                          <!-- impresion de los datos traidos en el select con sus respectivas variables -->
                         <option value="<?php echo $resultado['numero_documento']?>"><?php echo $resultado['numero_documento']." - ".$resultado['nombre_completo']." ".$resultado['apellidos'];?></option>  
                         <?php }?>
                     </select>
                   </div>
                 </div>
 
+                <!-- creacion de divs, labels e inputs -->
                 <div class="form-group">
                   <label class="col-md-12">Fecha</label>
                   <div class="col-md-4">
+                    <!-- input que sirve para mostrar un calendario, como condicion minima para seleccionar primero se captura el dia actual y no permite que seleccione dias anteriores -->
                     <input type="date" name="fechaCita" class="form-control form-control-line" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?> >
                   </div>
                 </div>
@@ -116,10 +123,12 @@
 
                 <div class="form-group">
                   <div class="col-sm-3 col-md-2">
+                    <!-- creacion de boton registrar --> 
                     <button class="btn btn-success" name="enviar">Registrarse</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
-                    <a href="index_iniciado_medico" class="btn btn-danger">Cancelar</a>
+                    <!-- creacion de boton cancelar que redirige al index del medico -->
+                    <a href="index.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
 
@@ -133,6 +142,7 @@
   </section>
   <!--/ service-->
   <!--footer-->
+  <!-- Llamado a la plantilla de footer -->
   <div id="footer">
   <?php
   include("footer.php");
@@ -140,6 +150,7 @@
   </div>
   <!--/ footer-->
 
+  <!-- Llamado de respectivos scripts -->
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
