@@ -7,7 +7,7 @@
   <title>Cl&iacute;nica Cotecnova</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+  <!-- llamado de css -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -22,6 +22,7 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!--banner-->
+    <!-- llamado de plantillas header y footer -->
     <div id="container">
     <?php
         include("header.php");
@@ -34,6 +35,7 @@
     ?>
     </div>
     <!--/ footer-->
+    <!-- respectivos llamados de scripts -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
