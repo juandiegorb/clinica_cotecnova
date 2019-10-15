@@ -1,12 +1,12 @@
+//Funcion para validar campos que solo ingrese numeros
 function solonumeros(e){
     key = e.keyCode || e.which;
-    
     teclado = String.fromCharCode(key);
-    
+    //Numeros que solo se permiten
     numero = "01234567789";
+    //Teclas especiales
     especiales = "8-37-38-46";
     teclado_especial = false;
-    
     for(var i in especiales){
         if(key == especiales[i]){
             teclado_especial = true;
@@ -16,15 +16,17 @@ function solonumeros(e){
         return false;
     }
 }
-
+//Funcion para ingresar solo letras
 function sololetras(e) {
-	key=e.keyCode || e.which;
- 
+        //Evento de codigo de tecla
+	key=e.keyCode || e.which; 
 	teclado=String.fromCharCode(key).toLowerCase();
+        //Letras que solo se permiten
 	letras="qwertyuiopasdfghjklñzxcvbnmáéíóú ";
+        //Teclas especiales
 	especiales="8-37-38-46-164";
 	teclado_especial=false;
- 
+        //For para verlas teclas especiales
 	for(var i in especiales){
 		if(key==especiales[i]){
 			teclado_especial=true;

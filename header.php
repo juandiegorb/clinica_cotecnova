@@ -45,8 +45,6 @@
                         <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                           <ul class="nav navbar-nav">
                             <li class=""><a href="index.php">Inicio</a></li>
-                            <!--<li class=""><a href="servicios.html">Servicios</a></li>
-                            <li class=""><a href="about.html">Acerca de nosotros</a></li>-->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cita</a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
@@ -115,10 +113,10 @@
                     <div class="col-md-12">
                       <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                                  <span class="icon-bar"></span>
-                                                  <span class="icon-bar"></span>
-                                                  <span class="icon-bar"></span>
-                                                </button>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                         <a class="navbar-brand" href="index.php"><img src="img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
                       </div>
                       <div class="collapse navbar-collapse navbar-right" id="myNavbar">
@@ -145,7 +143,7 @@
                       <div class="banner-text text-center">
                         <h1 class="white">No olvides siempre revisar tus citas</h1>
                         <p>Mantente informad@ en la pestaña citas</p>
-                        <a href="ver_citaU.php" class="btn btn-appoint">Ir a revisar</a>
+                        <a href="ver_cita.php" class="btn btn-appoint">Ir a revisar</a>
                       </div>
                     </div>
                   </div>
@@ -208,15 +206,11 @@
         <?php
     }
         ?>
-  
-
   <!-- Llamado de los respectivos scripts -->
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
-
 </body>
-
 </html>

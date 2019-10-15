@@ -46,8 +46,6 @@
                         <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                           <ul class="nav navbar-nav">
                             <li class=""><a href="index.php">Inicio</a></li>
-                            <!--<li class=""><a href="servicios.html">Servicios</a></li>
-                            <li class=""><a href="about.html">Acerca de nosotros</a></li>-->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cita</a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
@@ -155,8 +153,6 @@
     <?php
     }
     ?>
-  
-
   <!-- Llamado de los respectivos scripts -->
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
