@@ -30,21 +30,32 @@
   ?>
   </div>  
   <?php
-  if(isset($_SESSION['tipousuario'])){
-    require_once 'Modelo/MySQL.php';
-    $mysql = new MySQL;
-    $mysql->conectar();
-    if(isset($_SESSION['idMedico'])){
-        $idMedico = $_SESSION['idMedico'];
-        $citasMedico = $mysql->efectuarConsulta("SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) as diferencia_dias, clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.medico_id = ".$idMedico." and clinica_cotecnova.citas.fecha_hora > DATE_FORMAT(NOW(),'%Y-%m-%d')");     
-    }else if($_SESSION['idUsuario']){
-        $idUsuario = $_SESSION['idUsuario'];
-        $citasUsuario = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.usuario_id = ".$idUsuario." and clinica_cotecnova.citas.fecha_hora > DATE_FORMAT(NOW(),'%Y-%m-%d')");     
+    if(isset($_SESSION['tipousuario'])){
+    
+        //Llamar al archivo MuSQL
+        require_once 'Modelo/MySQL.php';
+        
+        //Nuevo archivo MySql
+        $mysql = new MySQL;
+        //Conectar a la base de datos
+        $mysql->conectar();
+        
+        //Si la sesión es como medico
+        if(isset($_SESSION['idMedico'])){
+            $idMedico = $_SESSION['idMedico'];
+            //Muestra las citas asignadas a ese medico 
+            $citasMedico = $mysql->efectuarConsulta("SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) as diferencia_dias, clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.medico_id = ".$idMedico." and clinica_cotecnova.citas.fecha_hora > DATE_FORMAT(NOW(),'%Y-%m-%d')");     
+        
+        }
+        //Si la sesión es como medico
+        else if($_SESSION['idUsuario']){
+            $idUsuario = $_SESSION['idUsuario'];
+            //Muestra las citas asignadas a ese usuario 
+            $citasUsuario = $mysql->efectuarConsulta("SELECT clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.usuario_id = ".$idUsuario." and clinica_cotecnova.citas.fecha_hora > DATE_FORMAT(NOW(),'%Y-%m-%d')");     
     }
     
-    //$diferencia_dias = $mysql->efectuarConsulta("SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) as diferencia_dias from citas");
-    
     $mysql->desconectar();
+        //Si el usuario es medico
         if($_SESSION['tipousuario'] == 1){
             ?>
                <!--service-->
@@ -74,15 +85,19 @@
                                 </thead>
                                 <?php 
                                
+                                //Si la consulta tiene resultados
                                 if(!empty($citasMedico))
                                 { 
                                     while ($resultado= mysqli_fetch_assoc($citasMedico))
                                     { 
+                                        //Trae el resultado de la consulta 
+                                        //SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) ...
                                         if($resultado['diferencia_dias'] == 1)
                                         {
                                 ?>
                                 
                                 <tbody>
+                                    <!-- Si la fecha de la cita esta a un dia de la fecha actual, muestra esos datos en rojo -->
                                     <tr style="color: red;">
                                         <th scope="row" ><?php echo $resultado['paciente'] ?></th>
                                         <td><?php echo $resultado['medico'] ?></td>
@@ -97,6 +112,7 @@
                                       
                                 <tbody>
                                     <tr>
+                                        <!-- sino los muestra normal -->
                                         <th scope="row" ><?php echo $resultado['paciente'] ?></th>
                                         <td><?php echo $resultado['medico'] ?></td>
                                         <td><?php echo $resultado['motivo_consulta'] ?></td>
@@ -119,6 +135,7 @@
                 </section>
                 <!--/ service-->
             <?php
+        //Si se inicia sesion como usuario    
         }else if($_SESSION['tipousuario'] == 2){
             ?>
              <!--service-->
@@ -147,20 +164,45 @@
                                   </tr>
                                 </thead>
                                 <?php
-                                if(!empty($citasUsuario)){ 
-                                  while ($resultado= mysqli_fetch_assoc($citasUsuario)){                         
+                                //Si la consulta tiene resultados
+                                if(!empty($citasUsuario))
+                                { 
+                                    while ($resultado= mysqli_fetch_assoc($citasUsuario)){ 
+                                        
+                                        //Trae el resultado de la consulta 
+                                        //SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) ...
+                                        if($resultado['diferencia_dias'] == 1)
+                                        {
                                 ?> 
                                 <tbody>
-                                  <tr>
-                                    <th scope="row"><?php echo $resultado['id_cita'] ?></th>
-                                    <td><?php echo $resultado['paciente'] ?></td>
-                                    <td><?php echo $resultado['medico'] ?></td>
-                                    <td><?php echo $resultado['motivo_consulta'] ?></td>
-                                    <td><?php echo $resultado['fecha_hora'] ?></td>
-                                  </tr>
+                                    <tr style="color: red;">
+                                        <!-- Si la fecha de la cita esta a un dia de la fecha actual, muestra esos datos en rojo -->
+                                        <th scope="row"><?php echo $resultado['id_cita'] ?></th>
+                                        <td><?php echo $resultado['paciente'] ?></td>
+                                        <td><?php echo $resultado['medico'] ?></td>
+                                        <td><?php echo $resultado['motivo_consulta'] ?></td>
+                                        <td><?php echo $resultado['fecha_hora'] ?></td>
+                                    </tr>
                                 </tbody>
                                 <?php
                                   }
+                                  else{
+                                ?>
+                                
+                                <tbody>
+                                    <tr>
+                                        <!-- sino los muestra normal -->
+                                        <th scope="row" ><?php echo $resultado['id_cita'] ?></th>
+                                        <td><?php echo $resultado['paciente'] ?></td>
+                                        <td><?php echo $resultado['medico'] ?></td>
+                                        <td><?php echo $resultado['motivo_consulta'] ?></td>
+                                        <td><?php echo $resultado['fecha_hora'] ?></td>
+                                    </tr>
+                                </tbody> 
+                                
+                                <?php
+                                      }
+                                    }
                                 }
                                 ?>
                               </table>
