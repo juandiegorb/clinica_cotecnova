@@ -21,26 +21,23 @@
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-  <!--banner-->
-  <div id="container">
-  <?php
-  include("header.php");
-  ?>
-  </div>  
-  <!--footer-->
-  <div id="footer">
-  <?php
-  include("footer.php");
-  ?>
-  </div>
-  <!--/ footer-->
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/custom.js"></script>
-  <script src="contactform/contactform.js"></script>
-
+    <!--banner-->
+    <div id="container">
+    <?php
+        include("header.php");
+    ?>
+    </div>  
+    <!--footer-->
+    <div id="footer">
+    <?php
+        include("footer.php");
+    ?>
+    </div>
+    <!--/ footer-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="contactform/contactform.js"></script>
 </body>
-
 </html>

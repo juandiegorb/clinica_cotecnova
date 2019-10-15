@@ -56,7 +56,7 @@
                     <button class="btn btn-success">Eliminar</button>
                   </div>
                   <div class="col-sm-10 col-md-4">
-                    <a href="index.html" class="btn btn-danger">Cancelar</a>
+                    <a href="index.php" class="btn btn-danger">Cancelar</a>
                   </div>
                 </div>
               </form>

@@ -38,53 +38,47 @@
     $seleccionUsuario = $mysql->efectuarConsulta("select clinica_cotecnova.tipo_usuario.id_tipo_usuario, clinica_cotecnova.tipo_usuario.nombre from tipo_usuario");     
     $mysql->desconectar();    
     ?>
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="login100-more" style="background-image: url('img/bg-banner.jpg');"></div>
-
-			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-                            <form class="login100-form validate-form" action="Controlador/loginvalidacion.php" method="post">
-					<span class="login100-form-title p-b-59">
-						Login
-					</span>					
-					<div class="wrap-input100 validate-input" >
-						<span class="label-input100">Identificacion</span>
-                                                <input class="input100" type="text" name="Identificacion" placeholder="Identificacion..." required="">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" >
-						<span class="label-input100">Contraseña</span>
-						<input class="input100" type="password" name="pass" placeholder="Contraseña" required>
-						<span class="focus-input100"></span>
-					</div>
-                                         <div class="wrap-input100 validate-input" >                                            
-                                             <select class="form-control " name="tipousuario" required>                                                
-                                                <?php 
-                                                    while ($resultado= mysqli_fetch_assoc($seleccionUsuario)){                         
-                                                ?> 
-                                                <option value="<?php echo $resultado['id_tipo_usuario']?>"><?php echo $resultado['nombre']?></option>                                                
-                                                <?php }?>
-                                            </select>
-                                             
-                                        </div>
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" >Ingresar</button>
-						</div>
-					</div>
-					<div class="container-login100-form-btn" style="padding-top: 10px;">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<a href="index.php" class="login100-form-btn">Cancelar</a>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="login100-more" style="background-image: url('img/bg-banner.jpg');"></div>
+            <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+                <form class="login100-form validate-form" action="Controlador/loginvalidacion.php" method="post">
+                    <span class="login100-form-title p-b-59">Login</span>					
+                    <div class="wrap-input100 validate-input" >
+                        <span class="label-input100">Identificacion</span>
+                        <input class="input100" type="text" name="Identificacion" placeholder="Identificacion..." required="">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" >
+                        <span class="label-input100">Contraseña</span>
+                        <input class="input100" type="password" name="pass" placeholder="Contraseña" required>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" >                                            
+                        <select class="form-control " name="tipousuario" required>                                                
+                        <?php 
+                            while ($resultado= mysqli_fetch_assoc($seleccionUsuario)){                         
+                        ?> 
+                            <option value="<?php echo $resultado['id_tipo_usuario']?>"><?php echo $resultado['nombre']?></option>                                                
+                        <?php }?>
+                        </select>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" >Ingresar</button>
+                        </div>
+                    </div>
+                    <div class="container-login100-form-btn" style="padding-top: 10px;">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <a href="index.php" class="login100-form-btn">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 <!--===============================================================================================-->
