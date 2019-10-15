@@ -81,6 +81,7 @@
                         <td><?php echo $resultado['apellidos'] ?></td>                      
                         <td><?php echo $resultado['nombre'] ?></td>
                         <td>
+                            <!-- Boton para redirigir a archivo que activa usuario -->
                             <a href="Controlador/activarUsuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-primary" name="enviar">Activar</a> 
                         </td>
                       </tr>

@@ -80,6 +80,7 @@
                         <td><?php echo $resultado['apellidos'] ?></td>                      
                         <td><?php echo $resultado['nombre'] ?></td>
                         <td>
+                            <!-- Boton para redirigir a archivo que activa medico -->
                             <a href="Controlador/activarMedico.php?id=<?php echo $idMedico; ?>" class="btn btn-primary" name="enviar">Activar</a> 
                         </td>
                       </tr>

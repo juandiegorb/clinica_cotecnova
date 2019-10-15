@@ -28,6 +28,7 @@
   ?>
   </div>  
   <?php
+    //trae id del medico 
     $id = $_GET['id'];
     //llamado al archivo MySQL
     require_once 'Modelo/MySQL.php';

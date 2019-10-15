@@ -23,8 +23,9 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
    <?php 
+   //Valida si un tipo de usuario inicio la sesion
     if(isset($_SESSION['tipousuario'])){
-        if($_SESSION['tipousuario'] == 1){
+        if($_SESSION['tipousuario'] == 1){ //Sesion como medico
             ?>
      <!--footer-->
   <footer id="footer">
@@ -73,7 +74,7 @@
   </footer>
   <!--/ footer-->
             <?php
-        }else if($_SESSION['tipousuario'] == 2){
+        }else if($_SESSION['tipousuario'] == 2){ //Sesion como usuario
             ?>            
   <!--footer-->
   <footer id="footer">

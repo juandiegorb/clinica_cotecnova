@@ -28,6 +28,7 @@
   include("header_index.php");
   ?>
   <?php
+    //Trae id del usuario
     $id = $_GET['id'];
     //llamado al archivo MySQL
     require_once 'Modelo/MySQL.php';
