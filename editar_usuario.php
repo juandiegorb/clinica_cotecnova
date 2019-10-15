@@ -35,7 +35,7 @@
     $mysql = new MySQL;
     //funcion conectar
     $mysql->conectar();
-    //consulta de toda la informacion
+    //consulta de toda la informacion del paciente 
     $seleccionInformacion = $mysql->efectuarConsulta("SELECT 
 	clinica_cotecnova.tipos_documentos.id_tipo_documento,
         clinica_cotecnova.tipos_documentos.nombre as tipo_documento, 
@@ -69,7 +69,9 @@
         $id_ciudades = $resultado['id_ciudad'];
         $ciudades = $resultado['ciudades'];     
     } 
+    //Consulto el id y nombre de los estados civiles
     $seleccionEstado = $mysql->efectuarConsulta("select clinica_cotecnova.estados_civiles.id_estado_civil, clinica_cotecnova.estados_civiles.nombre from estados_civiles"); 
+    //Consulto el id y nombre de los departamentos
     $seleccionDepartamento = $mysql->efectuarConsulta("select clinica_cotecnova.departamentos.id_departamento, clinica_cotecnova.departamentos.nombre from departamentos"); 
     //funcion desconectar
     $mysql->desconectar();    

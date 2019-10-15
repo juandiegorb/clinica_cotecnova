@@ -32,10 +32,15 @@
     //funcion conectar
     $mysql->conectar();
     //respectivas variables donde se llama la función consultar, se incluye la respectiva consulta
+    //Consulto el id y nombre del tipo de usuario paciente
     $seleccionTipoUsuario = $mysql->efectuarConsulta("select clinica_cotecnova.tipo_usuario.id_tipo_usuario, clinica_cotecnova.tipo_usuario.nombre from tipo_usuario where id_tipo_usuario = 2");     
+    //Consulto el id y el nombre del tipo de documento
     $seleccionDocumento = $mysql->efectuarConsulta("select clinica_cotecnova.tipos_documentos.id_tipo_documento, clinica_cotecnova.tipos_documentos.nombre from tipos_documentos");     
+    //Consulto el id y el nombre de los estados civiles
     $seleccionEstado = $mysql->efectuarConsulta("select clinica_cotecnova.estados_civiles.id_estado_civil, clinica_cotecnova.estados_civiles.nombre from estados_civiles"); 
+    //Consulto el id y el nombre del departamento
     $seleccionDepartamento = $mysql->efectuarConsulta("select clinica_cotecnova.departamentos.id_departamento, clinica_cotecnova.departamentos.nombre from departamentos"); 
+    //Consulto el id y el nombre de la ciudad
     $seleccionCiudad = $mysql->efectuarConsulta("select clinica_cotecnova.ciudades.id_ciudad, clinica_cotecnova.ciudades.nombre from ciudades"); 
     //funcion desconectar
     $mysql->desconectar();    
@@ -116,7 +121,7 @@
                       <select class="form-control form-control-line" name="estadoCivil" required="">
                       <option disabled selected="true">Seleccione una opcion</option>
                          <?php 
-                         //se recorre el resultado de la consutla de estado civil
+                         //se recorre el resultado de la consulta de estado civil
                        while ($resultado= mysqli_fetch_assoc($seleccionEstado)){
                            //se imprime los resultados
                            ?> 
