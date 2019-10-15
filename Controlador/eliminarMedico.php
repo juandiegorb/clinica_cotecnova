@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cl&iacute;nica Cotecnova</title>
+  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+  <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div class="col-lg-offset-3 col-lg-6">
 <?php
 //condicion para comprobar si los campos están declarados anteriormente y si no estan vacíos
 if(isset($_GET['id']) && !empty($_GET['id'])){
@@ -17,16 +33,24 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     
         //decision para comprobar si se ejecuto, se redirige al index principal
         if($ActualizarEstado){
-           header("Location: ../ver_medico.php");
+           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido inhabilitado correctamente.</div>";
+           header( "refresh:3;url=../ver_medico.php" ); 
         } else {
             //mensaje de error
-            echo "Error";
+            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido inhabilitar al medico.</div>";
+            header( "refresh:3;url=../ver_medico_inactivo.php" ); 
         }
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
-    //header("Location: ../index.php");
     
 }else{
-    header("Location: ../index.php");
-    //sino se cumple la primer condicion, se re envia nuevamente al formulario
+    echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado el ID del medico.</div>";
+    header( "refresh:3;url=../ver_medico.php" ); 
 }
+?>
+  </div>
+  <!-- Llamado de los respectivos scripts -->
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

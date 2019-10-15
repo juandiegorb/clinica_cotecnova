@@ -1,5 +1,5 @@
 <?php
-
+//creacion de la clase MySQL
 class MySQL{
     //Declaracion de variables de conexion
     private $hostname  = "127.0.0.1";
@@ -23,12 +23,13 @@ class MySQL{
     //Metodo que efectua una consulta devuelve su resultado
     public function efectuarConsulta($consulta){
         mysqli_query($this->conexion, "SET lc_time_names = 'es_ES'" ); 
-        //AÃ±ade el uso de caracteres especiales como tildes con el formato utf8
+        //Añade el uso de caracteres especiales como tildes con el formato utf8
         mysqli_query($this->conexion, "SET NAMES 'utf8'");
         mysqli_query($this->conexion, "SET CHARACTER 'utf8'");
 
+        //ejecucion de la consulta
        $this->resultadoConsulta = mysqli_query($this->conexion, $consulta);
-             
+        //retorno del resultado de la consulta
         return $this->resultadoConsulta; 
     }
     

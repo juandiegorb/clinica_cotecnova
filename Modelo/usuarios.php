@@ -1,4 +1,5 @@
 <?php
+//creacion de la clase usuarios
     class usuarios{
         //declaro las variables
         private $numero_documento;
@@ -11,7 +12,7 @@
         private $depar;
         private $tipo_usuario;
                
-        //metodos get de las variables
+        //metodos get de las variables y sus returns
         function getNumero_documento() {
             return $this->numero_documento;
         }
@@ -48,7 +49,7 @@
             return $this->tipo_usuario;
         }
         
-        //metodos sets de las variables
+        //metodos sets de las variables y sus asignaciones
         function setNumero_documento($numero_documento) {
             $this->numero_documento = $numero_documento;
         }
