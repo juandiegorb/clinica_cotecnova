@@ -60,7 +60,6 @@
                 <table class="table table-hover">
                     <thead>
                       <tr>
-
                         <th scope="col">Numero documento</th>
                         <th scope="col">Nombre completo</th>
                         <th scope="col">Apellidos</th>
