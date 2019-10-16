@@ -99,7 +99,7 @@
                                 <tbody>
                                     <!-- Si la fecha de la cita esta a un dia de la fecha actual, muestra esos datos en rojo -->
                                     <tr style="color: red;">
-                                        <th scope="row" ><?php echo $resultado['paciente'] ?></th>
+                                        <td scope="row" ><?php echo $resultado['paciente'] ?></td>
                                         <td><?php echo $resultado['medico'] ?></td>
                                         <td><?php echo $resultado['motivo_consulta'] ?></td>
                                         <td><?php echo $resultado['fecha_hora'] ?></td>
@@ -113,7 +113,7 @@
                                 <tbody>
                                     <tr>
                                         <!-- sino los muestra normal -->
-                                        <th scope="row" ><?php echo $resultado['paciente'] ?></th>
+                                        <td scope="row" ><?php echo $resultado['paciente'] ?></td>
                                         <td><?php echo $resultado['medico'] ?></td>
                                         <td><?php echo $resultado['motivo_consulta'] ?></td>
                                         <td><?php echo $resultado['fecha_hora'] ?></td>
@@ -156,7 +156,6 @@
                             <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                    <th scope="col">Id de la cita</th>
                                     <th scope="col">Nombre del paciente</th>
                                     <th scope="col">Nombre del medico</th>
                                     <th scope="col">Motivo de consulta</th>
@@ -177,22 +176,19 @@
                                 <tbody>
                                     <tr style="color: red;">
                                         <!-- Si la fecha de la cita esta a un dia de la fecha actual, muestra esos datos en rojo -->
-                                        <th scope="row"><?php echo $resultado['id_cita'] ?></th>
-                                        <td><?php echo $resultado['paciente'] ?></td>
+                                        <td scope="row"><?php echo $resultado['paciente'] ?></td>
                                         <td><?php echo $resultado['medico'] ?></td>
                                         <td><?php echo $resultado['motivo_consulta'] ?></td>
                                         <td><?php echo $resultado['fecha_hora'] ?></td>
                                     </tr>
                                 </tbody>
                                 <?php
-                                  }
+                                     }
                                   else{
                                 ?>
-                                
                                 <tbody>
                                     <tr>
                                         <!-- sino los muestra normal -->
-                                        <th scope="row" ><?php echo $resultado['id_cita'] ?></th>
                                         <td><?php echo $resultado['paciente'] ?></td>
                                         <td><?php echo $resultado['medico'] ?></td>
                                         <td><?php echo $resultado['motivo_consulta'] ?></td>
