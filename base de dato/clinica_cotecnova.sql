@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2019 a las 18:58:11
+-- Tiempo de generación: 16-10-2019 a las 15:12:59
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.6.12
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   `motivo_consulta` varchar(500) NOT NULL COMMENT 'motivo por el cual se pide la cita',
   `usuario_id` int(11) NOT NULL,
   `medico_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS `citas` (
 INSERT INTO `citas` (`id_cita`, `fecha_hora`, `motivo_consulta`, `usuario_id`, `medico_id`) VALUES
 (1, '2019-09-26 03:00:00', 'Consulta General', 1, 1),
 (2, '2019-10-08 05:30:00', 'prueba', 5, 1),
-(3, '2019-10-12 03:05:00', 'prueba 2', 6, 7);
+(3, '2019-10-12 03:05:00', 'prueba 2', 6, 7),
+(4, '2019-10-17 05:05:00', 'asd', 16, 7);
 
 -- --------------------------------------------------------
 
@@ -1295,7 +1296,7 @@ INSERT INTO `medicos` (`id_medico`, `numero_documento`, `nombre_completo`, `apel
 CREATE TABLE IF NOT EXISTS `tipos_documentos` (
   `id_tipo_documento` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tipos_documentos`
@@ -1469,7 +1470,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'clave primaria de la tabla cita',AUTO_INCREMENT=4;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT COMMENT 'clave primaria de la tabla cita',AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `ciudades`
 --
@@ -1494,7 +1495,7 @@ ALTER TABLE `medicos`
 -- AUTO_INCREMENT de la tabla `tipos_documentos`
 --
 ALTER TABLE `tipos_documentos`
-  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tipos_medicos`
 --
