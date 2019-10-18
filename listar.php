@@ -1,0 +1,26 @@
+  <?php
+    
+        //Llamar al archivo MuSQL
+        require_once 'Modelo/MySQL.php';
+        
+        //Nuevo archivo MySql
+        $mysql = new MySQL;
+        //Conectar a la base de datos
+        $mysql->conectar();
+
+        $idMedico = 1;
+        //Muestra las citas asignadas a ese medico 
+        $citasMedico = $mysql->efectuarConsulta("SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) as diferencia_dias, clinica_cotecnova.usuarios.nombre_completo as paciente, clinica_cotecnova.medicos.nombre_completo as medico, clinica_cotecnova.citas.motivo_consulta, clinica_cotecnova.citas.fecha_hora from citas join usuarios  on clinica_cotecnova.citas.usuario_id = clinica_cotecnova.usuarios.id_usuario join medicos on clinica_cotecnova.citas.medico_id = clinica_cotecnova.medicos.id_medico where clinica_cotecnova.citas.medico_id = ".$idMedico." and clinica_cotecnova.citas.fecha_hora > DATE_FORMAT(NOW(),'%Y-%m-%d')");
+
+        
+        if(! $citasMedico){
+          die("error");
+        }else{
+          while ($data = mysqli_fetch_assoc($citasMedico)) {
+            $arreglo["data"][]= $data;
+          }
+          echo json_encode($arreglo);
+        }
+        mysqli_free_result($citasMedico);
+        $mysql->desconectar();
+?> 
