@@ -19,6 +19,7 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
   ======================================================= -->
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -73,7 +74,7 @@
                           <!-- Tab panes -->
                           <div class="card-body">
                             <form class="form-horizontal form-material">
-                            <table class="table table-hover">
+                            <table id="dt_cliente" class="table table-hover display">
                                 <thead>
                                   <tr>
 
@@ -153,7 +154,7 @@
                           <!-- Tab panes -->
                           <div class="card-body">
                             <form class="form-horizontal form-material">
-                            <table class="table table-hover">
+                            <table id="dt_cliente" class="table table-hover display">
                                 <thead>
                                   <tr>
                                     <th scope="col">Nombre del paciente</th>
@@ -254,8 +255,14 @@
   </div>
   <!--/ footer-->
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready( function () {
+    $('#dt_cliente').DataTable();
+} );
+  </script>
+
   <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
