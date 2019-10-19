@@ -20,7 +20,11 @@
                 die("error");
               }else{
                 while ($data = mysqli_fetch_assoc($citasMedico)) {
-                  $arreglo["data"][]= $data;
+                  if($data['diferencia_dias'] == 1){
+                    $arreglo["data"][]= $data;
+                  }else{
+                    $arreglo["data"][]= $data;
+                  }
                 }
                 echo json_encode($arreglo);
               }
@@ -39,7 +43,11 @@
               die("error");
             }else{
               while ($data = mysqli_fetch_assoc($citasUsuario)) {
-                $arreglo["data"][]= $data;
+                if($data['diferencia_dias'] == 1){
+                  $arreglo["data"][]= $data;
+                }else{
+                  $arreglo["data"][]= $data;
+                }
               }
               echo json_encode($arreglo);
             }
