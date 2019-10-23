@@ -23,8 +23,6 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <?php 
-    //Inicia sesion
-    session_start();
     //Valida si un tipo de usuario inicio la sesion
     if(isset($_SESSION['tipousuario'])){
         if($_SESSION['tipousuario'] == 1){ //Sesion como medico

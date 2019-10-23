@@ -26,8 +26,11 @@
   <div id="container">
       
   <?php
-  //se trae el html de header_index que contiene el menu
-  include("header_index.php");
+    session_start();
+    if(isset($_SESSION['tipousuario'])){
+        if($_SESSION['tipousuario'] == 1){ //Sesion como medico
+        //se trae el html de header_index que contiene el menu
+        include("header_index.php");
   ?>
   <?php 
   //llamado al archivo MySQL
@@ -105,7 +108,14 @@
   ?>
   </div>
   <!--/ footer-->
-
+    <?php
+        }else{
+            header( "refresh:0;url=index.php" );  
+        }
+    }else{
+        header( "refresh:0;url=login.php" );    
+    }
+    ?>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

@@ -25,7 +25,10 @@
   <!--banner-->
   <div id="container">
   <?php
-  include("header_index.php");
+    session_start();
+    if(isset($_SESSION['tipousuario'])){
+        if($_SESSION['tipousuario'] == 1){ //Sesion como medico
+            include("header_index.php");
   ?>
   <?php
     $id = $_GET['id'];
@@ -169,6 +172,14 @@
   ?>
   </div>
   <!--/ footer-->
+   <?php
+        }else{
+            header( "refresh:0;url=index.php" );  
+        }
+    }else{
+        header( "refresh:0;url=login.php" );    
+    }
+    ?>
   <script src="js/validacionCampos.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>

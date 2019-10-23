@@ -24,6 +24,9 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">    
     <?php 
+    session_start();
+    if(isset($_SESSION['tipousuario'])){
+        if($_SESSION['tipousuario'] == 1){ //Sesion como medico
     //llamado al archivo MySQL
     require_once 'Modelo/MySQL.php';
     //nueva "consulta"
@@ -40,7 +43,7 @@
     ?>
     <div id="container">
     <?php
-        include("header_index.php");
+            include("header_index.php");
     ?>
     </div>   
   
@@ -156,7 +159,14 @@
   ?>
   </div>
   <!--/ footer-->
-
+  <?php
+        }else{
+            header( "refresh:0;url=index.php" );  
+        }
+    }else{
+        header( "refresh:0;url=login.php" );    
+    }
+    ?>
   <!-- Llamado de scripts -->
   <script src="js/validacionCampos.js"></script>
   <script src="js/jquery.min.js"></script>

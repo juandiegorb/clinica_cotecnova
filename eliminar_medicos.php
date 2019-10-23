@@ -23,39 +23,42 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <div id="container">
-  <?php
-  include("header_index.php");
-  ?>
-  </div>  
-  <?php
-    //trae id del medico 
-    $id = $_GET['id'];
-    //llamado al archivo MySQL
-    require_once 'Modelo/MySQL.php';
-    //nueva "consulta"
-    $mysql = new MySQL;
-    //funcion conectar
-    $mysql->conectar();
-    //consulta de toda la informacion
-    $seleccionInformacion = $mysql->efectuarConsulta("select clinica_cotecnova.medicos.numero_documento, clinica_cotecnova.medicos.nombre_completo from medicos where id_medico = ".$id."");     
-    while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
-        $numeroDocumento = $resultado['numero_documento'];
-        $nombre_completo = $resultado['nombre_completo'];
-    }
-    //funcion desconectar
-    $mysql->desconectar();    
+    <?php
+    session_start();
+    if(isset($_SESSION['tipousuario'])){
+        if($_SESSION['tipousuario'] == 1){ //Sesion como medico
+            include("header_index.php");
     ?>
-  <!--service-->
-  <section id="service" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-sm-4">
-          <h2 class="ser-title">Bienvenido</h2>
-          <hr class="botm-line">
-          <p>Bienvenid@ al formulario de borrar, por favor rellenar los siguientes campos con informaci&oacute;n valida y real.</p>
-          <p>Todos los datos pedidos ser&aacute;n de uso aplicativo, se guardar&aacute; la privacidad del usuario.</p>
-        </div>
-        <div class="col-md-8 col-sm-8">
+    </div>  
+    <?php
+            //trae id del medico 
+            $id = $_GET['id'];
+            //llamado al archivo MySQL
+            require_once 'Modelo/MySQL.php';
+            //nueva "consulta"
+            $mysql = new MySQL;
+            //funcion conectar
+            $mysql->conectar();
+            //consulta de toda la informacion
+            $seleccionInformacion = $mysql->efectuarConsulta("select clinica_cotecnova.medicos.numero_documento, clinica_cotecnova.medicos.nombre_completo from medicos where id_medico = ".$id."");     
+            while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
+                $numeroDocumento = $resultado['numero_documento'];
+                $nombre_completo = $resultado['nombre_completo'];
+            }
+            //funcion desconectar
+            $mysql->desconectar();    
+    ?>
+    <!--service-->
+    <section id="service" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <h2 class="ser-title">Bienvenido</h2>
+            <hr class="botm-line">
+            <p>Bienvenid@ al formulario de borrar, por favor rellenar los siguientes campos con informaci&oacute;n valida y real.</p>
+            <p>Todos los datos pedidos ser&aacute;n de uso aplicativo, se guardar&aacute; la privacidad del usuario.</p>
+          </div>
+          <div class="col-md-8 col-sm-8">
           <div class="card">
             <!-- Tab panes -->
             <div class="card-body">
@@ -94,11 +97,18 @@
   <!--footer-->
   <div id="footer">
   <?php
-  include("footer.php");
+            include("footer.php");
   ?>
   </div>
   <!--/ footer-->
-
+  <?php
+        }else{
+            header( "refresh:0;url=index.php" );   
+        }
+    }else{
+        header( "refresh:0;url=login.php" );    
+    }
+    ?>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

@@ -25,7 +25,10 @@
   <!-- Llamado a la plantilla de header -->
   <div id="container">
   <?php
-  include("header_index.php");
+   session_start();
+    if(isset($_SESSION['tipousuario'])){
+        if($_SESSION['tipousuario'] == 1){ //Sesion como medico
+            include("header_index.php");
   ?>
   <?php 
     //llamado al archivo MySQL
@@ -149,6 +152,14 @@
   ?>
   </div>
   <!--/ footer-->
+  <?php
+        }else{
+            header( "refresh:0;url=index.php" );  
+        }
+    }else{
+        header( "refresh:0;url=login.php" );    
+    }
+    ?>
 
   <!-- Llamado de respectivos scripts -->
   <script src="js/jquery.min.js"></script>

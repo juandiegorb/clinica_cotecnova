@@ -24,10 +24,13 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <!--banner-->
   <div id="container">
-  <?php
-  include("header_index.php");
-  ?>
-  <?php
+    <?php
+    session_start();
+    if(isset($_SESSION['tipousuario'])){
+        if($_SESSION['tipousuario'] == 1){ //Sesion como medico
+            include("header_index.php");
+    ?>
+    <?php
     //Trae id del usuario
     $id = $_GET['id'];
     //llamado al archivo MySQL
@@ -181,6 +184,14 @@
   include("footer.php");
   ?>
   </div>
+    <?php
+        }else{
+            header( "refresh:0;url=index.php" );  
+        }
+    }else{
+        header( "refresh:0;url=login.php" );    
+    }
+    ?>
   <!--/ footer-->
   <script src="js/validacionCampos.js"></script>
   <script src="js/jquery.min.js"></script>
