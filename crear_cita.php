@@ -127,7 +127,7 @@
                 <div class="form-group">
                   <div class="col-sm-3 col-md-2">
                     <!-- creacion de boton registrar --> 
-                    <button class="btn btn-success" name="enviar">Registrarse</button>
+                    <button class="btn btn-success" name="enviar">Crear cita</button>
                   </div>
                   <div class="col-sm-9 col-md-4">
                     <!-- creacion de boton cancelar que redirige al index del medico -->

@@ -19,6 +19,7 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
   ======================================================= -->
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -58,7 +59,7 @@
             <!-- Tab panes -->
             <div class="card-body">
                 <form class="form-horizontal form-material">
-                <table class="table table-hover">
+                <table class="table table-hover" id="ver_medico">
                     <thead>
                         <tr>
                             <th scope="col">Numero Documento</th>
@@ -68,12 +69,13 @@
                             <th scope="col">Editar o Eliminar</th>
                         </tr>
                     </thead>
+                    <tbody>
                     <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                     <?php 
                         while ($resultado= mysqli_fetch_assoc($consulta)){  
                         $idMedico = $resultado['id_medico'];                       
                     ?>
-                    <tbody>
+                    
                         <tr>
                             <!-- Se traen los datos y se imprimen en las opciones del select -->
                             <td><?php echo $resultado['numero_documento'] ?></td>
@@ -86,10 +88,10 @@
                                 <a href="eliminar_medicos.php?id=<?php echo $idMedico; ?>" class="btn btn-danger col-lg-offset-1 col-lg-6 " name="eliminar">Eliminar</a>
                             </td> 
                         </tr>
-                    </tbody>
                         <?php
                             }
                         ?>
+                    </tbody>
                     </table>
                   </form>
                 </div>
@@ -114,11 +116,16 @@
         header( "refresh:0;url=login.php" );    
     }
     ?>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+        $('#ver_medico').DataTable();
+    } );
+    </script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="contactform/contactform.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="contactform/contactform.js"></script>
 
 </body>
 </html>

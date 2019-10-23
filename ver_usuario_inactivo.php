@@ -61,7 +61,7 @@
             <!-- Tab panes -->
             <div class="card-body">
                 <form class="form-horizontal form-material">
-                <table class="table table-hover" id="ver_usuarios_inactivos">
+                <table class="table table-hover" id="ver_usuario_inactivo">
                     <thead>
                       <tr>
 
@@ -72,7 +72,6 @@
                         <th scope="col">Activar</th>
                       </tr>
                     </thead>
-                    
                      <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                       <tbody>
                     <?php 
@@ -120,14 +119,13 @@
     }
     ?>
   <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/jquery.dataTables.min.js"></script>
-  <script>
-    $(document).ready( function () {
-        $('#ver_usuarios_inactivos').DataTable();
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+        $('#ver_usuario_inactivo').DataTable();
     } );
-  </script>
-
-  <script src="js/bootstrap.min.js"></script>
+    </script>
+    <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
 

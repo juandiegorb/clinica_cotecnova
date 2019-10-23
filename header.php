@@ -49,7 +49,8 @@
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cita</a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="crear_cita.php">Crear cita</a>
-                                  <a class="dropdown-item btn" href="ver_cita.php">Ver citas</a>
+                                  <a class="dropdown-item btn" href="ver_cita.php">Ver citas activas</a>
+                                  <a class="dropdown-item btn" href="historial_cita.php">Ver historial de citas</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -122,7 +123,13 @@
                       <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li class=""><a href="index.php">Inicio</a></li>
-                            <li class=""><a href="ver_cita.php">Citas</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cita</a>
+                                <div class="dropdown-menu " aria-labelledby="dropdown1">
+                                  <a class="dropdown-item btn" href="ver_cita.php">Ver citas activas</a>
+                                  <a class="dropdown-item btn" href="historial_cita.php">Ver historial de citas</a>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['nombre']?></a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">

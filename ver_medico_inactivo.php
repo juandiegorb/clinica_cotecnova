@@ -19,6 +19,7 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
   ======================================================= -->
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -58,7 +59,7 @@
             <!-- Tab panes -->
             <div class="card-body">
                 <form class="form-horizontal form-material">
-                <table class="table table-hover">
+                <table class="table table-hover" id="ver_medico_inactivo">
                     <thead>
                       <tr>
                         <th scope="col">Numero Documento</th>
@@ -68,12 +69,12 @@
                         <th scope="col">Activar</th>
                       </tr>
                     </thead>
+                    <tbody>
                      <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
                     <?php 
                       while ($resultado= mysqli_fetch_assoc($consulta)){      
                       $idMedico = $resultado['id_medico'];
                     ?>
-                    <tbody>
                       <tr>
                            <!-- Se traen los datos y se imprimen en las opciones del select -->
                         <td><?php echo $resultado['numero_documento'] ?></td>
@@ -85,10 +86,10 @@
                             <a href="Controlador/activarMedico.php?id=<?php echo $idMedico; ?>" class="btn btn-primary" name="enviar">Activar</a> 
                         </td>
                       </tr>
-                    </tbody>
                     <?php
                       }
                     ?>
+                      </tbody>
                   </table>
               </form>
             </div>
@@ -113,9 +114,14 @@
         header( "refresh:0;url=login.php" );    
     }
     ?>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+        $('#ver_medico_inactivo').DataTable();
+    } );
+    </script>
+    <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
 

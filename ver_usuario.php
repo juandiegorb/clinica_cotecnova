@@ -77,7 +77,6 @@
                       while ($resultado= mysqli_fetch_assoc($consulta)){      
                       $idUsuario = $resultado['id_usuario'];
                     ?>
-                    
                       <tr>
                            <!-- Se traen los datos y se imprimen en las opciones del select -->
                         <td><?php echo $resultado['numero_documento'] ?></td>
@@ -90,7 +89,6 @@
                             <a href="eliminar_usuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-danger col-lg-offset-1 col-lg-6 " name="eliminar">Eliminar</a>
                         </td>
                       </tr>
-                    
                     <?php
                       }
                     ?>
