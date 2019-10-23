@@ -74,7 +74,7 @@
                           <!-- Tab panes -->
                           <div class="card-body">
                             <form class="form-horizontal form-material">
-                            <table id="dt_cliente" class="table table-hover display">
+                            <table id="ver_cita" class="table table-hover display">
                                 <thead>
                                   <tr>
 
@@ -84,8 +84,8 @@
                                     <th scope="col">Fecha y hora de la cita</th>
                                   </tr>
                                 </thead>
+                                <tbody>
                                 <?php 
-                               
                                 //Si la consulta tiene resultados
                                 if(!empty($citasMedico))
                                 { 
@@ -96,8 +96,6 @@
                                         if($resultado['diferencia_dias'] == 1)
                                         {
                                 ?>
-                                
-                                <tbody>
                                     <!-- Si la fecha de la cita esta a un dia de la fecha actual, muestra esos datos en rojo -->
                                     <tr style="color: red;">
                                         <td scope="row" ><?php echo $resultado['paciente'] ?></td>
@@ -105,13 +103,9 @@
                                         <td><?php echo $resultado['motivo_consulta'] ?></td>
                                         <td><?php echo $resultado['fecha_hora'] ?></td>
                                     </tr>
-                                </tbody> 
-                                    
                                 <?php
                                         }else{
                                 ?>
-                                      
-                                <tbody>
                                     <tr>
                                         <!-- sino los muestra normal -->
                                         <td scope="row" ><?php echo $resultado['paciente'] ?></td>
@@ -119,13 +113,12 @@
                                         <td><?php echo $resultado['motivo_consulta'] ?></td>
                                         <td><?php echo $resultado['fecha_hora'] ?></td>
                                     </tr>
-                                </tbody> 
-                                
                                 <?php
                                       }
                                     }
                                 }
                                 ?>
+                                 </tbody> 
                               </table>
                             </form>
                           </div>
@@ -259,7 +252,7 @@
   <script src="js/jquery.dataTables.min.js"></script>
   <script>
     $(document).ready( function () {
-    $('#dt_cliente').DataTable();
+    $('#ver_cita').DataTable();
 } );
   </script>
 
