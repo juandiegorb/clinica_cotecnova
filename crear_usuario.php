@@ -66,21 +66,7 @@
             <!-- Tab panes -->
             <div class="card-body">
                 <!-- Formulario donde al darle al boton se envian los datos al controlador de insertar usuario -->
-                <form class="form-horizontal form-material" action="Controlador/insertarUsuario.php" method="POST">
-                <div class="form-group">
-                  <label class="col-sm-12">Tipo usuario</label>
-                  <div class="col-sm-12">
-                      <select class="form-control form-control-line" name="tipoUsuario">
-                          <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
-                         <?php 
-                       while ($resultado= mysqli_fetch_assoc($seleccionTipoUsuario)){   
-                           ?> 
-                          <!-- Se traen los datos y se imprimen en las opciones del select -->
-                        <option value="<?php echo $resultado['id_tipo_usuario']?>"><?php echo $resultado['nombre']?></option>  
-                        <?php }?>
-                    </select>
-                  </div>
-                </div>  
+                <form class="form-horizontal form-material" action="Controlador/insertarUsuario.php" method="POST">                
                 <div class="form-group">
                   <label class="col-sm-12">Tipo de documento</label>
                   <div class="col-sm-12">
