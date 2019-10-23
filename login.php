@@ -33,6 +33,8 @@
 </head>
 <body>	
     <?php 
+    session_start();
+    if(!isset($_SESSION['tipousuario'])){
     //llamado del archivo mysql
     require_once 'Modelo/MySQL.php';
     //creacion de nueva "consulta"
@@ -91,6 +93,11 @@
             </div>
         </div>
     </div>
+    <?php
+    }else{
+         header( "refresh:0;url=index.php" );    
+    }
+    ?>
 <!--===============================================================================================-->
 <!-- llamado de respectivos scripts -->
 	<script src="vendor/jquery/jquery.min.js"></script>

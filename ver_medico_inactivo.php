@@ -23,8 +23,7 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <!--banner-->
-  <div id="container">
-      
+  <div id="container">      
   <?php
     session_start();
     if(isset($_SESSION['tipousuario'])){
