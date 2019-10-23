@@ -27,12 +27,13 @@
   <!--banner-->
   <div id="container">
   <?php
-  include("header_index.php");
+    session_start();
+    if(isset($_SESSION['tipousuario'])){
+        include("header_index.php");
   ?>
   </div>  
   <?php
     if(isset($_SESSION['tipousuario'])){
-    
         //Llamar al archivo MuSQL
         require_once 'Modelo/MySQL.php';
         
@@ -206,40 +207,8 @@
                 <!--/ service-->
             <?php
         }           
-    }else{
-        ?>
-        <!--banner-->
-        <section id="banner2" class="banner">
-          <div class="bg-color2">
-            <nav class="navbar navbar-default navbar-fixed-top">
-              <div class="container">
-                <div class="col-md-12">
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.php"><img src="img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
-                  </div>
-                  <div class="collapse navbar-collapse navbar-right" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                      <li class=""><a href="index.php">Inicio</a></li>
-                      <li class=""><a href="servicios.php">Servicios</a></li>
-                      <li class=""><a href="about.php">Acerca de nosotros</a></li>
-                      <li class=""><a href="login.php">Iniciar sesi&oacute;n</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </section>
-        <!--/ banner-->
-    <?php
     }
     ?>  
-  
    <!--footer-->
   <div id="footer">
   <?php
@@ -247,6 +216,11 @@
   ?>
   </div>
   <!--/ footer-->
+  <?php
+    }else{
+        header( "refresh:0;url=login.php" );    
+    }
+    ?>
 
 <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
