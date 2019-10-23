@@ -61,20 +61,6 @@
                 <!-- Formulario donde al darle al boton se envian los datos al controlador de insertar medico -->
               <form class="form-horizontal form-material" action="Controlador/insertarMedico.php" method="POST">
                 <div class="form-group">
-                  <label class="col-sm-12">Tipo usuario</label>
-                  <div class="col-sm-12">
-                      <select class="form-control form-control-line" name="tipoMedico">
-                          <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
-                         <?php 
-                       while ($resultado= mysqli_fetch_assoc($seleccionTipoUsuario)){   
-                           ?> 
-                          <!-- Se traen los datos y se imprimen en las opciones del select -->
-                        <option value="<?php echo $resultado['id_tipo_usuario']?>"><?php echo $resultado['nombre']?></option>  
-                        <?php }?>
-                    </select>
-                  </div>
-                </div> 
-                <div class="form-group">
                   <label class="col-sm-12">Seleccione el tipo de documento</label>
                   <div class="col-sm-12">
                       <select class="form-control form-control-line" name="tipoDocumento" required="">

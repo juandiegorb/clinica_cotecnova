@@ -17,15 +17,13 @@
     <div class="col-lg-offset-3 col-lg-6">
 <?php
 //condicion para comprobar si los campos están declarados anteriormente y si no estan vacíos
-if(isset($_POST['enviar']) && !empty($_POST['tipoDocumento']) && !empty($_POST['numeroDocumento']) && 
-        !empty($_POST['nombreCompleto']) &&!empty($_POST['apellidos']) && !empty($_POST['estadoCivil']) && !empty($_POST['contrasena'])
-        && !empty($_POST['tipoUsuario']) && !empty($_POST['tipoMedico'])){
+
+if(isset($_POST['enviar']) && !empty($_POST['tipoDocumento']) && !empty($_POST['numeroDocumento']) && !empty($_POST['nombreCompleto']) && !empty($_POST['apellidos']) && !empty($_POST['estadoCivil']) && !empty($_POST['contrasena']) && !empty($_POST['tipoMedico'])){
     
     //lamado al archivo MySQL
     require_once '../Modelo/MySQL.php';
     
     //declaracion de variables con sus respectivas asignaciones
-    $tipoUsuario= $_POST['tipoUsuario'];
     $tipoDocumento= $_POST['tipoDocumento'];
     $numeroDocumento = $_POST['numeroDocumento'];
     $nombreCompleto = $_POST['nombreCompleto'];
@@ -50,19 +48,21 @@ if(isset($_POST['enviar']) && !empty($_POST['tipoDocumento']) && !empty($_POST['
         header( "refresh:3;url=../crear_medicos.php" ); 
     }else{
         //variable que ejecutara la funcion consulta, pero en este caso, no usamos select sino insert para meter los datos a la respectiva table
-        $insertarMedicoi= $mysql->efectuarConsulta("insert into clinica_cotecnova.medicos(tipo_Usuario_id, numero_documento, nombre_completo, apellidos, contrasena, tipo_documento_id, estado_civil_id, tipos_medicos_id) VALUES(".$tipoUsuario.",'".$numeroDocumento."','".$nombreCompleto."','".$apellidos."','".$contrasena."',".$tipoDocumento.",".$estadoCivil.",".$tipoMedico.", 1 )");  
+        $insertarMedicoi= $mysql->efectuarConsulta("insert into clinica_cotecnova.medicos(tipo_Usuario_id, numero_documento, nombre_completo, apellidos, contrasena, tipo_documento_id, estado_civil_id, tipos_medicos_id, estado) VALUES(1,'".$numeroDocumento."','".$nombreCompleto."','".$apellidos."','".$contrasena."',".$tipoDocumento.",".$estadoCivil.",".$tipoMedico.", 1 )");  
         //decision para comprobar si se ejecuto, se redirige al index principal
-        if($insertarUsuarioi){
+
+        if($insertarMedicoi){
           //impresion de mensajes personalizados
-           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido registrado correctamente.</div>";
+           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong> El medico ha sido registrado correctamente.</div>";
            //redireccion
            header( "refresh:3;url=../ver_medico.php" );    
         } else {
             //mensaje de error personalizado
-           echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_medicos.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido registrar al medico.</div>";
+           echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_medicos.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se ha podido registrar al medico.</div>";
            //redireccion
            header( "refresh:3;url=../crear_medicos.php" );          
         }
+        
     }        
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
