@@ -19,6 +19,7 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
   ======================================================= -->
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -60,7 +61,7 @@
             <!-- Tab panes -->
             <div class="card-body">
                 <form class="form-horizontal form-material">
-                <table class="table table-hover">
+                <table class="table table-hover" id="ver_usuarios_inactivos">
                     <thead>
                       <tr>
 
@@ -71,12 +72,14 @@
                         <th scope="col">Activar</th>
                       </tr>
                     </thead>
+                    
                      <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
+                      <tbody>
                     <?php 
                       while ($resultado= mysqli_fetch_assoc($consulta)){      
                       $idUsuario = $resultado['id_usuario'];
                     ?>
-                    <tbody>
+                   
                       <tr>
                            <!-- Se traen los datos y se imprimen en las opciones del select -->
                         <td><?php echo $resultado['numero_documento'] ?></td>
@@ -88,10 +91,10 @@
                             <a href="Controlador/activarUsuario.php?id=<?php echo $idUsuario; ?>" class="btn btn-primary" name="enviar">Activar</a> 
                         </td>
                       </tr>
-                    </tbody>
                     <?php
                       }
                     ?>
+                      </tbody>
                   </table>
               </form>
             </div>
@@ -116,8 +119,14 @@
         header( "refresh:0;url=login.php" );    
     }
     ?>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready( function () {
+        $('#ver_usuarios_inactivos').DataTable();
+    } );
+  </script>
+
   <script src="js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
