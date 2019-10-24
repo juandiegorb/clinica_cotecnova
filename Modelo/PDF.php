@@ -9,11 +9,11 @@ class PDF extends FPDF
     {
         global $titulo; 
         
-        //$this->Image('#',10,8,33); //Logo
-        $this->SetFont('Arial','B',15); //Arial bold 15
+        $this->Image('../img/logo.png',10,8,33); //Logo
+        $this->SetFont('Arial','B',25); //Arial bold 15
         $this->Cell(90); //Movernos a la derecha
-        $this->Cell(80,10,$titulo,1,0,'C'); //Titulo
-        $this->Ln(20); //Salto de línea
+        $this->Cell(80,10,$titulo,0,0,'C'); //Titulo
+        $this->Ln(30); //Salto de línea
     }
     
     //Pie de página
@@ -25,7 +25,7 @@ class PDF extends FPDF
     }
     
     //Cargar datos
-    function LoadData($file)
+    /*function LoadData($file)
     {
         //Leer fichero
         $lines = file($file);
@@ -39,7 +39,7 @@ class PDF extends FPDF
     }
     
     //Tabla
-    /*function FancyTable($header,$data)
+    function FancyTable($header,$data)
     {
         //Colores, ancho de línea y fuente en negrita
         $this->SetFillColor(255,0,0);
@@ -83,7 +83,7 @@ class PDF extends FPDF
     }*/
     
     // Tabla simple
-    function BasicTable($header,$w,$h)
+    /*function BasicTable($header,$w,$h)
     {
         //Cabecera
         foreach($header as $col)
@@ -91,11 +91,11 @@ class PDF extends FPDF
         $this->Ln();
         
         //Datos
-        /*foreach($data as $row)
+        foreach($data as $row)
         {
             foreach($row as $col)
                 $this->Cell(50,8,$col,1);
             $this->Ln();
-        }*/
-    }
+        }
+    }*/
 }
