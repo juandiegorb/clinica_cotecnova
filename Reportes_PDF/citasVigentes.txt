@@ -1,2 +1,0 @@
-1;Juan Camilo Zapata;Natalia Agudelo;2019-10-23 4:20:00;General
-2;Juan Diego Rios;Juan Camilo Zapata;2019-11-11 13:30:00;Pediatria

@@ -70,6 +70,12 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reportes</a>
+                                <div class="dropdown-menu " aria-labelledby="dropdown1">
+                                  <a class="dropdown-item btn" href="reportes.php">Generar reportes</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['nombre']?></a>
                                 <div class="dropdown-menu " aria-labelledby="dropdown1">
                                   <a class="dropdown-item btn" href="Controlador\cerrar_sesion.php">Cerrar sesion</a>

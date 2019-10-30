@@ -9,6 +9,8 @@
     $id_departamento =$_REQUEST['id_departamento'];
     //respectiva consulta
     $municipios = $mysql->efectuarConsulta("SELECT * FROM ciudades WHERE departamento_id = '.$id_departamento.'");
+    //funcion desconectar
+    $mysql->desconectar();
     //se imprime el mensaje en el select
     echo '<option value = "">Selecciona una ciudad</option>';
     //ciclo while que nos sirve para traer los datos del while
