@@ -72,13 +72,6 @@
                             <input type="text" class="form-control form-control-line" name="numeroDocumento" placeholder="Ingrese su numero de documento" onkeypress="return solonumeros(event)">
                         </div>
                       </div>
-
-                       <div class="form-group">                  
-                        <label class="col-md-12">Nombre completo</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control form-control-line" name="nombreCompleto" placeholder="Ingrese su nombre completo" onkeypress="return sololetras(event)">
-                        </div>
-                      </div>
                          <div class="form-group">
                         <label class="col-sm-12">Tipo de usuario</label>
                         <div class="col-sm-12">
