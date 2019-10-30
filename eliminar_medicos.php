@@ -40,13 +40,13 @@
             //funcion conectar
             $mysql->conectar();
             //consulta de toda la informacion
-            $seleccionInformacion = $mysql->efectuarConsulta("select clinica_cotecnova.medicos.numero_documento, clinica_cotecnova.medicos.nombre_completo from medicos where id_medico = ".$id."");     
+            $seleccionInformacion = $mysql->efectuarConsulta("select clinica_cotecnova.medicos.numero_documento, clinica_cotecnova.medicos.nombre_completo from medicos where id_medico = ".$id."");
+            //funcion desconectar
+            $mysql->desconectar();    
             while ($resultado= mysqli_fetch_assoc($seleccionInformacion)){
                 $numeroDocumento = $resultado['numero_documento'];
                 $nombre_completo = $resultado['nombre_completo'];
-            }
-            //funcion desconectar
-            $mysql->desconectar();    
+            }  
     ?>
     <!--service-->
     <section id="service" class="section-padding">
