@@ -37,22 +37,19 @@ if(isset($_POST['enviar']) && !empty($_GET['id']) && !empty($_POST['nombreComple
     
     //variable que ejecutara la funcion consulta, pero en este caso, no usamos select sino insert para meter los datos a la respectiva table
     $actualizar = $mysql->efectuarConsulta("Update clinica_cotecnova.medicos set nombre_completo = '".$nombreCompleto."', apellidos = '".$apellidos."', estado_civil_id = ".$estadoCivil.", tipos_medicos_id = '".$tipoMedico."' where id_medico =".$idMedico.""); 
-    
-        //decision para comprobar si se ejecuto, se redirige al index principal
-        if($actualizar){
-          //impresion de mensaje personalizado
-           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido actualizado correctamente.</div>";
-           header( "refresh:3;url=../ver_medico.php" ); 
-        } else {
-            //mensaje de error personalizado
-            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido actualizar al medico.</div>";
-            //redireccion
-            header( "refresh:3;url=../ver_medico.php" );         
-        }
     //Desconecto la conexion de la bD
-    $mysql->desconectar(); 
-    //header("Location: ../index.php");
-    
+    $mysql->desconectar();
+    //decision para comprobar si se ejecuto, se redirige al index principal
+    if($actualizar){
+      //impresion de mensaje personalizado
+       echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido actualizado correctamente.</div>";
+       header( "refresh:3;url=../ver_medico.php" ); 
+    } else {
+        //mensaje de error personalizado
+        echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido actualizar al medico.</div>";
+        //redireccion
+        header( "refresh:3;url=../ver_medico.php" );         
+    }
 }else{
   //impresion de mensaje personalizado
     echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado todos los datos necesarios.</div>";

@@ -33,18 +33,18 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     $ActualizarEstado = $mysql->efectuarConsulta("update usuarios set estado = 1 where id_usuario =".$idUsuario.""); 
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
-        //decision para comprobar si se ejecuto, se redirige al index principal
-        if($ActualizarEstado){
-          //impresion de mensaje personalizado
-           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong> El paciente ha sido habilitado correctamente.</div>";
-           //redireccion
-           header( "refresh:3;url=../ver_usuario.php" );            
-        } else {
-            //mensaje de error personalizado
-            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario_inactivo.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se ha podido habilitar al paciente.</div>";
-            //redireccion
-            header( "refresh:3;url=../ver_usuario_inactivo.php" );
-        }
+    //decision para comprobar si se ejecuto, se redirige al index principal
+    if($ActualizarEstado){
+      //impresion de mensaje personalizado
+       echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_usuario.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong> El paciente ha sido habilitado correctamente.</div>";
+       //redireccion
+       header( "refresh:3;url=../ver_usuario.php" );            
+    } else {
+        //mensaje de error personalizado
+        echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario_inactivo.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se ha podido habilitar al paciente.</div>";
+        //redireccion
+        header( "refresh:3;url=../ver_usuario_inactivo.php" );
+    }
 }else{
   //mensaje de impresion personalizado
     echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_usuario_inactivo.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado el ID del paciente.</div>";
