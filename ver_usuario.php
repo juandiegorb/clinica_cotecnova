@@ -34,7 +34,7 @@
         include("header_index.php");
   ?>
   <?php 
-  //llamado al archivo MySQL
+    //llamado al archivo MySQL
     require_once 'Modelo/MySQL.php';
     //nueva "consulta"
     $mysql = new MySQL;
