@@ -1,8 +1,10 @@
 <?php
 //creacion de la clase MySQL
+
 class MySQL{
+    
     //Declaracion de variables de conexion
-    private $hostname  = "127.0.0.1";
+    private $hostname  = "localhost";
     private $user = "root";
     private $password = "";
     private $puerto = "3306";
@@ -32,6 +34,10 @@ class MySQL{
         //retorno del resultado de la consulta
         return $this->resultadoConsulta; 
     }
-    
-    
+
+    public function crearBackup(){
+        include '../Controlador/function.php';
+        backDb($this->hostname, $this->user, $this->password, $this->database);
+   
+    }
 }
