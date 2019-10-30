@@ -90,6 +90,9 @@
                         </div>
                     </div>
                 </form>
+                <div class="container-login100-form-btn" style="padding-top: 10px;" >
+                    <a href="formularioCorreo.php">Recuperar contraseña</a>
+                </div>
             </div>
         </div>
     </div>
