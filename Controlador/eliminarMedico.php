@@ -30,22 +30,20 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     
     //variable que ejecutara la funcion consulta, pero en este caso, sera un eliminar usuario actualizando su estado 1. Activo 2.Inactivo
     $ActualizarEstado = $mysql->efectuarConsulta("update medicos set estado = 0 where id_medico =".$idMedico.""); 
-    
-        //decision para comprobar si se ejecuto, se redirige al index principal
-        if($ActualizarEstado){
-          //impresion de mensajes personalizados
-           echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido inhabilitado correctamente.</div>";
-           //personalizacion
-           header( "refresh:3;url=../ver_medico.php" ); 
-        } else {
-            //mensaje de error personalizado
-            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido inhabilitar al medico.</div>";
-            //redireccion
-            header( "refresh:3;url=../ver_medico_inactivo.php" ); 
-        }
     //Desconecto la conexion de la bD
     $mysql->desconectar(); 
-    
+    //decision para comprobar si se ejecuto, se redirige al index principal
+    if($ActualizarEstado){
+      //impresion de mensajes personalizados
+       echo "<div class=\"alert alert-success alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Felicidades!</strong>El medico ha sido inhabilitado correctamente.</div>";
+       //personalizacion
+       header( "refresh:3;url=../ver_medico.php" ); 
+    } else {
+        //mensaje de error personalizado
+        echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se ha podido inhabilitar al medico.</div>";
+        //redireccion
+        header( "refresh:3;url=../ver_medico_inactivo.php" ); 
+    }    
 }else{
   //mensaje personalizado
     echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../ver_medico.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado el ID del medico.</div>";

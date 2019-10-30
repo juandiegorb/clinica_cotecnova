@@ -77,7 +77,7 @@
     //Si algun campo está vacio de redirige a la pagina del formulario
     else
     {
-        echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_cita.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado todos los datos necesarios.</div>";
+    echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../crear_cita.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado todos los datos necesarios.</div>";
     //redireccion
     header( "refresh:3;url=../crear_cita.php" );  
     }
