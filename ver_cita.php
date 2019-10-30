@@ -165,7 +165,6 @@
                                         if($resultado['diferencia_dias'] == 1)
                                         {
                                 ?> 
-                                
                                     <tr style="color: red;">
                                         <!-- Si la fecha de la cita esta a un dia de la fecha actual, muestra esos datos en rojo -->
                                         <td scope="row"><?php echo $resultado['paciente'] ?></td>
