@@ -153,23 +153,9 @@
                                 if(!empty($citasUsuario))
                                 { 
                                     while ($resultado= mysqli_fetch_assoc($citasUsuario)){ 
-                                        
-                                        //Trae el resultado de la consulta 
-                                        //SELECT DATEDIFF(clinica_cotecnova.citas.fecha_hora, DATE_FORMAT(NOW(),'%Y-%m-%d')) ...
-                                        if($resultado['diferencia_dias'] == 1)
-                                        {
+                  
                                 ?> 
-                                    <tr style="color: red;">
-                                        <!-- Si la fecha de la cita esta a un dia de la fecha actual, muestra esos datos en rojo -->
-                                        <td scope="row"><?php echo $resultado['paciente'] ?></td>
-                                        <td><?php echo $resultado['medico'] ?></td>
-                                        <td><?php echo $resultado['motivo_consulta'] ?></td>
-                                        <td><?php echo $resultado['fecha_hora'] ?></td>
-                                    </tr>
-                                <?php
-                                     }
-                                  else{
-                                ?>
+                                
                                     <tr>
                                         <!-- sino los muestra normal -->
                                         <td><?php echo $resultado['paciente'] ?></td>
@@ -178,7 +164,7 @@
                                         <td><?php echo $resultado['fecha_hora'] ?></td>
                                     </tr>
                                 <?php
-                                      }
+                                      
                                     }
                                 }
                                 ?>
