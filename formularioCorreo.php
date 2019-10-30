@@ -94,8 +94,8 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="col-sm-3 col-md-2">
-                            <button class="btn btn-success" name="enviar">Enviar</button>
+                        <div class="col-sm-3 col-md-3 col-lg-2">
+                            <button class="btn btn-success" name="enviar">Enviar Correo</button>
                         </div>
                         <div class="col-sm-9 col-md-4">
                             <a href="index.php" class="btn btn-danger">Cancelar</a>
