@@ -9,11 +9,12 @@ class PDF extends FPDF
     {
         global $titulo; 
         
-        $this->Image('../img/logo.png',10,8,33); //Logo
+        $this->Image('../img/logo.png',15,8,50); //Logo
         $this->SetFont('Arial','B',25); //Arial bold 15
-        $this->Cell(90); //Movernos a la derecha
+        $this->Ln(15); //Salto de línea
+        $this->Cell(100); //Movernos a la derecha
         $this->Cell(80,10,$titulo,0,0,'C'); //Titulo
-        $this->Ln(30); //Salto de línea
+        $this->Ln(30); 
     }
     
     //Pie de página
