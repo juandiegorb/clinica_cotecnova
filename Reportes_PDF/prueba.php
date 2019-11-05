@@ -1,53 +1,49 @@
 <?php 
 
 include '../Modelo/PDF_MC_Table.php';
+require '../Modelo/MySQL.php';
 
-$pdf = new PDF_MC_Table();
+$pdf = new PDF_MC_Table('L');
+
+$mysql = new MySQL();
+$mysql->conectar();
+$datos = $mysql->efectuarConsulta("SELECT citas.id_cita, citas.fecha_hora, citas.motivo_consulta, 
+    CONCAT(usuarios.nombre_completo, ' ',usuarios.apellidos) AS 'paciente', 
+    CONCAT(medicos.nombre_completo, ' ',medicos.apellidos) AS 'medico'
+    FROM citas 
+    INNER JOIN usuarios ON usuarios.id_usuario = citas.usuario_id 
+    INNER JOIN medicos ON medicos.id_medico = citas.medico_id 
+    WHERE citas.estado = 1");
+$mysql->desconectar();
 
 $pdf->AddPage();
 $pdf->SetFont('Arial','',14);
 
-$pdf->SetWidths(Array(20,40,40,30,20,40));
-$pdf->SetLineHeight(5);
-$pdf->SetAligns(Array('','R','C','','',''));
+$pdf->SetWidths(Array(20,75,75,55,60));
+$pdf->SetLineHeight(10);
+$pdf->SetAligns(Array('C','','','',''));
 
 //Header tabla
 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(20,5,"ID",1,0);
-$pdf->Cell(40,5,"First Name",1,0);
-$pdf->Cell(40,5,"Last Name",1,0);
+$pdf->Cell(20,10,"ID",1,0);
+$pdf->Cell(75,10,'Paciente',1,0);
+$pdf->Cell(75,10,'Medico',1,0);
+$pdf->Cell(55,10,'Fecha y hora',1,0);
+$pdf->Cell(60,10,'Motivo',1,0);
 
 $pdf->Ln();
 
 $pdf->SetFont('Arial','',14);
 
-$data=array(
-    array(
-        "1",
-        "Foo, overflowed text length",
-        "This contains a long text. not too long but longer than cell's width. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ",
-        "Something"
-    ),
-    array(
-        "1",
-        "Bar, normal text length",
-        "This should not exceed the cell's width.",
-        "Something else"
-    ),
-    array(
-        "1",
-        "Baz, overflowed text length",
-        "This also contains a long text, not too long but longer than cell's width.",
-        "Something else"
-    )
-);
 
-foreach($data as $item)
+foreach($datos as $item)
 {
     $pdf->Row(Array(
-        $item[0],
-        $item[1],
-        $item[2]
+        $item['id_cita'],
+        $item['paciente'],
+        $item['medico'],
+        $item['fecha_hora'],
+        $item['motivo_consulta']
     ));
 }
 
