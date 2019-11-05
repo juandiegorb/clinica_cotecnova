@@ -1,8 +1,8 @@
 <?php
-  //include our function
+  //include el archivo mysql
   require_once '../Modelo/MySQL.php';
   //Nuevo archivo MySql
   $mysql = new MySQL;
-  //Conectar a la base de datos
+  //llamado de la funcion
   $mysql->crearBackup();
 ?>

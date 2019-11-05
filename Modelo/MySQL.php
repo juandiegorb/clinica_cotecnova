@@ -36,8 +36,7 @@ class MySQL{
     }
 
     public function crearBackup(){
-        include '../Controlador/function.php';
+        include '../Controlador/funcionBackup.php';
         backDb($this->hostname, $this->user, $this->password, $this->database);
-   
     }
 }
