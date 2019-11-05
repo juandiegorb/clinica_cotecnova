@@ -32,6 +32,8 @@ $pdf->SetTitle($titulo);
 $pdf->AddPage(); //Añadir pagina al documento
 $pdf->SetFont('Arial','B',14);
 
+$fontSize=12; //
+
 //Header
 $pdf->Cell(10,10,'ID',1,0,'C');
 $pdf->Cell(75,10,'Paciente',1,0,'C');
@@ -47,7 +49,7 @@ while($row = $datos->fetch_assoc())
     $pdf->Cell(75,10,utf8_decode($row['paciente']),1,0);
     $pdf->Cell(75,10,utf8_decode($row['medico']),1,0);
     $pdf->Cell(55,10,utf8_decode($row['fecha_hora']),1,0);
-    $pdf->Cell(60,10,utf8_decode( $row['motivo_consulta']),1,1);
+    $pdf->MultiCell(60,10,utf8_decode($row['motivo_consulta']),1,1,0,1);
 }
 
 $pdf->AliasNbPages(); //Numeracion de paginas

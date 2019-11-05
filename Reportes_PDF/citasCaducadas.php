@@ -37,17 +37,17 @@ $pdf->Cell(10,10,'ID',1,0,'C');
 $pdf->Cell(75,10,'Paciente',1,0,'C');
 $pdf->Cell(75,10,'Medico',1,0,'C');
 $pdf->Cell(55,10,'Fecha y hora',1,0,'C');
-$pdf->Cell(60,10,'Motivo',1,1,'C');
+$pdf->Cell(65,10,'Motivo',1,1,'C');
 
 $pdf->SetFont('Arial','',14);
 
 while($row = $datos->fetch_assoc())
 {
-    $pdf->Cell(10,10,utf8_decode($row['id_cita']),1,0,'C');
-    $pdf->Cell(75,10,utf8_decode($row['paciente']),1,0);
-    $pdf->Cell(75,10,utf8_decode($row['medico']),1,0);
-    $pdf->Cell(55,10,utf8_decode($row['fecha_hora']),1,0);
-    $pdf->Cell(60,10,utf8_decode( $row['motivo_consulta']),1,1);
+    $pdf->Cell(10,10,utf8_decode($row['id_cita']),1,0,'C',0);
+    $pdf->Cell(75,10,utf8_decode($row['paciente']),1,0,'C',0);
+    $pdf->Cell(75,10,utf8_decode($row['medico']),1,0,'C',0);
+    $pdf->Cell(55,10,utf8_decode($row['fecha_hora']),1,0,'C',0);
+    $pdf->MultiCell(65,10,utf8_decode($row['motivo_consulta']),1,1,0,1);
 }
 
 $pdf->AliasNbPages(); //Numeracion de paginas
