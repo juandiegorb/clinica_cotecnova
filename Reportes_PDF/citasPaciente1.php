@@ -1,7 +1,7 @@
 <?php
 	require '../Modelo/PDF.php';
 	require '../Modelo/MySQL.php';
-	require 'citasPacientes.php';
+	require 'citasPaciente.php';
 
 	//Instanciar clases PDF y MySQL
 	$pdf = new PDF('L','mm','A4');
