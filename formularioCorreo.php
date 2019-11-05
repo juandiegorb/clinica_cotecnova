@@ -59,7 +59,7 @@
                 <div class="card">
                   <!-- Tab panes -->
                   <div class="card-body">
-                      <form class="form-horizontal form-material" method="Post" action="EnviarCorreo.php">                
+                      <form class="form-horizontal form-material" method="Post" action="Controlador/enviarCorreo.php">                
                       <div class="form-group">
                         <label class="col-md-12">Correo electronico</label>
                         <div class="col-md-12">
