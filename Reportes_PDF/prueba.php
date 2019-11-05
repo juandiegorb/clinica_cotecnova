@@ -20,7 +20,7 @@ $pdf->AddPage();
 $pdf->SetFont('Arial','',14);
 
 $pdf->SetWidths(Array(20,75,75,55,60));
-$pdf->SetLineHeight(10);
+$pdf->SetLineHeight(5);
 $pdf->SetAligns(Array('C','','','',''));
 
 //Header tabla
