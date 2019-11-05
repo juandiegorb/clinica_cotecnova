@@ -98,6 +98,10 @@
                             <a href="#" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas de</a>
                             <input type="date" name="date1"> a <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
                         </li>
+
+                        <li class="list-group-item">
+                            <a href="Controlador/funcionExcel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas excel</a>
+                        </li>
                     </div>
                 <!--</form>-->
 
