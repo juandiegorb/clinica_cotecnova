@@ -1,61 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Cl&iacute;nica Cotecnova</title>
-	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-	<!-- Llamado de css -->
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
-	<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
-</head>
+<?php
+//Llamar clases PDF y MySQL
+require '../Modelo/PDF_MC_Table.php';
+require '../Modelo/MySQL.php';
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+//Instanciar clases PDF y MySQL
+$pdf = new PDF_MC_Table('L','mm','A4');
+$mysql = new MySQL();
 
-	<div class="col-lg-offset-3 col-lg-6">
+$idUsuario = $_GET['id'];
+$paciente = $_GET['name'];
 
-		<?php
+$mysql->conectar(); //Conectar a BD
 
-		if(!empty($_POST['pacientes']))
-		{
-			require '../Modelo/MySQL.php';
+$datos = $mysql->efectuarConsulta("
+	SELECT citas.id_cita, citas.fecha_hora, citas.motivo_consulta, 
+	CONCAT(medicos.nombre_completo, ' ',medicos.apellidos) AS 'medico'
+	FROM citas 
+	INNER JOIN usuarios ON usuarios.id_usuario = citas.usuario_id 
+	INNER JOIN medicos ON medicos.id_medico = citas.medico_id 
+	WHERE usuarios.id_usuario = ".$idUsuario);
 
-			$documentoPaciente = $_POST['pacientes'];
+$mysql->desconectar(); //Desconectar de BD
 
-			$mysql = new MySQL();
-			$mysql->conectar();
+//Titulo del documento
+$titulo = 'Citas de '.$paciente; 
+$pdf->SetTitle($titulo);
 
-			$id_usuario = $mysql->efectuarConsulta("select id_usuario, CONCAT(nombre_completo, ' ',apellidos) AS 'paciente' from clinica_cotecnova.usuarios where numero_documento = ".$documentoPaciente."");
+$pdf->AddPage(); //Añadir pagina al documento
+$pdf->SetFont('Arial','',14);
 
-			$mysql->desconectar();
+$pdf->SetWidths(Array(10,85,75,80)); //anchos de columna
+$pdf->SetLineHeight(10); //altura de línea
+$pdf->SetAligns(Array('C','','','','')); //alineaciones de columnas
 
-			while($resultado = mysqli_fetch_assoc($id_usuario))
-			{
-			    $idUsuario = $resultado['id_usuario']; 
-			    $nombre = $resultado['paciente'];
-			}
+$pdf->Cell(15); //Mover 15 espacios para centrar la tabla
 
-			//echo $documentoPaciente, " ", $idUsuario, " ", $nombre;
+//Header
+$pdf->SetFont('Arial','B',14);
+$pdf->Cell(10,10,'ID',1,0,'C');
+$pdf->Cell(85,10,'Medico',1,0);
+$pdf->Cell(75,10,'Fecha y hora',1,0);
+$pdf->Cell(80,10,'Motivo',1,1);
+$pdf->SetFont('Arial','',14);
+	
 
-			header( "refresh:3;url=citasPaciente1.php" );
-			
-		}else
-		{
-			echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se han enviado todos los datos necesarios.</div>";
-		    
-		    //redireccion
-		    header( "refresh:3;url=../reportes.php" );
-		}
+//Ciclo para recorrer datos de la tabla
+foreach($datos as $item)
+{
+	$pdf->Cell(15);
+    $pdf->Row(Array(
+        utf8_decode($item['id_cita']),
+        utf8_decode($item['medico']),
+        utf8_decode($item['fecha_hora']),
+        utf8_decode($item['motivo_consulta']) 
+    ));
+}
 
-		?>
-		
-	</div>
-	<!-- Llamado de los respectivos scripts -->
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-
-</body>
-</html>
+$pdf->AliasNbPages(); //Numeracion de paginas
+	
+$pdf->Output('Reporte_Citas_Paciente.pdf','I'); 
+//I envía el fichero al navegador con la opción de guardar como...
+//D envía el documento al navegador preparado para la descarga
+?>
