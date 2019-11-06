@@ -4,11 +4,18 @@
 require '../Modelo/PDF_MC_Table.php';
 require '../Modelo/MySQL.php';
 
+/*require '../Controlador/desactivarCita.php';
+
+actualizarEstado(); */
+
 //Instanciar clases PDF y MySQL
 $pdf = new PDF_MC_Table('L','mm','A4');
 $mysql = new MySQL();
 
 $mysql->conectar(); //Conectar a BD
+
+//Consulta para actualizar estado de las citas cuando ya hayan caducado
+$mysql->efectuarConsulta("UPDATE clinica_cotecnova.citas SET citas.estado = 0 WHERE citas.fecha_hora < DATE_FORMAT(NOW(),'%Y-%m-%d')");
 
 //Consultar para traer datos de la tabla citas activas
 $datos = $mysql->efectuarConsulta("

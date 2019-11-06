@@ -29,6 +29,8 @@
     if(isset($_SESSION['tipousuario'])){
         header( "refresh:0;url=index.php" );    
     }else{
+        $id = $_GET['id'];
+        $tipo_usuario = $_GET['tipo_usuario'];
         //llamado al archivo MySQL
         require_once 'Modelo/MySQL.php';
         //nueva "consulta"
@@ -59,37 +61,16 @@
                 <div class="card">
                   <!-- Tab panes -->
                   <div class="card-body">
-                      <form class="form-horizontal form-material" method="Post" action="Controlador/enviarCorreo.php">                
-                      <div class="form-group">
-                        <label class="col-md-12">Correo electronico</label>
-                        <div class="col-md-12">
-                            <input type="email"  class="form-control form-control-line" name="correoElectronico" placeholder="Ingrese un correo electronico" onkeyup="validarEmail(this)" required>
-                            <a id='resultado'></a>
-                        </div>
-                      </div>
+                      <form class="form-horizontal form-material" method="Post" action="Controlador/contrasenaNueva.php?id=<?php echo $id;?>&tipo_usuario=<?php echo $tipo_usuario?>">    
                        <div class="form-group">                  
-                        <label class="col-md-12">Numero de documento</label>
+                        <label class="col-md-12">Contraseña nueva</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control form-control-line" name="numeroDocumento" placeholder="Ingrese su numero de documento" onkeypress="return solonumeros(event)" required>
-                        </div>
-                      </div>
-                         <div class="form-group">
-                        <label class="col-sm-12">Tipo de usuario</label>
-                        <div class="col-sm-12">
-                            <select class="form-control form-control-line" name="tipousuario" required="">
-                            <!-- Llamado al ciclo while donde vamos a recorrer un array asociativo con la consulta declarada anteriormente -->
-                             <?php 
-                             while ($resultado= mysqli_fetch_assoc($seleccionUsuario)){   
-                                 ?> 
-                            <!-- Se traen los datos y se imprimen en las opciones del select -->
-                              <option value="<?php echo $resultado['id_tipo_usuario']?>"><?php echo $resultado['nombre']?></option>  
-                              <?php }?>
-                          </select>
+                            <input type="password" class="form-control form-control-line" name="contrasenaNueva" placeholder="Ingrese su nueva contraseña">
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-sm-3 col-md-3 col-lg-2">
-                            <button class="btn btn-success" name="enviar">Enviar Correo</button>
+                            <button class="btn btn-success" name="enviar">Enviar Datos</button>
                         </div>
                         <div class="col-sm-9 col-md-4">
                             <a href="index.php" class="btn btn-danger">Cancelar</a>
@@ -112,7 +93,6 @@
         }
     ?>
     <!--/ footer-->
-    <script src="js/validacionCampos.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
