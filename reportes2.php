@@ -73,16 +73,13 @@
                 <!--<form class="form-horizontal form-material" action="#" method="POST">-->
                     <div class="list-group">
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasVigentes.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes PDF</a><br>
-                            <a href="Controlador/citasVigentes_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes EXCEL</a>
+                            <a href="Reportes_PDF/citasVigentes.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasCaducadas.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas PDF</a><br>
-                            <a href="Controlador/citasCaducadas_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas EXCEL</a>
+                            <a href="Reportes_PDF/citasCaducadas.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasMedico.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas PDF</a><br>
-                            <a href="Controlador/citasMedico_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas EXCEL</a>
+                            <a href="Reportes_PDF/citasMedico.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas</a>
                         </li>
 
                         <li class="list-group-item">
@@ -97,37 +94,24 @@
                                     <!-- impresion de los datos traidos en el select con sus respectivas variables -->
                                     <option value="<?php echo $resultado['numero_documento']?>"><?php echo $resultado['numero_documento']." - ".$resultado['nombre_completo']." ".$resultado['apellidos'];?></option>  
                                     <?php } ?>
-                                </select><br>
+                                </select>
 
-                                <a href="javascript:enviarDocPDF()" style="color: #999999;">Ver citas de este paciente PDF</a><br>
-                                <a href="javascript:enviarDocEXCEL()" style="color: #999999;">Ver citas de este paciente EXCEL</a>
-                                    
-                                <script type="text/javascript">
-                                    function enviarDocPDF(){document.form_pacientes.submit();}
-                                    function enviarDocEXCEL(){document.form_pacientes.submit();}
-                                </script>
+                                <a href="javascript:enviarDoc()" style="color: #999999;">Ver citas de este paciente</a>
+                                <script type="text/javascript">function enviarDoc(){document.form_pacientes.submit();}</script>
                             </form>
                         </li>
 
                         <li class="list-group-item">
                             <form action="Reportes_PDF/citasFechas_Comprobacion.php" target="_blank" name="form_fechas" method="POST">
-                                Desde&nbsp<input type="date" name="date1" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>> Hasta <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>><br>
-
-                                <a href="javascript:enviarFechasPDF()" style="color: #999999;">Ver citas en este rango PDF</a><br>
-                                <a href="javascript:enviarFechasEXCEL()" style="color: #999999;">Ver citas en este rango EXCEL</a>
-
-                                <script type="text/javascript">
-                                    function enviarFechasPDF()
-                                    {
-                                        document.form_fechas.submit();
-                                        document.form_fechas.value=
-                                    }
-                                    function enviarFechasEXCEL()
-                                    {
-                                        document.form_fechas.submit();
-                                    }
-                                </script>
+                              Desde&nbsp<input type="date" name="date1" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>> Hasta <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
+                              
+                              <a href="javascript:enviarFechas()" style="color: #999999;">Ver citas en este rango</a>
+                              <script type="text/javascript">function enviarFechas(){document.form_fechas.submit();}</script>
                             </form>
+                        </li>
+
+                        <li class="list-group-item">
+                            <a href="Controlador/funcionExcel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas excel</a>
                         </li>
                     </div>
                 <!--</form>-->
@@ -137,33 +121,42 @@
       </div>
 
       
-    <div id="canvas-holder" class="col-lg-5">
-      <canvas id="chart1"></canvas>
-    </div>
-
-      <div id="canvas-holder" class="col-lg-5">
-      <canvas id="chart2"></canvas>
-    </div>
+      <h4 align="center">Gráfica de barras</h4>
+      <canvas id="myChart"></canvas>
+      <br>
+      <h4 align="center">Gráfica donut</h4>
+      <canvas id="myChart2"></canvas>
+      <br>
+      
       <script>
-          //Grafico 1
-        var randomScalingFactor = function() {
-          return Math.round(Math.random() * 100);
-        };
-
-        
-        var config = {
-          type: 'doughnut',
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+          type: 'bar',
           data: {
-            datasets: [{
-              data: 
-              <?php
-                $mysql->conectar();
-                $usuarios = $mysql->efectuarConsulta("select count(*) as cantidad FROM usuarios"); 
-                $medicos = $mysql->efectuarConsulta("select count(*) as cantidadM FROM medicos");
-                $mysql->desconectar();
-              ?>
-                [
-                /*randomScalingFactor()*/
+              labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+              datasets: [{
+                  label: 'Ingresos',
+                  backgroundColor: '#42a5f5',
+                  borderColor: 'gray',
+                  data: [7, 8, 5, 2, 8, 10, 7,-7,4,9,-8,5]
+              }]},
+          options: {responsive: true}
+      });
+
+      var ctx2 = document.getElementById('myChart2').getContext('2d');
+      var chart = new Chart(ctx2, {
+          type: 'doughnut',
+          data:   
+        {
+              datasets: [{
+                 data: 
+                 <?php
+                  $mysql->conectar();
+                  $usuarios = $mysql->efectuarConsulta("select count(*) as cantidad FROM usuarios"); 
+                  $medicos = $mysql->efectuarConsulta("select count(*) as cantidadM FROM medicos");
+                  $mysql->desconectar();
+                ?>
+              [
                 <?php
                 while ($resultado = mysqli_fetch_assoc($usuarios)) {
                   echo $resultado['cantidad'];
@@ -175,86 +168,19 @@
                  } 
                 ?>,
               ],
-              backgroundColor: [
+                backgroundColor: [
                 window.chartColors.red,
                 window.chartColors.yellow,
-              ],
-              label: 'Dataset 1'
-            }],
-            labels: [
-              'Pacientes',
-              'Medicos'
-            ]
-          },
-          options: {
-            responsive: true,
-            legend: {
-              position: 'top',
-            },
-            title: {
-              display: true,
-              text: 'Cantidad total de usuarios'
-            },
-            animation: {
-              animateScale: true,
-              animateRotate: true
-            }
-          }
-        };
-        
-        
-        //Grafico 2
-        var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        var color = Chart.helpers.color;
-        var barChartData = {
-          labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-          datasets: [{
-            label: 'Citas',
-            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.red,
-            borderWidth: 1,
-            data: [
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor()
-            ]
-          }]
-
-        };
-
-        window.onload = function() {
-            // Grafico 1
-           var ctx = document.getElementById('chart1').getContext('2d');
-          window.myDoughnut = new Chart(ctx, config);
-            
-            // Grafico 2
-          var barra = document.getElementById('chart2').getContext('2d');
-          window.myBar = new Chart(barra, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-              responsive: true,
-              legend: {
-                position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Citas'
-              }
-            }
-          });
-          //Grafico 3
-        };
-      </script>      
+                ],
+                label: 'Cantidad de usuarios'
+              }],
+              labels: [
+                'Pacientes',
+                'Medicos'
+              ]},
+          options: {}
+      });
+      </script>
     </div>
   </section>
   <!--/ service-->
@@ -276,7 +202,6 @@
     ?>
 
   <!-- Llamado de respectivos scripts -->
-  <script src="js/funcionesExcel.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

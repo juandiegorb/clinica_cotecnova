@@ -26,7 +26,7 @@
 			$fecha1 = $_POST['date1'];
 			$fecha2 = $_POST['date2'];
                         
-                        if($fecha1 < $fecha2)
+                        if($fecha1 <= $fecha2)
                         {
                             header("refresh:3;url=citasFechas.php?f1=$fecha1&f2=$fecha2");
                         }
