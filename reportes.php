@@ -157,7 +157,7 @@
                 while ($resultado = mysqli_fetch_assoc($medicos)) {
                   echo $resultado['cantidadM'];
                  } 
-                ?>,
+                ?>
               ],
               backgroundColor: [
                 window.chartColors.red,
@@ -188,28 +188,39 @@
         
         
         //Grafico 2
-        var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        //var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         var color = Chart.helpers.color;
         var barChartData = {
-          labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+          labels: 
+            <?php
+              $mysql->conectar();
+              $annio1 = $mysql->efectuarConsulta("select DATE_FORMAT(fecha_hora, '%Y') as annio from citas GROUP BY annio"); 
+              $mysql->desconectar();
+            ?>
+            [
+              <?php
+                while ($resultado1 = mysqli_fetch_assoc($annio1)) {
+                  echo $resultado1['annio'];
+                } 
+              ?>
+            , ],
           datasets: [{
             label: 'Citas',
             backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
             borderColor: window.chartColors.red,
             borderWidth: 1,
-            data: [
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor(),
-              randomScalingFactor()
+            data: 
+            <?php
+              $mysql->conectar();
+              $consulta = $mysql->efectuarConsulta("select COUNT(*) as cantidad, DATE_FORMAT(fecha_hora, '%Y') as anio from citas GROUP BY anio"); 
+              $mysql->desconectar();
+            ?>
+            [
+              <?php
+                while ($resultado = mysqli_fetch_assoc($consulta)) {
+                  echo $resultado['cantidad'];
+                } 
+              ?>,
             ]
           }]
 
@@ -232,7 +243,7 @@
               },
               title: {
                 display: true,
-                text: 'Citas'
+                text: 'Citas en los diferentes años'
               }
             }
           });
