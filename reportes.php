@@ -63,13 +63,16 @@
                 <!--<form class="form-horizontal form-material" action="#" method="POST">-->
                     <div class="list-group">
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasVigentes.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes</a>
+                            <a href="Reportes_PDF/citasVigentes.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes PDF</a><br>
+                            <a href="Controlador/citasVigentes_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes EXCEL</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasCaducadas.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas</a>
+                            <a href="Reportes_PDF/citasCaducadas.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas PDF</a><br>
+                            <a href="Controlador/citasCaducadas_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas EXCEL</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasMedico.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas</a>
+                            <a href="Reportes_PDF/citasMedico.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas PDF</a><br>
+                            <a href="Controlador/citasMedico_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas EXCEL</a>
                         </li>
 
                         <li class="list-group-item">
@@ -84,24 +87,37 @@
                                     <!-- impresion de los datos traidos en el select con sus respectivas variables -->
                                     <option value="<?php echo $resultado['numero_documento']?>"><?php echo $resultado['numero_documento']." - ".$resultado['nombre_completo']." ".$resultado['apellidos'];?></option>  
                                     <?php } ?>
-                                </select>
+                                </select><br>
 
-                                <a href="javascript:enviarDoc()" style="color: #999999;">Ver citas de este paciente</a>
-                                <script type="text/javascript">function enviarDoc(){document.form_pacientes.submit();}</script>
+                                <a href="javascript:enviarDocPDF()" style="color: #999999;">Ver citas de este paciente PDF</a><br>
+                                <a href="javascript:enviarDocEXCEL()" style="color: #999999;">Ver citas de este paciente EXCEL</a>
+                                    
+                                <script type="text/javascript">
+                                    function enviarDocPDF(){document.form_pacientes.submit();}
+                                    function enviarDocEXCEL(){document.form_pacientes.submit();}
+                                </script>
                             </form>
                         </li>
 
                         <li class="list-group-item">
                             <form action="Reportes_PDF/citasFechas_Comprobacion.php" target="_blank" name="form_fechas" method="POST">
-                              Desde&nbsp<input type="date" name="date1" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>> Hasta <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
-                              
-                              <a href="javascript:enviarFechas()" style="color: #999999;">Ver citas en este rango</a>
-                              <script type="text/javascript">function enviarFechas(){document.form_fechas.submit();}</script>
-                            </form>
-                        </li>
+                                Desde&nbsp<input type="date" name="date1" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>> Hasta <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>><br>
 
-                        <li class="list-group-item">
-                            <a href="Controlador/funcionExcel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas excel</a>
+                                <a href="javascript:enviarFechasPDF()" style="color: #999999;">Ver citas en este rango PDF</a><br>
+                                <a href="javascript:enviarFechasEXCEL()" style="color: #999999;">Ver citas en este rango EXCEL</a>
+
+                                <script type="text/javascript">
+                                    function enviarFechasPDF()
+                                    {
+                                        document.form_fechas.submit();
+                                        document.form_fechas.value=
+                                    }
+                                    function enviarFechasEXCEL()
+                                    {
+                                        document.form_fechas.submit();
+                                    }
+                                </script>
+                            </form>
                         </li>
                     </div>
                 <!--</form>-->
@@ -131,6 +147,7 @@
     ?>
 
   <!-- Llamado de respectivos scripts -->
+  <script src="js/funcionesExcel.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
