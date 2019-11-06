@@ -73,9 +73,7 @@
                         </li>
 
                         <li class="list-group-item">
-                            <a href="javascript:enviar()" style="color: #999999;">Ver citas de</a>
-                            
-                            <form action="Reportes_PDF/citasPaciente.php" target="_blank" name="form_pacientes" method="POST">
+                            <form action="Reportes_PDF/citasPaciente_Comprobacion.php" target="_blank" name="form_pacientes" method="POST">
                                 <select class="custom-select mr-sm-2" name="pacientes">
                                     <option value="0" selected disabled>Seleccionar documento de paciente</option> 
                                     <?php 
@@ -88,15 +86,18 @@
                                     <?php } ?>
                                 </select>
 
-                                <script type="text/javascript">function enviar(){document.form_pacientes.submit();}</script>
+                                <a href="javascript:enviarDoc()" style="color: #999999;">Ver citas de este paciente</a>
+                                <script type="text/javascript">function enviarDoc(){document.form_pacientes.submit();}</script>
                             </form>
-
-                            
                         </li>
 
                         <li class="list-group-item">
-                            <a href="#" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas de</a>
-                            <input type="date" name="date1"> a <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
+                            <form action="Reportes_PDF/citasFechas_Comprobacion.php" target="_blank" name="form_fechas" method="POST">
+                              Desde&nbsp<input type="date" name="date1"> Hasta <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
+                              
+                              <a href="javascript:enviarFechas()" style="color: #999999;">Ver citas en este rango</a>
+                              <script type="text/javascript">function enviarFechas(){document.form_fechas.submit();}</script>
+                            </form>
                         </li>
 
                         <li class="list-group-item">
