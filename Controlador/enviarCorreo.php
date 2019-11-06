@@ -127,6 +127,12 @@
                 header( "refresh:3;url=../formularioCorreo.php" ); 
             }
         }            
+    }else{
+        //impresion de mensaje personalizado
+        echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../formularioCorreo.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong>No se han enviado todos los datos.</div>";
+        //redireccion
+        header( "refresh:3;url=../formularioCorreo.php" ); 
+        
     }
 ?>
   </div>

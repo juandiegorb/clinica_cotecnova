@@ -63,13 +63,14 @@
                       <div class="form-group">
                         <label class="col-md-12">Correo electronico</label>
                         <div class="col-md-12">
-                            <input type="text"  class="form-control form-control-line" name="correoElectronico" placeholder="Ingrese un correo electronico" onkeypress="">
+                            <input type="email"  class="form-control form-control-line" name="correoElectronico" placeholder="Ingrese un correo electronico" onkeyup="validarEmail(this)" required>
+                            <a id='resultado'></a>
                         </div>
                       </div>
                        <div class="form-group">                  
                         <label class="col-md-12">Numero de documento</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control form-control-line" name="numeroDocumento" placeholder="Ingrese su numero de documento" onkeypress="return solonumeros(event)">
+                            <input type="text" class="form-control form-control-line" name="numeroDocumento" placeholder="Ingrese su numero de documento" onkeypress="return solonumeros(event)" required>
                         </div>
                       </div>
                          <div class="form-group">
