@@ -40,7 +40,7 @@
         $mysql->conectar();
         
         //Consulta para actualizar estado de las citas cuando ya hayan caducado
-        $mysql->efectuarConsulta("UPDATE clinica_cotecnova.citas SET citas.estado = 0 WHERE citas.fecha_hora < DATE_FORMAT(NOW(),'%Y-%m-%d')");
+        $mysql->efectuarConsulta("UPDATE clinica_cotecnova.citas SET citas.estado = 0 WHERE citas.fecha_hora < NOW()");
         
         //Si la sesión es como medico
         if(isset($_SESSION['idMedico'])){
