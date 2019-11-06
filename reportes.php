@@ -188,13 +188,10 @@
         };
       </script>
 
-      
-
-      
-      <div id="canvas-holder" style="width: 75%;">
+      <div id="container" style="width: 75%;">
         <canvas id="canvas"></canvas>
       </div>
-
+      
       <script>
         var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         var color = Chart.helpers.color;
@@ -224,8 +221,8 @@
         };
 
         window.onload = function() {
-          var barra = document.getElementById('canvas').getContext('2d');
-          window.myBar = new Chart(barra, {
+          var ctx = document.getElementById('canvas').getContext('2d');
+          window.myBar = new Chart(ctx, {
             type: 'bar',
             data: barChartData,
             options: {
@@ -242,7 +239,6 @@
 
         };
       </script>
-      
     </div>
   </section>
   <!--/ service-->
