@@ -21,29 +21,21 @@
 
 		if(!empty($_POST['date1']) && isset($_POST['date1']) && !empty($_POST['date2']) && isset($_POST['date2']))
 		{
-			require '../Modelo/MySQL.php';
+                        require '../Modelo/MySQL.php';
 
 			$fecha1 = $_POST['date1'];
 			$fecha2 = $_POST['date2'];
-
-			/*$mysql = new MySQL();
-			$mysql->conectar();
-
-			$id_usuario = $mysql->efectuarConsulta("
-				SELECT id_usuario, CONCAT(nombre_completo, ' ',apellidos) AS 'paciente' 
-				FROM clinica_cotecnova.usuarios 
-				WHERE numero_documento = ".$documentoPaciente);
-
-			$mysql->desconectar();
-
-			while($resultado = mysqli_fetch_assoc($id_usuario))
-			{
-			    $idUsuario = $resultado['id_usuario']; 
-			    $nombre = $resultado['paciente'];
-			}*/
-
-			header("refresh:3;url=citasFechas.php?f1=$fecha1&f2=$fecha2");
-			
+                        
+                        if($fecha1 < $fecha2)
+                        {
+                            header("refresh:3;url=citasFechas.php?f1=$fecha1&f2=$fecha2");
+                        }
+                        else{
+                            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> Rango de fecha incorrecto.</div>";
+		    
+                            //redireccion
+                            header("refresh:3;url=../reportes.php");
+                        }
 		}else
 		{
 			echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se han enviado todos los datos necesarios.</div>";

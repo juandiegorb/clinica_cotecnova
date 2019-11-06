@@ -10,6 +10,9 @@ $mysql = new MySQL();
 
 $mysql->conectar(); //Conectar a BD
 
+//Consulta para actualizar estado de las citas cuando ya hayan caducado
+$mysql->efectuarConsulta("UPDATE clinica_cotecnova.citas SET citas.estado = 0 WHERE citas.fecha_hora < DATE_FORMAT(NOW(),'%Y-%m-%d')");
+
 //Consultar para traer datos de la tabla citas inactivas
 $datos = $mysql->efectuarConsulta("
 	SELECT citas.id_cita, citas.fecha_hora, citas.motivo_consulta,
