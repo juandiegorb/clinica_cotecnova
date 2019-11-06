@@ -13,6 +13,16 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/style2.css">
+
+  <script src="js/Chart.min.js"></script>
+  <script src="js/utils.js"></script>
+  <style>
+  canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  </style>
   <!-- =======================================================
     Theme Name: Medilab
     Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
@@ -38,7 +48,7 @@
     //funcion conectar
     $mysql->conectar();
     //respectivas variables donde se llama la función consultar, se incluye la respectiva consulta
-    $seleccionCedulaP = $mysql->efectuarConsulta("select clinica_cotecnova.usuarios.numero_documento, clinica_cotecnova.usuarios.nombre_completo, clinica_cotecnova.usuarios.apellidos from usuarios");     
+    $seleccionCedulaP = $mysql->efectuarConsulta("select clinica_cotecnova.usuarios.numero_documento, clinica_cotecnova.usuarios.nombre_completo, clinica_cotecnova.usuarios.apellidos from usuarios");
 
     //funcion desconectar
     $mysql->desconectar();    
@@ -105,11 +115,134 @@
                         </li>
                     </div>
                 <!--</form>-->
-
             </div>
           </div> 
         </div>
       </div>
+
+      
+      <div id="canvas-holder" style="width:40%">
+        <canvas id="chart-area"></canvas>
+      </div>
+
+      <script>
+        var randomScalingFactor = function() {
+          return Math.round(Math.random() * 100);
+        };
+
+        
+        var config = {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: 
+              <?php
+                $mysql->conectar();
+                $usuarios = $mysql->efectuarConsulta("select count(*) as cantidad FROM usuarios"); 
+                $medicos = $mysql->efectuarConsulta("select count(*) as cantidadM FROM medicos");
+                $mysql->desconectar();
+              ?>
+                [
+                /*randomScalingFactor()*/
+                <?php
+                while ($resultado = mysqli_fetch_assoc($usuarios)) {
+                  echo $resultado['cantidad'];
+                 } 
+                ?>,
+                <?php
+                while ($resultado = mysqli_fetch_assoc($medicos)) {
+                  echo $resultado['cantidadM'];
+                 } 
+                ?>,
+              ],
+              backgroundColor: [
+                window.chartColors.red,
+                window.chartColors.yellow,
+              ],
+              label: 'Dataset 1'
+            }],
+            labels: [
+              'Pacientes',
+              'Medicos'
+            ]
+          },
+          options: {
+            responsive: true,
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Cantidad total de usuarios'
+            },
+            animation: {
+              animateScale: true,
+              animateRotate: true
+            }
+          }
+        };
+
+        window.onload = function() {
+          var ctx = document.getElementById('chart-area').getContext('2d');
+          window.myDoughnut = new Chart(ctx, config);
+        };
+      </script>
+
+      
+
+      
+      <div id="canvas-holder" style="width: 75%;">
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <script>
+        var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        var color = Chart.helpers.color;
+        var barChartData = {
+          labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+          datasets: [{
+            label: 'Citas',
+            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.red,
+            borderWidth: 1,
+            data: [
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor(),
+              randomScalingFactor()
+            ]
+          }]
+
+        };
+
+        window.onload = function() {
+          var barra = document.getElementById('canvas').getContext('2d');
+          window.myBar = new Chart(barra, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Chart.js Bar Chart'
+              }
+            }
+          });
+
+        };
+      </script>
+      
     </div>
   </section>
   <!--/ service-->
