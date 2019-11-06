@@ -188,7 +188,7 @@
         };
       </script>
 
-      <div id="container" style="width: 75%;">
+      <div id="" style="width: 75%;">
         <canvas id="canvas"></canvas>
       </div>
       
