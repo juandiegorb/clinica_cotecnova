@@ -121,11 +121,15 @@
       </div>
 
       
-      <div id="canvas-holder" style="width:40%">
-        <canvas id="chart-area"></canvas>
-      </div>
+    <div id="canvas-holder" class="col-lg-5">
+      <canvas id="chart1"></canvas>
+    </div>
 
+      <div id="canvas-holder" class="col-lg-5">
+      <canvas id="chart2"></canvas>
+    </div>
       <script>
+          //Grafico 1
         var randomScalingFactor = function() {
           return Math.round(Math.random() * 100);
         };
@@ -181,18 +185,9 @@
             }
           }
         };
-
-        window.onload = function() {
-          var ctx = document.getElementById('chart-area').getContext('2d');
-          window.myDoughnut = new Chart(ctx, config);
-        };
-      </script>
-
-      <div id="" style="width: 75%;">
-        <canvas id="canvas"></canvas>
-      </div>
-      
-      <script>
+        
+        
+        //Grafico 2
         var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         var color = Chart.helpers.color;
         var barChartData = {
@@ -221,8 +216,13 @@
         };
 
         window.onload = function() {
-          var ctx = document.getElementById('canvas').getContext('2d');
-          window.myBar = new Chart(ctx, {
+            // Grafico 1
+           var ctx = document.getElementById('chart1').getContext('2d');
+          window.myDoughnut = new Chart(ctx, config);
+            
+            // Grafico 2
+          var barra = document.getElementById('chart2').getContext('2d');
+          window.myBar = new Chart(barra, {
             type: 'bar',
             data: barChartData,
             options: {
@@ -236,9 +236,9 @@
               }
             }
           });
-
+          //Grafico 3
         };
-      </script>
+      </script>      
     </div>
   </section>
   <!--/ service-->
