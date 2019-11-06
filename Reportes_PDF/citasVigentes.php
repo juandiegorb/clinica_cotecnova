@@ -4,10 +4,6 @@
 require '../Modelo/PDF_MC_Table.php';
 require '../Modelo/MySQL.php';
 
-/*require '../Controlador/desactivarCita.php';
-
-actualizarEstado(); */
-
 //Instanciar clases PDF y MySQL
 $pdf = new PDF_MC_Table('L','mm','A4');
 $mysql = new MySQL();
