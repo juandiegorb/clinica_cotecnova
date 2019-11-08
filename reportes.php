@@ -86,7 +86,7 @@
                         </li>
 
                         <li class="list-group-item">
-                            <form action="Reportes_PDF/citasPaciente_Comprobacion.php" target="_blank" name="form_pacientes" method="POST">
+                            <form action="#" target="_blank" name="form_pacientes" id="form_id" method="POST">
                                 <select class="custom-select mr-sm-2" name="pacientes">
                                     <option value="0" selected disabled>Seleccionar documento de paciente</option> 
                                     <?php 
@@ -103,8 +103,16 @@
                                 <a href="javascript:enviarDocEXCEL()" style="color: #999999;">Ver citas de este paciente EXCEL</a>
                                     
                                 <script type="text/javascript">
-                                    function enviarDocPDF(){document.form_pacientes.submit();}
-                                    function enviarDocEXCEL(){document.form_pacientes.submit();}
+                                  function enviarDocPDF()
+                                  {
+                                    document.getElementById("form_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=1";
+                                    document.form_pacientes.submit();
+                                  }
+                                  function enviarDocEXCEL()
+                                  {
+                                    document.getElementById("form_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=2";
+                                    document.form_pacientes.submit();
+                                  }
                                 </script>
                             </form>
                         </li>

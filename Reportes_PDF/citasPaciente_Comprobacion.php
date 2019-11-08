@@ -39,9 +39,17 @@
 			{
 			    $idUsuario = $resultado['id_usuario']; 
 			    $nombre = $resultado['paciente'];
-			}
+			}    
 
-			header("refresh:3;url=citasPaciente.php?id=$idUsuario&name=$nombre");
+            if($_GET['value'] == 1)
+            {
+            	header("refresh:3;url=citasPaciente.php?id=$idUsuario&name=$nombre");
+            }
+            else if($_GET['value'] == 2)
+            {
+            	header("refresh:3;url=../Controlador/citasPaciente_Excel.php?id=$idUsuario&name=$nombre");
+            }
+			
 			
 		}else
 		{

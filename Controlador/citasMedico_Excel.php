@@ -37,11 +37,11 @@
 	$objPHPExcel  = new PHPExcel();
 	
 	//Propiedades de Documento
-	$objPHPExcel->getProperties()->setCreator("Natalia Agudelo")->setDescription("Reporte de Citas de paciente");
+	$objPHPExcel->getProperties()->setCreator("Natalia Agudelo")->setDescription("Reporte de Citas de medico");
 	
 	//Establecemos la pestaña activa y nombre a la pestaña
 	$objPHPExcel->setActiveSheetIndex(0);
-	$objPHPExcel->getActiveSheet()->setTitle("Citas de Paciente");
+	$objPHPExcel->getActiveSheet()->setTitle("Citas de Medico");
 	
 	$objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
 	$objDrawing->setName('Logotipo');
@@ -125,7 +125,7 @@
 	$objPHPExcel->getActiveSheet()->getStyle('A1:E4')->applyFromArray($estiloTituloReporte);
 	$objPHPExcel->getActiveSheet()->getStyle('A6:E6')->applyFromArray($estiloTituloColumnas);
         
-        $objPHPExcel->getActiveSheet()->setCellValue('B3', 'CITAS DE PACIENTE');
+        $objPHPExcel->getActiveSheet()->setCellValue('B3', 'CITAS DE MEDICO');
 	$objPHPExcel->getActiveSheet()->mergeCells('B3:D3');
 	
         
@@ -155,7 +155,7 @@
             $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A7:E".$fila);
 
             header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            header('Content-Disposition: attachment;filename="citas_paciente.xlsx"');
+            header('Content-Disposition: attachment;filename="citas_medico.xlsx"');
             header('Cache-Control: max-age=0');
         
         

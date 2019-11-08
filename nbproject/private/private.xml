@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/clinica_cotecnova/email/language/phpmailer.lang-fi.php</file>
-            <file>file:/C:/xampp/htdocs/clinica_cotecnova/formularioCorreo.php</file>
-            <file>file:/C:/xampp/htdocs/clinica_cotecnova/Controlador/loginvalidacion.php</file>
-            <file>file:/C:/xampp/htdocs/clinica_cotecnova/ver_medico.php</file>
-            <file>file:/C:/xampp/htdocs/clinica_cotecnova/Controlador/enviarCorreo.php</file>
+            <file>file:/C:/xampp/htdocs/clinica_cotecnova/reportes.php</file>
+            <file>file:/C:/xampp/htdocs/clinica_cotecnova/Reportes_PDF/citasPaciente_Comprobacion.php</file>
         </group>
     </open-files>
 </project-private>
