@@ -209,14 +209,20 @@
         var barChartData = {
           labels: 
             <?php
+              $contador = 0;
               $mysql->conectar();
-              $annio1 = $mysql->efectuarConsulta("select DATE_FORMAT(fecha_hora, '%Y') as annio from citas GROUP BY annio"); 
+              $annio1 = $mysql->efectuarConsulta("select DATE_FORMAT(fecha_hora, '%Y') as annio from citas GROUP BY annio");
               $mysql->desconectar();
             ?>
             [
               <?php
                 while ($resultado1 = mysqli_fetch_assoc($annio1)) {
                   echo $resultado1['annio'];
+                  
+                  $contador++;
+                  if($contador < 2){
+                    echo ", ";
+                  }
                 } 
               ?>
             , ],
@@ -227,6 +233,7 @@
             borderWidth: 1,
             data: 
             <?php
+              $contador = 0;
               $mysql->conectar();
               $consulta = $mysql->efectuarConsulta("select COUNT(*) as cantidad, DATE_FORMAT(fecha_hora, '%Y') as anio from citas GROUP BY anio"); 
               $mysql->desconectar();
@@ -235,6 +242,10 @@
               <?php
                 while ($resultado = mysqli_fetch_assoc($consulta)) {
                   echo $resultado['cantidad'];
+                  $contador++;
+                  if($contador < 2){
+                    echo ", ";
+                  }
                 } 
               ?>,
             ]
