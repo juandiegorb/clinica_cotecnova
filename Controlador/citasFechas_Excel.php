@@ -8,17 +8,18 @@
 	//funcion conectar
     $mysql->conectar();
 
-    $idUsuario = $_GET['id'];
+	$fecha1 = $_GET['f1'];
+	$fecha2 = $_GET['f2'];
 
-        //Consultar para traer datos de la tabla citas
+    //Consultar para traer datos de la tabla citas
 	$datos = $mysql->efectuarConsulta("
-        SELECT citas.id_cita, citas.fecha_hora, citas.motivo_consulta, 
-	CONCAT(usuarios.nombre_completo, ' ',usuarios.apellidos) AS 'paciente', 
+	SELECT citas.id_cita, citas.fecha_hora, citas.motivo_consulta,
+	CONCAT(usuarios.nombre_completo, ' ',usuarios.apellidos) AS 'paciente',
 	CONCAT(medicos.nombre_completo, ' ',medicos.apellidos) AS 'medico'
 	FROM citas 
-	INNER JOIN usuarios ON usuarios.id_usuario = citas.usuario_id 
-	INNER JOIN medicos ON medicos.id_medico = citas.medico_id 
-	WHERE medicos.id_medico = ".$idMedico."");
+	INNER JOIN usuarios ON usuarios.id_usuario = citas.usuario_id  
+	INNER JOIN medicos ON medicos.id_medico = citas.medico_id
+	WHERE DATE_FORMAT(citas.fecha_hora,'%Y-%m-%d') BETWEEN '".$fecha1."' AND '".$fecha2."'");
 
 	$mysql->desconectar();
 
@@ -30,11 +31,11 @@
 	$objPHPExcel  = new PHPExcel();
 	
 	//Propiedades de Documento
-	$objPHPExcel->getProperties()->setCreator("Natalia Agudelo")->setDescription("Reporte de Citas de paciente");
+	$objPHPExcel->getProperties()->setCreator("Natalia Agudelo")->setDescription("Reporte de Citas");
 	
 	//Establecemos la pestaña activa y nombre a la pestaña
 	$objPHPExcel->setActiveSheetIndex(0);
-	$objPHPExcel->getActiveSheet()->setTitle("Citas de Paciente");
+	$objPHPExcel->getActiveSheet()->setTitle("Citas por fecha");
 	
 	$objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
 	$objDrawing->setName('Logotipo');
@@ -118,7 +119,7 @@
 	$objPHPExcel->getActiveSheet()->getStyle('A1:E4')->applyFromArray($estiloTituloReporte);
 	$objPHPExcel->getActiveSheet()->getStyle('A6:E6')->applyFromArray($estiloTituloColumnas);
         
-        $objPHPExcel->getActiveSheet()->setCellValue('B3', 'CITAS DE MEDICO');
+        $objPHPExcel->getActiveSheet()->setCellValue('B3', 'REPORTE DE CITAS');
 	$objPHPExcel->getActiveSheet()->mergeCells('B3:D3');
 	
         
@@ -126,7 +127,9 @@
             $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
             $objPHPExcel->getActiveSheet()->setCellValue('A6', 'ID');
             $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
-            $objPHPExcel->getActiveSheet()->setCellValue('B6', 'MEDICO');
+            $objPHPExcel->getActiveSheet()->setCellValue('B6', 'PACIENTE');
+            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+            $objPHPExcel->getActiveSheet()->setCellValue('C6', 'MEDICO');
             $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(30);
             $objPHPExcel->getActiveSheet()->setCellValue('D6', 'FECHA_HORA');
             $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(30);
@@ -136,7 +139,8 @@
             while($rows = mysqli_fetch_assoc($datos)){
 
                     $objPHPExcel->getActiveSheet()->setCellValue('A'.$fila, $rows['id_cita']);
-                    $objPHPExcel->getActiveSheet()->setCellValue('B'.$fila, $rows['medico']);
+                    $objPHPExcel->getActiveSheet()->setCellValue('B'.$fila, $rows['paciente']);
+                    $objPHPExcel->getActiveSheet()->setCellValue('C'.$fila, $rows['medico']);
                     $objPHPExcel->getActiveSheet()->setCellValue('D'.$fila, $rows['fecha_hora']);
                     $objPHPExcel->getActiveSheet()->setCellValue('E'.$fila, $rows['motivo_consulta']);
 
@@ -148,7 +152,7 @@
             $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A7:E".$fila);
 
             header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            header('Content-Disposition: attachment;filename="citas_paciente.xlsx"');
+            header('Content-Disposition: attachment;filename="reporte_citas.xlsx"');
             header('Cache-Control: max-age=0');
         
         

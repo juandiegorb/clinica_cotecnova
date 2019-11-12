@@ -21,11 +21,6 @@
 	INNER JOIN usuarios ON usuarios.id_usuario = citas.usuario_id 
 	INNER JOIN medicos ON medicos.id_medico = citas.medico_id 
 	WHERE medicos.id_medico = ".$idMedico."");
-        
-        /*while($resultado = mysqli_fetch_assoc($datos))
-        {
-            $medico = $resultado['medico'];
-        }*/
 
 	$mysql->desconectar();
 
