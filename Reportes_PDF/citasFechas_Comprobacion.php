@@ -19,23 +19,31 @@
 
 		<?php
 
-		if(!empty($_POST['date1']) && isset($_POST['date1']) && !empty($_POST['date2']) && isset($_POST['date2']))
+		if(isset($_POST['date1']) && isset($_POST['date2']))
 		{
-                        require '../Modelo/MySQL.php';
+            require '../Modelo/MySQL.php';
 
 			$fecha1 = $_POST['date1'];
 			$fecha2 = $_POST['date2'];
                         
-                        if($fecha1 <= $fecha2)
-                        {
-                            header("refresh:3;url=citasFechas.php?f1=$fecha1&f2=$fecha2");
-                        }
-                        else{
-                            echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> Rango de fecha incorrecto.</div>";
-		    
-                            //redireccion
-                            header("refresh:3;url=../reportes.php");
-                        }
+            if($fecha1 <= $fecha2)
+            {
+            	if($_GET['value'] == 1)
+            	{
+            		header("refresh:3;url=citasFechas.php?f1=$fecha1&f2=$fecha2");
+            	}
+            	else if($_GET['value'] == 2)
+            	{
+            		header("refresh:3;url=../Controlador/citasFechas_Excel.php?f1=$fecha1&f2=$fecha2");
+            	}
+                
+            }
+            else{
+                echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> Rango de fecha incorrecto.</div>";
+
+                //redireccion
+                header("refresh:3;url=../reportes.php");
+            }
 		}else
 		{
 			echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se han enviado todos los datos necesarios.</div>";
