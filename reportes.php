@@ -86,7 +86,7 @@
                         </li>
 
                         <li class="list-group-item">
-                            <form action="#" target="_blank" name="form_pacientes" id="form_id" method="POST">
+                            <form action="#" target="_blank" name="form_pacientes" id="form_pacientes_id" method="POST">
                                 <select class="custom-select mr-sm-2" name="pacientes">
                                     <option value="0" selected disabled>Seleccionar documento de paciente</option> 
                                     <?php 
@@ -105,12 +105,12 @@
                                 <script type="text/javascript">
                                   function enviarDocPDF()
                                   {
-                                    document.getElementById("form_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=1";
+                                    document.getElementById("form_pacientes_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=1";
                                     document.form_pacientes.submit();
                                   }
                                   function enviarDocEXCEL()
                                   {
-                                    document.getElementById("form_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=2";
+                                    document.getElementById("form_pacientes_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=2";
                                     document.form_pacientes.submit();
                                   }
                                 </script>
@@ -118,7 +118,7 @@
                         </li>
 
                         <li class="list-group-item">
-                            <form action="Reportes_PDF/citasFechas_Comprobacion.php" target="_blank" name="form_fechas" method="POST">
+                            <form action="#" target="_blank" name="form_fechas" id="form_fechas_id" method="POST">
                                 Desde&nbsp<input type="date" name="date1" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>> Hasta <input type="date" name="date2" max=<?php $hoy=date("Y-m-d"); echo $hoy;?>><br>
 
                                 <a href="javascript:enviarFechasPDF()" style="color: #999999;">Ver citas en este rango PDF</a><br>
@@ -127,11 +127,12 @@
                                 <script type="text/javascript">
                                     function enviarFechasPDF()
                                     {
+                                        document.getElementById("form_fechas_id").action = "Reportes_PDF/citasFechas_Comprobacion.php?value=1";
                                         document.form_fechas.submit();
-                                        document.form_fechas.value=
                                     }
                                     function enviarFechasEXCEL()
                                     {
+                                        document.getElementById("form_fechas_id").action = "Reportes_PDF/citasFechas_Comprobacion.php?value=2";
                                         document.form_fechas.submit();
                                     }
                                 </script>
