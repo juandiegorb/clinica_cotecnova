@@ -1,7 +1,7 @@
 <?php
 
     //llamar al archivo fpdf principa
-    require '../Reportes_PDF/fpdf/fpdf.php';
+    require 'fpdf/fpdf.php';
 
     //crea una nueva clase que extiende la clase fpdf
     class PDF_MC_Table extends FPDF 

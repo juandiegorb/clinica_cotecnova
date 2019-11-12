@@ -73,16 +73,16 @@
                 <!--<form class="form-horizontal form-material" action="#" method="POST">-->
                     <div class="list-group">
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasVigentes.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes PDF</a><br>
-                            <a href="Controlador/citasVigentes_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes EXCEL</a>
+                            <a href="Controlador/PDF_citasVigentes.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes PDF</a><br>
+                            <a href="Controlador/Excel_citasVigentes.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas vigentes EXCEL</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasCaducadas.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas PDF</a><br>
-                            <a href="Controlador/citasCaducadas_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas EXCEL</a>
+                            <a href="Controlador/PDF_citasCaducadas.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas PDF</a><br>
+                            <a href="Controlador/Excel_citasCaducadas.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver citas caducadas EXCEL</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="Reportes_PDF/citasMedico.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas PDF</a><br>
-                            <a href="Controlador/citasMedico_Excel.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas EXCEL</a>
+                            <a href="Controlador/PDF_citasMedico.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas PDF</a><br>
+                            <a href="Controlador/Excel_citasMedico.php" style="color: #999999;" target="_blank" rel="noopener noreferrer">Ver mis citas EXCEL</a>
                         </li>
 
                         <li class="list-group-item">
@@ -105,12 +105,12 @@
                                 <script type="text/javascript">
                                   function enviarDocPDF()
                                   {
-                                    document.getElementById("form_pacientes_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=1";
+                                    document.getElementById("form_pacientes_id").action = "Controlador/citasPaciente_Comprobacion.php?value=1";
                                     document.form_pacientes.submit();
                                   }
                                   function enviarDocEXCEL()
                                   {
-                                    document.getElementById("form_pacientes_id").action = "Reportes_PDF/citasPaciente_Comprobacion.php?value=2";
+                                    document.getElementById("form_pacientes_id").action = "Controlador/citasPaciente_Comprobacion.php?value=2";
                                     document.form_pacientes.submit();
                                   }
                                 </script>
@@ -127,12 +127,12 @@
                                 <script type="text/javascript">
                                     function enviarFechasPDF()
                                     {
-                                        document.getElementById("form_fechas_id").action = "Reportes_PDF/citasFechas_Comprobacion.php?value=1";
+                                        document.getElementById("form_fechas_id").action = "Controlador/citasFechas_Comprobacion.php?value=1";
                                         document.form_fechas.submit();
                                     }
                                     function enviarFechasEXCEL()
                                     {
-                                        document.getElementById("form_fechas_id").action = "Reportes_PDF/citasFechas_Comprobacion.php?value=2";
+                                        document.getElementById("form_fechas_id").action = "Controlador/citasFechas_Comprobacion.php?value=2";
                                         document.form_fechas.submit();
                                     }
                                 </script>

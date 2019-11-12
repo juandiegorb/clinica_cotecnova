@@ -19,38 +19,31 @@
 
 		<?php
 
-		if(!empty($_POST['pacientes']) && isset($_POST['pacientes']))
+		if(isset($_POST['date1']) && isset($_POST['date2']))
 		{
-			require '../Modelo/MySQL.php';
+            require '../Modelo/MySQL.php';
 
-			$documentoPaciente = $_POST['pacientes'];
-
-			$mysql = new MySQL();
-			$mysql->conectar();
-
-			$id_usuario = $mysql->efectuarConsulta("
-				SELECT id_usuario, CONCAT(nombre_completo, ' ',apellidos) AS 'paciente' 
-				FROM clinica_cotecnova.usuarios 
-				WHERE numero_documento = ".$documentoPaciente);
-
-			$mysql->desconectar();
-
-			while($resultado = mysqli_fetch_assoc($id_usuario))
-			{
-			    $idUsuario = $resultado['id_usuario']; 
-			    $nombre = $resultado['paciente'];
-			}    
-
-            if($_GET['value'] == 1)
+			$fecha1 = $_POST['date1'];
+			$fecha2 = $_POST['date2'];
+                        
+            if($fecha1 <= $fecha2)
             {
-            	header("refresh:3;url=citasPaciente.php?id=$idUsuario&name=$nombre");
+            	if($_GET['value'] == 1)
+            	{
+            		header("refresh:3;url=PDF_citasFechas.php?f1=$fecha1&f2=$fecha2");
+            	}
+            	else if($_GET['value'] == 2)
+            	{
+            		header("refresh:3;url=../Controlador/Excel_citasFechas.php?f1=$fecha1&f2=$fecha2");
+            	}
+                
             }
-            else if($_GET['value'] == 2)
-            {
-            	header("refresh:3;url=../Controlador/citasPaciente_Excel.php?id=$idUsuario&name=$nombre");
+            else{
+                echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> Rango de fecha incorrecto.</div>";
+
+                //redireccion
+                header("refresh:3;url=../reportes.php");
             }
-			
-			
 		}else
 		{
 			echo "<div class=\"alert alert-warning alert-dismissible\"><a href=\"../reportes.php\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Alerta!</strong> No se han enviado todos los datos necesarios.</div>";
@@ -58,6 +51,15 @@
 		    //redireccion
 		    header("refresh:3;url=../reportes.php");
 		}
+
+		echo "
+			<script>
+				setTimeout(function() 
+				{
+				    window.close();
+				}, 6000);
+			</script
+			";
 
 		?>
 		
