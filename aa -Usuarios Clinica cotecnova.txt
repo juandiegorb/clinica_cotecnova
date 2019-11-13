@@ -1,4 +1,4 @@
-Cuenta medico
+﻿Cuenta medico
 
 Numero documento: 1
 Contraseña: Cotecnova
@@ -7,3 +7,8 @@ Cuenta Paciente
 
 Numero documento: 1
 Contraseña: Cotecnova
+
+
+https://co.000webhost.com
+servidor: clinica-cotecnova
+contra: mrH!Csb7EH61b@doH$qY
