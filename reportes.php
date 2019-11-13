@@ -50,8 +50,14 @@
     //respectivas variables donde se llama la función consultar, se incluye la respectiva consulta
     $seleccionCedulaP = $mysql->efectuarConsulta("select clinica_cotecnova.usuarios.numero_documento, clinica_cotecnova.usuarios.nombre_completo, clinica_cotecnova.usuarios.apellidos from usuarios");
 
+    $contador = 0;
+    $anio = $mysql->efectuarConsulta("select COUNT(*) as cantidad, DATE_FORMAT(fecha_hora, '%Y') as anio from citas GROUP BY anio");
+    while ($resultado1 = mysqli_fetch_assoc($anio)){
+      $contador++;
+    } 
+
     //funcion desconectar
-    $mysql->desconectar();    
+    $mysql->desconectar();
     ?>
   </div>  
   <!--service-->
@@ -218,7 +224,7 @@
         var barChartData = {
           labels: 
             <?php
-              $contador = 0;
+              $cantidad = 0;
               $mysql->conectar();
               $annio1 = $mysql->efectuarConsulta("select DATE_FORMAT(fecha_hora, '%Y') as annio from citas GROUP BY annio");
               $mysql->desconectar();
@@ -228,8 +234,8 @@
                 while ($resultado1 = mysqli_fetch_assoc($annio1)) {
                   echo $resultado1['annio'];
                   
-                  $contador++;
-                  if($contador < 2){
+                  $cantidad++;
+                  if($cantidad < $contador){
                     echo ", ";
                   }
                 } 
@@ -242,7 +248,7 @@
             borderWidth: 1,
             data: 
             <?php
-              $contador = 0;
+              $cantidad = 0;
               $mysql->conectar();
               $consulta = $mysql->efectuarConsulta("select COUNT(*) as cantidad, DATE_FORMAT(fecha_hora, '%Y') as anio from citas GROUP BY anio"); 
               $mysql->desconectar();
@@ -251,8 +257,8 @@
               <?php
                 while ($resultado = mysqli_fetch_assoc($consulta)) {
                   echo $resultado['cantidad'];
-                  $contador++;
-                  if($contador < 2){
+                  $cantidad++;
+                  if($cantidad < $contador){
                     echo ", ";
                   }
                 } 
